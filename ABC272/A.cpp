@@ -6,4 +6,13 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    int ans = 0;
+    rep(i, N) {
+        int A_i;
+        cin >> A_i;
+        ans += A_i;
+    }
+    cout << ans << endl;
 }
