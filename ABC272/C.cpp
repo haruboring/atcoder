@@ -27,9 +27,5 @@ int main() {
             first_odd = A[i];
         }
     }
-    if (max(even_even, odd_odd) == -1) {
-        cout << -1 << endl;
-    } else {
-        cout << max(even_even, odd_odd) << endl;
-    }
+    cout << max(even_even, odd_odd) << endl;
 }
