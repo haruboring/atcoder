@@ -6,4 +6,30 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) {
+        cin >> A[i];
+    }
+    sort(all(A));
+    int even_even = -1, first_even = -1, odd_odd = -1, first_odd = -1;
+    rep(i, N) {
+        if (A[i] % 2 == 0 && first_even == -1) {
+            first_even = A[i];
+        } else if (A[i] % 2 == 0) {
+            even_even = first_even + A[i];
+            first_even = A[i];
+        } else if (A[i] % 2 == 1 && first_odd == -1) {
+            first_odd = A[i];
+        } else {
+            odd_odd = first_odd + A[i];
+            first_odd = A[i];
+        }
+    }
+    if (max(even_even, odd_odd) == -1) {
+        cout << -1 << endl;
+    } else {
+        cout << max(even_even, odd_odd) << endl;
+    }
 }
