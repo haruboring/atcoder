@@ -5,11 +5,13 @@
 using namespace std;
 using ll = long long;
 
+// cout << (A|B) << endl;
+
 int main() {
     int A, B;
     cin >> A >> B;
     set<int> answerd_A, answerd_B;
-    int ans=0;
+    int ans = 0;
     while (A > 0) {
         if (A - 4 >= 0) {
             answerd_A.insert(4);
@@ -38,10 +40,10 @@ int main() {
         ans++;
     }
     if (answerd_A.count(2) || answerd_B.count(2)) {
-        ans+=2;
+        ans += 2;
     }
     if (answerd_A.count(4) || answerd_B.count(4)) {
-        ans+=4;
+        ans += 4;
     }
     cout << ans << endl;
 }
