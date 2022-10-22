@@ -6,4 +6,7 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    float A, B;
+    cin >> A >> B;
+    cout << fixed << setprecision(3) << B / A << endl;
 }
