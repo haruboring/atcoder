@@ -6,4 +6,16 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S, T; cin >> S >> T;
+    if(S.size() > T.size()){
+        cout << "No" << endl;
+        return 0;
+    }
+    rep(i, S.size()){
+        if(S[i] != T[i]){
+            cout << "No" << endl;
+            return 0;
+        }
+    }
+    cout << "Yes" << endl;
 }
