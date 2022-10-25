@@ -6,4 +6,9 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    ll BASE = 998244353;
+    ll N;
+    cin >> N;
+    ll amari = (N % BASE + BASE) % BASE;
+    cout << amari << endl;
 }

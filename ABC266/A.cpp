@@ -6,4 +6,7 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S;
+    cin >> S;
+    cout << S[S.size() / 2] << endl;
 }
