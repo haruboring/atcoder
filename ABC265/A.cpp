@@ -6,4 +6,9 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int X, Y, N;
+    cin >> X >> Y >> N;
+    int ans = Y * (N / 3) + X * (N % 3);
+    ans = min(ans, X * N);
+    cout << ans << endl;
 }
