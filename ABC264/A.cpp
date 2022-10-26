@@ -6,4 +6,9 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int L, R;
+    cin >> L >> R;
+    string atc = "atcoder";
+
+    cout << atc.substr(L - 1, R - L + 1) << endl;
 }
