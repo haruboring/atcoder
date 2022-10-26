@@ -6,4 +6,19 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int R, C;
+    cin >> R >> C;
+    if ((C <= R && R <= 16 - C) || (C >= R && R >= 16 - C)) {
+        if (C % 2 == 1) {
+            cout << "black" << endl;
+        } else {
+            cout << "white" << endl;
+        }
+    } else {
+        if (R % 2 == 1) {
+            cout << "black" << endl;
+        } else {
+            cout << "white" << endl;
+        }
+    }
 }
