@@ -6,4 +6,8 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int Y;
+    cin >> Y;
+    int held_year = 4 * ((Y + 1) / 4) + 2;
+    cout << held_year << endl;
 }
