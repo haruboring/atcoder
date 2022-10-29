@@ -6,4 +6,19 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    vector<int> H(N);
+    rep(i, N) {
+        cin >> H[i];
+    }
+    int ans = 1;
+    int high = H[0];
+    repp(i, 1, N) {
+        if (high < H[i]) {
+            ans = i + 1;
+            high = H[i];
+        }
+    }
+    cout << ans << endl;
 }
