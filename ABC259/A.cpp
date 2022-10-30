@@ -6,4 +6,11 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N, M, X, T, D;
+    cin >> N >> M >> X >> T >> D;
+    if (M >= X) {
+        cout << T << endl;
+    } else {
+        cout << T - (X - M) * D << endl;
+    }
 }
