@@ -6,4 +6,8 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N, X;
+    cin >> N >> X;
+    string ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    cout << ALPHABET[(X - 1) / N] << endl;
 }
