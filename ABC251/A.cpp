@@ -6,4 +6,10 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S;
+    cin >> S;
+    rep(i, 6 / S.size()) {
+        cout << S;
+    }
+    cout << endl;
 }
