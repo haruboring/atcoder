@@ -6,4 +6,7 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    cout << setw(2) << setfill('0') << to_string(N % 100) << endl;
 }
