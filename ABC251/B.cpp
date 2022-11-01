@@ -27,18 +27,11 @@ int main() {
         }
     }
     rep(i, N - 2) {
-        if (A[i] > W) {
-            break;
-        }
         repp(j, i + 1, N - 1) {
-            if (A[i] + A[j] > W) {
-                break;
-            }
             repp(k, j + 1, N) {
-                if (A[i] + A[j] + A[k] > W) {
-                    break;
+                if (A[i] + A[j] + A[k] <= W) {
+                    S.insert(A[i] + A[j] + A[k]);
                 }
-                S.insert(A[i] + A[j] + A[k]);
             }
         }
     }
