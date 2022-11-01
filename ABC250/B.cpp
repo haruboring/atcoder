@@ -6,4 +6,16 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N, A, B;
+    cin >> N >> A >> B;
+    rep(i, N * A) {
+        rep(j, N * B) {
+            if ((j / B) % 2 == (i / A) % 2) {
+                cout << '.';
+            } else {
+                cout << '#';
+            }
+        }
+        cout << endl;
+    }
 }
