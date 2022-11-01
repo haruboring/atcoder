@@ -6,4 +6,7 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    cout << int(pow(2, N)) << endl;
 }
