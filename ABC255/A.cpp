@@ -6,4 +6,15 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int R, C;
+    cin >> R >> C;
+    rep(i, 2) {
+        rep(j, 2) {
+            int A;
+            cin >> A;
+            if (i == R - 1 && j == C - 1) {
+                cout << A << endl;
+            }
+        }
+    }
 }
