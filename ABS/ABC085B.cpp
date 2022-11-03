@@ -6,4 +6,13 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    set<int> d;
+    rep(i, N) {
+        int d_i;
+        cin >> d_i;
+        d.insert(d_i);
+    }
+    cout << d.size() << endl;
 }

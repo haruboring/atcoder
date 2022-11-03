@@ -6,4 +6,26 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S;
+    cin >> S;
+    vector<string> der(4);
+    der[0] = "dreamer", der[1] = "dream", der[2] = "eraser", der[3] = "erase";
+    while (S.size()) {
+        rep(i, 5) {
+            if (i == 4) {
+                cout << "NO" << endl;
+                return 0;
+            }
+            if (equal(all(der[i]), S.begin())) {
+                if (i == 0) {
+                    if (S[der[0].size()] == 'a') {
+                        continue;
+                    }
+                }
+                S.erase(0, der[i].size());
+                break;
+            }
+        }
+    }
+    cout << "YES" << endl;
 }

@@ -6,4 +6,19 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) {
+        cin >> A[i];
+    }
+    vector<int> cnt(N);
+    rep(i, N) {
+        while (A[i] % 2 == 0) {
+            A[i] /= 2;
+            cnt[i]++;
+        }
+    }
+    sort(all(cnt));
+    cout << cnt[0] << endl;
 }
