@@ -6,4 +6,15 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    ll A, B, K;
+    cin >> A >> B >> K;
+    int ans = 0;
+    while (1) {
+        if (A >= B) {
+            break;
+        }
+        A *= K;
+        ans++;
+    }
+    cout << ans << endl;
 }
