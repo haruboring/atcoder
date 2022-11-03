@@ -6,4 +6,8 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    double A, B;
+    cin >> A >> B;
+    double length = sqrt(A * A + B * B);
+    cout << fixed << setprecision(10) << A / length << " " << B / length << endl;
 }

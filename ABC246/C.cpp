@@ -6,4 +6,29 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    ll N, K, X;
+    cin >> N >> K >> X;
+    vector<ll> A(N);
+    rep(i, N) {
+        cin >> A[i];
+    }
+    sort(all(A));
+    reverse(all(A));
+    rep(i, N) {
+        ll used = (min(A[i] / X, K));
+        A[i] = max(ll(0), A[i] - (X * used));
+        K -= used;
+    }
+    sort(all(A));
+    reverse(all(A));
+    rep(i, N) {
+        if (i < K) {
+            A[i] = 0;
+        }
+    }
+    ll ans = 0;
+    rep(i, N) {
+        ans += A[i];
+    }
+    cout << ans << endl;
 }
