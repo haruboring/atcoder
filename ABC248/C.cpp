@@ -5,25 +5,26 @@
 using namespace std;
 using ll = long long;
 
-int N, M, K;
-ll ans = 1;
-ll BASE = 998244353;
-
-ll a(int nokori, int nokori_retu) {
-    if (nokori_retu <= 0) {
-        return ans;
-    }
-    ll memo = 0;
-    repp(i, 1, min(M, nokori - (nokori_retu - 1)) + 1) {
-        cout << nokori_retu << endl;
-        memo += a(nokori - i, nokori_retu - 1);
-    }
-    ans += (memo % BASE);
-    ans %= BASE;
-    return ans;
-}
-
 int main() {
+    int N, M, K;
+    ll BASE = 998244353;
     cin >> N >> M >> K;
-    cout << a(K, N) << endl;
+    vector<vector<ll>> dp(N + 1, vector<ll>(K + 1));
+    dp[0][0] = 1;
+    rep(i, N) {
+        rep(j, K) {
+            rep(k, M) {
+                if (j + k + 1 <= K) {
+                    dp[i + 1][j + k + 1] += dp[i][j];
+                    dp[i + 1][j + k + 1] %= BASE;
+                }
+            }
+        }
+    }
+    ll ans = 0;
+    rep(i, K) {
+        ans += dp[N][i + 1];
+        ans %= BASE;
+    }
+    cout << ans << endl;
 }
