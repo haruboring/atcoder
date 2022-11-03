@@ -6,4 +6,11 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S;
+    cin >> S;
+    cout << 0;
+    rep(i, 3) {
+        cout << S[i];
+    }
+    cout << endl;
 }
