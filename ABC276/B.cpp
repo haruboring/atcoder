@@ -6,4 +6,21 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N, M;
+    cin >> N >> M;
+    vector<vector<int>> A(N + 1, vector<int>(0));
+    rep(i, M) {
+        int a, b;
+        cin >> a >> b;
+        A[a].push_back(b);
+        A[b].push_back(a);
+    }
+    rep(i, N) {
+        sort(all(A[i + 1]));
+        cout << A[i + 1].size() << " ";
+        rep(j, A[i + 1].size()) {
+            cout << A[i + 1][j] << " ";
+        }
+        cout << endl;
+    }
 }

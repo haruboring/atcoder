@@ -6,4 +6,13 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S;
+    cin >> S;
+    int cnt = -1;
+    rep(i, S.size()) {
+        if (S[i] == 'a') {
+            cnt = i + 1;
+        }
+    }
+    cout << cnt << endl;
 }
