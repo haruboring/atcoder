@@ -6,4 +6,15 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N, X;
+    cin >> N >> X;
+    vector<int> P(N);
+    rep(i, N) {
+        cin >> P[i];
+    }
+    rep(i, N) {
+        if (P[i] == X) {
+            cout << i + 1 << endl;
+        }
+    }
 }

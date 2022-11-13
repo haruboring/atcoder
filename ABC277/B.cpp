@@ -6,4 +6,29 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    vector<string> S(N);
+    set<string> s;
+    bool ans = true;
+    rep(i, N) {
+        cin >> S[i];
+        if (s.count(S[i])) {
+            ans = false;
+        }
+        s.insert(S[i]);
+    }
+    rep(i, N) {
+        if (!(S[i][0] == 'H' || S[i][0] == 'D' || S[i][0] == 'C' || S[i][0] == 'S')) {
+            ans = false;
+        }
+        if (!(S[i][1] == 'A' || S[i][1] == '2' || S[i][1] == '3' || S[i][1] == '4' || S[i][1] == '5' || S[i][1] == '6' || S[i][1] == '7' || S[i][1] == '8' || S[i][1] == '9' || S[i][1] == 'T' || S[i][1] == 'J' || S[i][1] == 'Q' || S[i][1] == 'K')) {
+            ans = false;
+        }
+    }
+    if (ans) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
 }
