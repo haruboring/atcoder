@@ -6,4 +6,23 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) {
+        cin >> A[i];
+    }
+    rep(ans, 2020) {
+        bool a = true;
+        rep(i, N) {
+            if (ans == A[i]) {
+                a = false;
+                break;
+            }
+        }
+        if (a) {
+            cout << ans << endl;
+            break;
+        }
+    }
 }
