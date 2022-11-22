@@ -10,5 +10,16 @@ int main() {
     cin >> N;
     string T;
     cin >> T;
-    
+    vector<vector<int>> avg = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}};
+    vector<int> ans = {0, 0};
+    int cnt = 0;
+    rep(i, N) {
+        if (T[i] == 'S') {
+            ans[0] += avg[cnt % 4][0];
+            ans[1] += avg[cnt % 4][1];
+        } else {
+            cnt++;
+        }
+    }
+    cout << ans[0] << " " << ans[1] << endl;
 }
