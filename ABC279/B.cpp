@@ -6,4 +6,25 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S, T;
+    cin >> S >> T;
+    int Ss = S.size();
+    int Ts = T.size();
+    if (Ss < Ts) {
+        cout << "No" << endl;
+        return 0;
+    }
+    rep(i, Ss - Ts + 1) {
+        bool b = true;
+        rep(j, Ts) {
+            if (T[j] != S[i + j]) {
+                b = false;
+            }
+        }
+        if (b) {
+            cout << "Yes" << endl;
+            return 0;
+        }
+    }
+    cout << "No" << endl;
 }
