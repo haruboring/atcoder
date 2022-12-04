@@ -6,4 +6,19 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int H, W;
+    cin >> H >> W;
+    vector<string> S(H);
+    rep(i, H) {
+        cin >> S[i];
+    }
+    int cnt = 0;
+    rep(i, H) {
+        rep(j, W) {
+            if (S[i][j] == '#') {
+                cnt++;
+            }
+        }
+    }
+    cout << cnt << endl;
 }
