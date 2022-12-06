@@ -6,4 +6,12 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S, T;
+    cin >> S >> T;
+    rep(i, T.size()) {
+        if (S[i] != T[i]) {
+            cout << i + 1 << endl;
+            return 0;
+        }
+    }
 }
