@@ -6,4 +6,9 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    rep(i, N + 1) {
+        cout << N - i << endl;
+    }
 }
