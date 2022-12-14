@@ -6,4 +6,28 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    vector<int> A(N), B(N);
+    rep(i, N) {
+        cin >> A[i];
+    }
+    rep(i, N) {
+        cin >> B[i];
+    }
+    int cnt = 0;
+    rep(i, N) {
+        if (A[i] == B[i]) {
+            cnt++;
+        }
+    }
+    int cntk = 0;
+    rep(i, N) {
+        rep(j, N) {
+            if (A[i] == B[j]) {
+                cntk++;
+            }
+        }
+    }
+    cout << cnt << " " << cntk - cnt << endl;
 }
