@@ -6,4 +6,10 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int K;
+    cin >> K;
+    rep(i, K) {
+        cout << char('A' + i);
+    }
+    cout << endl;
 }

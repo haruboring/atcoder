@@ -6,4 +6,11 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    ll N, M;
+    cin >> N >> M;
+    vector<ll> A(N);
+    rep(i, N) {
+        cin >> A[i];
+    }
+    
 }
