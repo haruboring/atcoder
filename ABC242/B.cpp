@@ -6,4 +6,8 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S;
+    cin >> S;
+    sort(all(S));
+    cout << S << endl;
 }
