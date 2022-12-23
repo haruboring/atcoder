@@ -6,4 +6,10 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    if (N > 41) {
+        N++;
+    }
+    cout << "AGC" << setfill('0') << setw(3) << N << endl;
 }
