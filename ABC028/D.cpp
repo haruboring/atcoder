@@ -6,4 +6,7 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    double N, K;
+    cin >> N >> K;
+    cout << fixed << setprecision(15) << (6 * (K - 1) * (N - K) + 3 * (N - K) + 3 * (K - 1) + 1) / pow(N, 3) << endl;
 }

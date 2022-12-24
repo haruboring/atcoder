@@ -6,4 +6,19 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S;
+    cin >> S;
+    vector<char> c = {'A', 'B', 'C', 'D', 'E', 'F'};
+    map<char, int> m;
+    rep(i, S.size()) {
+        m[S[i]]++;
+    }
+    rep(i, c.size()) {
+        if (i != c.size() - 1) {
+            cout << m[c[i]] << " ";
+        } else {
+            cout << m[c[i]];
+        }
+    }
+    cout << endl;
 }
