@@ -6,4 +6,27 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S;
+    cin >> S;
+    vector<set<char>> box(int(S.size()));
+    stack<int> q;
+    rep(i, S.size()) {
+        if (i > 0) {
+            box[i] = box[i - 1];
+        }
+        if (S[i] == '(') {
+            q.push(i);
+        } else if (S[i] == ')') {
+            box[i] = box[q.top()];
+            q.pop();
+        } else {
+            if (box[i].count(S[i])) {
+                cout << "No" << endl;
+                return 0;
+            } else {
+                box[i].insert(S[i]);
+            }
+        }
+    }
+    cout << "Yes" << endl;
 }
