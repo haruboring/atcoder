@@ -6,13 +6,11 @@ using namespace std;
 using ll = long long;
 
 int main() {
-    int N;
-    cin >> N;
-    vector<string> S(N);
-    rep(i, N) {
-        cin >> S[i];
-    }
-    rep(i, N) {
-        cout << S[N - 1 - i] << endl;
+    int a, b;
+    cin >> a >> b;
+    if (2 * a == b || 2 * a + 1 == b) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
     }
 }

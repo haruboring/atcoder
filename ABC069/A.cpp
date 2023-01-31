@@ -6,13 +6,7 @@ using namespace std;
 using ll = long long;
 
 int main() {
-    int N;
-    cin >> N;
-    vector<string> S(N);
-    rep(i, N) {
-        cin >> S[i];
-    }
-    rep(i, N) {
-        cout << S[N - 1 - i] << endl;
-    }
+    int n, m;
+    cin >> n >> m;
+    cout << (n - 1) * (m - 1) << endl;
 }

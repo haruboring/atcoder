@@ -6,19 +6,19 @@ using namespace std;
 using ll = long long;
 
 int main() {
-    int T;
-    cin >> T;
-    rep(i, T) {
-        int N;
-        cin >> N;
-        int cnt = 0;
+    ll N, A, B;
+    cin >> N >> A >> B;
+    string S;
+    cin >> S;
+    ll min_ans = (ll)pow(10, 18);
+    rep(i, N) {
+        ll cnt = 0;
         rep(j, N) {
-            int A;
-            cin >> A;
-            if (A % 2 == 1) {
+            if (S[(i + j) % N] != S[(N - 1 - j + i) % N]) {
                 cnt++;
             }
         }
-        cout << cnt << endl;
+        min_ans = min(min_ans, A * i + B * (cnt / 2));
     }
+    cout << min_ans << endl;
 }

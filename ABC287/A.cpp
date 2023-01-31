@@ -8,11 +8,17 @@ using ll = long long;
 int main() {
     int N;
     cin >> N;
-    vector<string> S(N);
+    int cnt = 0;
     rep(i, N) {
-        cin >> S[i];
+        string S;
+        cin >> S;
+        if (S[0] == 'F') {
+            cnt++;
+        }
     }
-    rep(i, N) {
-        cout << S[N - 1 - i] << endl;
+    if (N < 2 * cnt) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
     }
 }

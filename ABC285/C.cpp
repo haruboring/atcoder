@@ -6,13 +6,12 @@ using namespace std;
 using ll = long long;
 
 int main() {
-    int N;
-    cin >> N;
-    vector<string> S(N);
-    rep(i, N) {
-        cin >> S[i];
+    string S;
+    cin >> S;
+    ll cnt = 0;
+    ll size = S.size();
+    rep(i, size) {
+        cnt += (ll)(pow(26, i)) * (ll)(S[size - 1 - i] - 'A' + 1);
     }
-    rep(i, N) {
-        cout << S[N - 1 - i] << endl;
-    }
+    cout << cnt << endl;
 }
