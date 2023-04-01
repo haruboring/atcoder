@@ -5,5 +5,34 @@
 using namespace std;
 using ll = long long;
 
+int R, C;
+
+void after_explosion(vector<string> &B, int i, int j, int power) {
+    rep(a, R) {
+        rep(b, C) {
+            if (abs(a - i) + abs(b - j) <= power) {
+                if ((!(a == i && b == j) && B[a][b] == '#') || (a == i && b == j)) {
+                    B[a][b] = '.';
+                }
+            }
+        }
+    }
+}
+
 int main() {
+    cin >> R >> C;
+    vector<string> B(R);
+    rep(i, R) {
+        cin >> B[i];
+    }
+    rep(i, R) {
+        rep(j, C) {
+            if (B[i][j] != '.' && B[i][j] != '#') {
+                after_explosion(B, i, j, B[i][j] - '0');
+            }
+        }
+    }
+    rep(i, R) {
+        cout << B[i] << endl;
+    }
 }

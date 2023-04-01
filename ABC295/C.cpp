@@ -6,4 +6,20 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) {
+        cin >> A[i];
+    }
+    int ans = 0;
+
+    map<int, int> m;
+    rep(i, N) {
+        m[A[i]]++;
+    }
+    for (auto a : m) {
+        ans += (a.second) / 2;
+    }
+    cout << ans << endl;
 }
