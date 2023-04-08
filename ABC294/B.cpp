@@ -6,4 +6,22 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int H, W;
+    cin >> H >> W;
+    vector<vector<int>> A(H, vector<int>(W));
+    rep(i, H) {
+        rep(j, W) {
+            cin >> A[i][j];
+        }
+    }
+    rep(i, H) {
+        rep(j, W) {
+            if (A[i][j] == 0) {
+                cout << ".";
+            } else {
+                cout << char('A' + A[i][j] - 1);
+            }
+        }
+        cout << endl;
+    }
 }
