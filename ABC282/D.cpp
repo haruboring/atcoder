@@ -5,72 +5,81 @@
 using namespace std;
 using ll = long long;
 
-int N, M;
-vector<int> color(100 + 1);
-vector<vector<ll>> G(100 + 1, vector<ll>(0));
-map<vector<vector<int>>, vector<int>> m;
-
-int cnt_sepa = -1;
-vector<int> visist(100 + 1);
-bool b = true;
-
-void visited(int ind, int clr) {
-    color[ind] = clr;
-    rep(i, G[ind].size()) {
-        if (color[G[ind][i]] == clr) {
-            b = false;
+vector<vector<int>> G(200000 + 100, vector<int>(0));
+vector<int> depths(200000 + 100, 0);
+vector<int> not_2_tops(0);
+map<int, vector<int>> even_odd;
+map<int, int> top_to_2_tops;
+int number_of_2_tops = 0;
+int cnt_invalid_tops = 0;
+void dfs(int top, int ex_top = 0) {
+    depths[top] = depths[ex_top] + 1;
+    top_to_2_tops[top] = number_of_2_tops;
+    if (depths[top] % 2 == 1) {
+        even_odd[number_of_2_tops][1]++;
+    } else {
+        even_odd[number_of_2_tops][0]++;
+    }
+    for (auto next_top : G[top]) {
+        if (depths[next_top] == 0) {
+            dfs(next_top, top);
+        } else {
+            if (depths[top] % 2 == depths[next_top] % 2) {
+                not_2_tops.push_back(top);
+            }
         }
-        color[G[ind][i]] = (clr + 1) % 2;
-        if (color[G[ind][i]] == -1) {
-            m[make_pair(cnt_sepa,(clr + 1) % 2)].push_back(G[ind][i]);
-            visited(G[ind][i], (clr + 1) % 2);
+    }
+}
+
+void not_2(int top) {
+    depths[top] = -2;
+    cnt_invalid_tops++;
+
+    for (auto next_top : G[top]) {
+        if (depths[next_top] != -2) {
+            not_2(next_top);
         }
     }
 }
 
 int main() {
+    int N, M;
     cin >> N >> M;
-    vector<int> u(M), v(M);
     rep(i, M) {
-        cin >> u[i] >> v[i];
+        int u, v;
+        cin >> u >> v;
+        G[u].push_back(v);
+        G[v].push_back(u);
     }
-    rep(i, M) {
-        G[u[i] - 1].push_back(v[i] - 1);
-        G[v[i] - 1].push_back(u[i] - 1);
-    }
-    rep(i, 100 + 1) {
-        color[i] = -1;
-    }
-    // 1-> black -1->white
-    rep(i, N) {
-        if (color[i] == -1) {
-            cnt_sepa++;
-            visited(i, 0);
-        }
-    }
+
     ll ans = 0;
-    if (b == false) {
-        cout << 0 << endl;
-    } else {
-        rep(i, cnt_sepa + 1) {
-            // 同じグラフ
-            rep(j, m[i][0].size()) {
-                rep(k, m[i][1].size()) {
-                    bool am = true;
-                    rep(l, G[m[i][0][j]].size()) {
-                        if (G[m[i][0][j]][l] == m[i][1][k]) {
-                            am = false;
-                        }
-                    }
-                    if (am) {
-                        ans++;
-                    }
-                }
-            }
-            cout << (int(m[i][0].size()) + int(m[i][1].size())) << endl;
-            // そうでない時
-            ans += N - (int(m[i][0].size()) + int(m[i][1].size()));
+    repp(i, 1, N + 1) {
+        if (depths[i] == 0) {
+            number_of_2_tops++;
+            even_odd[number_of_2_tops].push_back(0);
+            even_odd[number_of_2_tops].push_back(0);
+            dfs(i);
         }
-        cout << ans << endl;
     }
+    for (auto not_2_top : not_2_tops) {
+        if (depths[not_2_top] != -2) {
+            not_2(not_2_top);
+        }
+    }
+
+    int cnt_valid_tops = N - cnt_invalid_tops;
+    repp(i, 1, N + 1) {
+        if (depths[i] == -2) {
+            cout << 0 << endl;
+            return 0;
+        }
+        if (depths[i] % 2 == 1) {
+            ans += (even_odd[top_to_2_tops[i]][0] - G[i].size());
+            ans += (cnt_valid_tops - (even_odd[top_to_2_tops[i]][0] + even_odd[top_to_2_tops[i]][1]));
+        } else {
+            ans += (even_odd[top_to_2_tops[i]][1] - G[i].size());
+            ans += (cnt_valid_tops - (even_odd[top_to_2_tops[i]][0] + even_odd[top_to_2_tops[i]][1]));
+        }
+    }
+    cout << ans / 2 << endl;
 }
