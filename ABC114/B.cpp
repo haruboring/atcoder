@@ -6,4 +6,15 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S;
+    cin >> S;
+    int m = 10000;
+    rep(i, S.size() - 2) {
+        string ss = "";
+        repp(j, i, i + 3) {
+            ss += S[j];
+        }
+        m = min(m, abs(stoi(ss) - 753));
+    }
+    cout << m << endl;
 }
