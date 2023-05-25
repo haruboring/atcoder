@@ -6,4 +6,16 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N, K;
+    cin >> N >> K;
+    vector<int> h(N);
+    rep(i, N) cin >> h[i];
+
+    sort(all(h));
+    int ans = 1e9;
+    rep(i, N - K + 1) {
+        ans = min(ans, h[i + K - 1] - h[i]);
+    }
+
+    cout << ans << endl;
 }
