@@ -104,5 +104,9 @@
 		"iterator": "cpp",
 		"utility": "cpp",
 		"filesystem": "cpp"
-	}
+	},
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.black-formatter"
+	},
+	"python.formatting.provider": "none"
 }
