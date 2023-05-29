@@ -6,22 +6,15 @@ using namespace std;
 using ll = long long;
 
 int main() {
-    int n;
-    cin >> n;
-    vector<int> p(n);
-    rep(i, n) cin >> p[i];
+    int H, W;
+    cin >> H >> W;
+    vector<vector<int>> A(H, vector<int>(W));
+    rep(i, H) rep(j, W) cin >> A[i][j];
 
-    int cnt = 0;
-    rep(i, n - 2) {
-        vector<int> tmp(0);
-        tmp.push_back(p[i]);
-        tmp.push_back(p[i + 1]);
-        tmp.push_back(p[i + 2]);
-        sort(all(tmp));
-        if (tmp[1] == p[i + 1]) {
-            cnt++;
+    rep(i, W) {
+        rep(j, H) {
+            cout << A[j][i] << " ";
         }
+        cout << endl;
     }
-
-    cout << cnt << endl;
 }
