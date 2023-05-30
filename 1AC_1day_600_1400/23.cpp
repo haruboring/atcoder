@@ -15,8 +15,11 @@ void dfs(int v, int d) {
     depths[v] = d;
     if (G[v].size() > 2) ans = false;
     for (auto next_v : G[v]) {
-        if (depths[next_v] == -1) dfs(next_v, d + 1);
-        if (depths[next_v] == d) ans = false;
+        if (depths[next_v] == -1) {
+            dfs(next_v, d + 1);
+        } else if (depths[next_v] != d - 1) {
+            ans = false;
+        }
     }
 }
 
