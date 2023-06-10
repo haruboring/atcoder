@@ -7,4 +7,12 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    rep(i, 21) {
+        if (abs(5 * i - N) < 3) {
+            cout << 5 * i << endl;
+            return 0;
+        }
+    }
 }
