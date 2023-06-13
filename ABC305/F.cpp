@@ -6,43 +6,38 @@
 using namespace std;
 using ll = long long;
 
-int main() {
-    int N, M;
-    cin >> N >> M;
+int N, M;
+vector<bool> visited(100 + 10, false);
 
-    vector<vector<int>> G(N);
-    vector<bool> visited(N, false);
-    int pos = 0;
-    queue<int> q;
-    q.push(0);
-    rep(_, 2 * N + 10) {
-        visited[pos] = true;
-        string k;
-        cin >> k;
-        if (k == "OK") return 0;
-        int ik = stoi(k);
-        if (ik == -1) return 0;
-        vector<int> v(ik);
-        rep(i, ik) cin >> v[i];
-        rep(i, ik) v[i]--;
-
-        bool a = false;
-        rep(i, ik) {
-            if (visited[v[i]] == 0) {
-                q.push(v[i]);
-                cout << v[i] + 1 << endl;
-                a = true;
-                break;
-            } else {
-                q.pop();
-            }
-        }
-        if (a) continue;
-
-        cout << q.front() + 1 << endl;
-
-        q.pop();
-
-        pos = ik - 1;
+void dfs(int v) {
+    if (v == N - 1) {
+        string tmp;
+        cin >> tmp;
+        exit(0);
     }
+    visited[v] = true;
+    int k;
+    cin >> k;
+    vector<int> G(k);
+    rep(i, k) {
+        cin >> G[i];
+        G[i]--;
+    }
+    for (auto nv : G) {
+        if (visited[nv]) continue;
+        cout << nv + 1 << endl;
+        dfs(nv);
+        cout << v + 1 << endl;
+        int tmp_k;
+        cin >> tmp_k;
+        int tmp;
+        rep(i, tmp_k) {
+            cin >> tmp;
+        }
+    }
+}
+
+int main() {
+    cin >> N >> M;
+    dfs(0);
 }
