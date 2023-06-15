@@ -6,4 +6,9 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S;
+    cin >> S;
+
+    rep(i, S.size()) S[i] = toupper(S[i]);
+    cout << S << endl;
 }
