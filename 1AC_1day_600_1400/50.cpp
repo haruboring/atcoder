@@ -11,24 +11,21 @@ int main() {
     cin >> H >> W >> rs >> cs;
     int N;
     cin >> N;
-    vector<pair<int, int>> rc(N), cr(N);
-    rep(i, N) cin >> rc[i].first >> rc[i].second;
-    rep(i, N) cr[i] = make_pair(rc[i].second, rc[i].first);
+    vector<int> r(N), c(N);
+    rep(i, N) cin >> r[i] >> c[i];
     int Q;
     cin >> Q;
     vector<char> d(Q);
     vector<int> l(Q);
     rep(i, Q) cin >> d[i] >> l[i];
 
-    sort(all(rc));
-    sort(all(cr));
     map<int, vector<int>> LR_wall, UD_wall;
     set<int> r_have_wall, c_have_wall;
     rep(i, N) {
-        r_have_wall.insert(rc[i].first);
-        c_have_wall.insert(rc[i].second);
-        LR_wall[rc[i].first].push_back(rc[i].second);
-        UD_wall[cr[i].first].push_back(cr[i].second);
+        r_have_wall.insert(r[i]);
+        c_have_wall.insert(c[i]);
+        LR_wall[r[i]].push_back(c[i]);
+        UD_wall[c[i]].push_back(r[i]);
     }
     for (auto r : r_have_wall) {
         LR_wall[r].push_back(0);
@@ -41,36 +38,36 @@ int main() {
         sort(all(UD_wall[c]));
     }
 
-    int r = rs, c = cs;
+    int now_r = rs, now_c = cs;
     rep(i, Q) {
         if (d[i] == 'L') {
-            if (LR_wall[r].empty()) {
-                c -= min(l[i], c - 1);
+            if (LR_wall[now_r].empty()) {
+                now_c -= min(l[i], now_c - 1);
             } else {
-                c -= min(l[i], c - *(lower_bound(all(LR_wall[r]), c) - 1) - 1);
+                now_c -= min(l[i], now_c - *(lower_bound(all(LR_wall[now_r]), now_c) - 1) - 1);
             }
         }
         if (d[i] == 'R') {
-            if (LR_wall[r].empty()) {
-                c += min(l[i], W - c);
+            if (LR_wall[now_r].empty()) {
+                now_c += min(l[i], W - now_c);
             } else {
-                c += min(l[i], *lower_bound(all(LR_wall[r]), c) - c - 1);
+                now_c += min(l[i], *lower_bound(all(LR_wall[now_r]), now_c) - now_c - 1);
             }
         }
         if (d[i] == 'U') {
-            if (UD_wall[c].empty()) {
-                r -= min(l[i], r - 1);
+            if (UD_wall[now_c].empty()) {
+                now_r -= min(l[i], now_r - 1);
             } else {
-                r -= min(l[i], r - *(lower_bound(all(UD_wall[c]), r) - 1) - 1);
+                now_r -= min(l[i], now_r - *(lower_bound(all(UD_wall[now_c]), now_r) - 1) - 1);
             }
         }
         if (d[i] == 'D') {
-            if (UD_wall[c].empty()) {
-                r += min(l[i], H - r);
+            if (UD_wall[now_c].empty()) {
+                now_r += min(l[i], H - now_r);
             } else {
-                r += min(l[i], *lower_bound(all(UD_wall[c]), r) - r - 1);
+                now_r += min(l[i], *lower_bound(all(UD_wall[now_c]), now_r) - now_r - 1);
             }
         }
-        cout << r << " " << c << endl;
+        cout << now_r << " " << now_c << endl;
     }
 }
