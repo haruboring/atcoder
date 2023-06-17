@@ -7,4 +7,25 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    vector<int> A(3 * N);
+    rep(i, 3 * N) cin >> A[i];
+
+    set<int> s;
+    vector<pair<int, int>> ans(0);
+
+    vector<int> a(0);
+    rep(i, 3 * N) {
+        if (s.count(A[i]) == 1) {
+            a.push_back(A[i]);
+            s.erase(A[i]);
+        } else {
+            s.insert(A[i]);
+        }
+    }
+    rep(i, N) {
+        cout << a[i] << " ";
+    }
+    cout << endl;
 }

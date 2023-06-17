@@ -7,4 +7,12 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    string S;
+    cin >> S;
+    rep(i, N) {
+        cout << S[i] << S[i];
+    }
+    cout << endl;
 }
