@@ -6,7 +6,7 @@
 using namespace std;
 using ll = long long;
 
-int_least32_t main() {
+int main() {
     string S1, S2, S3;
     cin >> S1 >> S2 >> S3;
 

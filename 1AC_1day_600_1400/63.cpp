@@ -6,7 +6,7 @@
 using namespace std;
 using ll = long long;
 
-int_least32_t main() {
+int main() {
     int N, D, K;
     cin >> N >> D >> K;
     vector<int> L(D), R(D);
