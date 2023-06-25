@@ -7,4 +7,17 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    vector<ll> A(7 * N);
+    rep(i, 7 * N) cin >> A[i];
+
+    rep(i, N) {
+        ll sum = 0;
+        rep(j, 7) {
+            sum += A[i * 7 + j];
+        }
+        cout << sum << " ";
+    }
+    cout << endl;
 }
