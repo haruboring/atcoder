@@ -12,15 +12,15 @@ int main() {
     vector<ll> A(M), B(M), C(M);
     rep(i, M) cin >> A[i] >> B[i] >> C[i];
 
-    using Edge = tuple<ll, ll, ll, ll>;
-    vector<vector<Edge>> G(N, vector<Edge>(0));
+    using T = tuple<ll, ll, ll, ll>;
+    vector<vector<T>> G(N, vector<T>(0));
     rep(i, M) {
         G[A[i] - 1].push_back({C[i], A[i] - 1, B[i] - 1, i});
         G[B[i] - 1].push_back({C[i], B[i] - 1, A[i] - 1, i});
     }
 
-    priority_queue<Edge, vector<Edge>, greater<Edge>> pq;
-    for (Edge e : G[0]) pq.push(e);
+    priority_queue<T, vector<T>, greater<T>> pq;
+    for (T e : G[0]) pq.push(e);
     vector<ll> dist(N, 1e18);
     dist[0] = 0;
     vector<int> ans(N);
@@ -30,7 +30,7 @@ int main() {
         if (dist[a] + c >= dist[b]) continue;
         dist[b] = dist[a] + c;
         ans[b] = i;
-        for (Edge e : G[b]) pq.push(e);
+        for (T e : G[b]) pq.push(e);
     }
 
     repp(i, 1, N) cout << ans[i] + 1 << " ";
