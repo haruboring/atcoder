@@ -7,4 +7,7 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    long double A, B;
+    cin >> A >> B;
+    cout << (ll)(A * B + 0.001) << endl;
 }
