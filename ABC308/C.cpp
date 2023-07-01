@@ -7,4 +7,22 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    ll N;
+    cin >> N;
+    vector<ll> A(N), B(N);
+    rep(i, N) cin >> A[i] >> B[i];
+
+    vector<pair<long double, int>> C(N);
+    rep(i, N) {
+        C[i].first = (long double)A[i] / (A[i] + B[i]);
+        C[i].second = -i;
+    }
+
+    sort(all(C));
+    reverse(all(C));
+
+    rep(i, N) {
+        cout << -C[i].second + 1 << " ";
+    }
+    cout << endl;
 }
