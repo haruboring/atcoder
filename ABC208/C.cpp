@@ -7,4 +7,26 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    ll N, K;
+    cin >> N >> K;
+    vector<ll> A(N);
+    rep(i, N) cin >> A[i];
+
+    ll base = K / N;
+    ll rem = K % N;
+
+    vector<ll> B = A;
+    sort(all(B));
+    set<int> s;
+    rep(i, rem) {
+        debug(B[i]);
+        s.insert(B[i]);
+    }
+
+    rep(i, N) {
+        if (s.count(A[i]))
+            cout << base + 1 << endl;
+        else
+            cout << base << endl;
+    }
 }
