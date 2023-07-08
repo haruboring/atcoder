@@ -7,4 +7,15 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int A, B;
+    cin >> A >> B;
+    if (A + 1 == B) {
+        if (A == 3 || A == 6 || A == 9) {
+            cout << "No" << endl;
+        } else {
+            cout << "Yes" << endl;
+        }
+    } else {
+        cout << "No" << endl;
+    }
 }
