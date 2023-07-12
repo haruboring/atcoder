@@ -7,21 +7,26 @@ using namespace std;
 using ll = long long;
 
 int main() {
-    int N;
-    cin >> N;
+    ll A;
+    cin >> A;
 
-    vector<string> x(N);
-    rep(i, N) cin >> x[i];
+    repp(i, 10, 10000 + 1) {
+        string s = to_string(i);
+        ll sum = s[0] - '0';
+        repp(j, 1, s.size()) {
+            sum *= i;
+            sum += s[j] - '0';
+        }
+        if (i < 30) {
+            debug(i);
+            debug(sum);
+        }
 
-    int ans = 0;
-    rep(i, 9) {
-        rep(j, N) {
-            if (x[N - j - 1][i] == 'x')
-                ans++;
-            else if (x[N - j - 1][i] == 'o' && (j == 0 || x[N - j][i] != 'o'))
-                ans++;
+        if (sum == A) {
+            cout << i << endl;
+            return 0;
         }
     }
 
-    cout << ans << endl;
+    cout << -1 << endl;
 }
