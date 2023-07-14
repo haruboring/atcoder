@@ -1,3 +1,4 @@
+#include "atcoder/all"
 #include "bits/stdc++.h"
 #define all(v) v.begin(), v.end()
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
