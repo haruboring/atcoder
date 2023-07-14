@@ -8,7 +8,7 @@ using namespace std;
 using ll = long long;
 
 int op(int a, int b) { return max(a, b); }
-int e() { return 0; }
+int e() { return -1; }
 int target;
 bool comp(int a) { return a < target; }
 
@@ -19,7 +19,7 @@ int main() {
     rep(i, N) cin >> A[i];
 
     atcoder::segtree<int, op, e> seg(A);
-    rep(_, N) {
+    rep(_, Q) {
         int t, x, y;
         cin >> t >> x >> y;
         if (t == 1) {
