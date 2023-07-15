@@ -1,3 +1,4 @@
+#include "atcoder/all"
 #include "bits/stdc++.h"
 #define all(v) v.begin(), v.end()
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
@@ -6,77 +7,42 @@
 using namespace std;
 using ll = long long;
 
+int op(int a, int b) { return min(a, b); }
+int e() { return 1e9; }
+
 int main() {
     int N;
     cin >> N;
-    vector<int> h(N), w(N), d(N);
-    rep(i, N) cin >> h[i] >> w[i] >> d[i];
-
-    vector<int> sm(N), md(N), lg(N);
-    set<int> ss, mm, ll;
+    vector<vector<int>> X(N);
     rep(i, N) {
-        vector<int> tmp(3);
-        tmp[0] = h[i];
-        tmp[1] = w[i];
-        tmp[2] = d[i];
+        vector<int> x(3);
+        cin >> x[0] >> x[1] >> x[2];
+        sort(all(x));
+        X[i] = x;
+    }
+
+    rep(i, 3) {
+        vector<int> tmp(N);
+        rep(j, N) tmp[j] = X[j][i];
         sort(all(tmp));
-        sm[i] = tmp[0];
-        md[i] = tmp[1];
-        lg[i] = tmp[2];
-        ss.insert(sm[i]);
-        mm.insert(md[i]);
-        ll.insert(lg[i]);
+        tmp.erase(unique(all(tmp)), tmp.end());
+        rep(j, N) {
+            int d = distance(tmp.begin(), lower_bound(all(tmp), X[j][i]));
+            X[j][i] = d;
+            if (i == 1) X[j][i] *= -1;
+        }
     }
+    sort(all(X));
 
-    map<int, int> zyuni_s, zyuni_m, zyuni_l;
-    int cnt = 0;
-    for (int s : ss) {
-        zyuni_s[s] = cnt;
-        cnt++;
-    }
-    cnt = 0;
-    for (int m : mm) {
-        zyuni_m[m] = cnt;
-        cnt++;
-    }
-    cnt = 0;
-    for (int l : ll) {
-        zyuni_l[l] = cnt;
-        cnt++;
-    }
-
-    vector<int> h_order(N), w_order(N), d_order(N);
+    atcoder::segtree<int, op, e> seg(N);
     rep(i, N) {
-        h_order[i] = zyuni_s[sm[i]];
-        w_order[i] = zyuni_m[md[i]];
-        d_order[i] = zyuni_l[lg[i]];
-    }
-
-    vector<tuple<int, int, int>> order(N);
-    rep(i, N) {
-        order[i] = make_tuple(h_order[i], w_order[i], d_order[i]);
-    }
-    sort(all(order));
-
-    multiset<int> s, m, l;
-    rep(i, N) {
-        s.insert(h_order[i]);
-        m.insert(w_order[i]);
-        l.insert(d_order[i]);
-    }
-
-    rep(i, N - 1) {
-        int order_s = h_order[i];
-        int order_m = w_order[i];
-        int order_l = d_order[i];
-
-        s.erase(s.find(order_s));
-        m.erase(m.find(order_m));
-        l.erase(l.find(order_l));
-        if (order_s < *begin(s) && order_m < *begin(m) && order_l < *begin(l)) {
+        int a = -X[i][1], b = X[i][2];
+        if (seg.prod(0, a) < b) {
             cout << "Yes" << endl;
             return 0;
         }
+        seg.set(a, min(seg.get(a), b));
     }
+
     cout << "No" << endl;
 }
