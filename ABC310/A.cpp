@@ -8,4 +8,12 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N, P, Q;
+    cin >> N >> P >> Q;
+    vector<int> D(N);
+    rep(i, N) cin >> D[i];
+
+    sort(all(D));
+
+    cout << min(P, Q + D[0]) << endl;
 }
