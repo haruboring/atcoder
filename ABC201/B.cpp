@@ -8,4 +8,17 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    vector<pair<int, string>> TS(N);
+    rep(i, N) {
+        string name;
+        int height;
+        cin >> name >> height;
+        TS[i] = make_pair(height, name);
+    }
+    sort(all(TS));
+    reverse(all(TS));
+
+    cout << TS[1].second << endl;
 }
