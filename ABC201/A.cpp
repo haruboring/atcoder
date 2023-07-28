@@ -8,4 +8,11 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    vector<int> A(3);
+    rep(i, 3) cin >> A[i];
+    sort(all(A));
+    if (A[2] - A[1] == A[1] - A[0])
+        cout << "Yes" << endl;
+    else
+        cout << "No" << endl;
 }
