@@ -8,4 +8,35 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S;
+    cin >> S;
+
+    set<int> must, may, none;
+    rep(i, 10) {
+        if (S[i] == 'o')
+            must.insert(i);
+        else if (S[i] == 'x')
+            none.insert(i);
+        else
+            may.insert(i);
+    }
+    int ans = 0;
+    rep(i, 10) {
+        rep(j, 10) {
+            rep(k, 10) {
+                rep(l, 10) {
+                    set<int> tmp = {i, j, k, l};
+                    bool ok = true;
+                    for (auto x : must) {
+                        if (tmp.count(x) == 0) ok = false;
+                    }
+                    for (auto x : none) {
+                        if (tmp.count(x) != 0) ok = false;
+                    }
+                    if (ok) ans++;
+                }
+            }
+        }
+    }
+    cout << ans << endl;
 }
