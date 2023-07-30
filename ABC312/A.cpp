@@ -8,4 +8,12 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S;
+    cin >> S;
+
+    set<string> s = {"ACE", "BDF", "CEG", "DFA", "EGB", "FAC", "GBD"};
+    if (s.count(S))
+        cout << "Yes" << endl;
+    else
+        cout << "No" << endl;
 }
