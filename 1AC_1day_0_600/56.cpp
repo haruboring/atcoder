@@ -6,12 +6,22 @@ using namespace std;
 using ll = long long;
 
 int main() {
-    vector<int> ABC(3);
-    rep(i, 3) cin >> ABC[i];
+    int N;
+    cin >> N;
+    vector<int> p(N);
+    rep(i, N) cin >> p[i];
 
-    sort(all(ABC));
-    if (ABC[0] == 5 && ABC[1] == 5 && ABC[2] == 7)
+    vector<int> cp = p;
+    sort(all(cp));
+
+    int cnt = 0;
+    rep(i, N) {
+        if (p[i] != cp[i]) cnt++;
+    }
+
+    if (cnt == 2 || cnt == 0) {
         cout << "YES" << endl;
-    else
+    } else {
         cout << "NO" << endl;
+    }
 }

@@ -6,12 +6,14 @@ using namespace std;
 using ll = long long;
 
 int main() {
-    vector<int> ABC(3);
-    rep(i, 3) cin >> ABC[i];
+    ll X;
+    cin >> X;
 
-    sort(all(ABC));
-    if (ABC[0] == 5 && ABC[1] == 5 && ABC[2] == 7)
-        cout << "YES" << endl;
-    else
-        cout << "NO" << endl;
+    ll money = 100;
+    ll year = 0;
+    while (money < X) {
+        money += money / 100;
+        year++;
+    }
+    cout << year << endl;
 }
