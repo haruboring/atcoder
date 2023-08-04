@@ -8,4 +8,19 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    map<int, int> mp;
+    rep(i, N) {
+        mp[A[i] % 200]++;
+    }
+
+    ll ans = 0;
+    for (auto p : mp) {
+        ans += (ll)p.second * (p.second - 1) / 2;
+    }
+    cout << ans << endl;
 }
