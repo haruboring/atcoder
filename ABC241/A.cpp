@@ -8,4 +8,12 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    vector<int> st(10);
+    rep(i, 10) cin >> st.at(i);
+
+    int ans = 0;
+    rep(_, 3) {
+        ans = st[ans];
+    }
+    cout << ans << endl;
 }
