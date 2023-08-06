@@ -8,4 +8,14 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    vector<int> P(N);
+    rep(i, N) cin >> P.at(i);
+
+    int ma = -1;
+    repp(i, 1, N) {
+        ma = max(ma, P.at(i));
+    }
+    cout << max(ma - P[0] + 1, 0) << endl;
 }
