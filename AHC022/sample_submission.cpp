@@ -19,7 +19,7 @@ struct Judge {
     }
 
     int measure(int i, int y, int x) {
-        cout << i << " " << y << " " << x << endl; // endl does flush
+        cout << i << " " << y << " " << x << endl;  // endl does flush
         int v;
         cin >> v;
         if (v == -1) {
@@ -44,8 +44,7 @@ struct Solver {
     const vector<Pos> landing_pos;
     Judge judge;
 
-    Solver(int L, int N, int S, const vector<Pos>& landing_pos) : 
-        L(L), N(N), S(S), landing_pos(landing_pos), judge() {
+    Solver(int L, int N, int S, const vector<Pos>& landing_pos) : L(L), N(N), S(S), landing_pos(landing_pos), judge() {
     }
 
     void solve() {
