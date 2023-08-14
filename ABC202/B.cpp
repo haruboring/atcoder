@@ -8,4 +8,18 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    string S;
+    cin >> S;
+
+    reverse(all(S));
+
+    rep(i, S.size()) {
+        if (S[i] == '6')
+            cout << '9';
+        else if (S[i] == '9')
+            cout << '6';
+        else
+            cout << S[i];
+    }
+    cout << endl;
 }
