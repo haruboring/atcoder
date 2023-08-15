@@ -8,4 +8,24 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N;
+    cin >> N;
+    vector<int> A(N + 1), B(N + 1), C(N + 1);
+    rep(i, N) cin >> A.at(i + 1);
+    rep(i, N) cin >> B.at(i + 1);
+    rep(i, N) cin >> C.at(i + 1);
+
+    int cnt = 0;
+
+    map<int, int> mp;
+
+    rep(i, N) {
+        mp[B.at(C.at(i + 1))]++;
+    }
+
+    rep(i, N) {
+        cnt += mp[A.at(i + 1)];
+    }
+
+    cout << cnt << endl;
 }
