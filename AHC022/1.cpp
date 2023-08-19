@@ -6,7 +6,6 @@
 using namespace std;
 using ll = long long;
 
-
 struct Pos {
     int y, x;
 };
@@ -58,10 +57,20 @@ struct Solver {
     }
 
     vector<vector<int>> create_temperature() {
-        vector<vector<int>> temperature(L, vector<int>(L, 0));
+        vector<vector<int>> temperature(L, vector<int>(L, -1));
         // set the temperature to i * 10 for i-th position
         for (int i = 0; i < N; i++) {
-            temperature[landing_pos[i].y][landing_pos[i].x] = i * 10;
+            // 1000まで。Nは60 ~ 100
+            temperature[landing_pos[i].y][landing_pos[i].x] = ((i % 72) * 14);
+            if (i >= 72) break;
+        }
+
+        for (int i = 0; i < L; i++) {
+            for (int j = 0; j < L; j++) {
+                if (temperature[i][j] == -1) {
+                    temperature[i][j] = N * 7;
+                }
+            }
         }
         return temperature;
     }
@@ -73,16 +82,9 @@ struct Solver {
             cout << "# measure i=" << i_in << " y=0 x=0" << endl;
 
             int measured_value = judge.measure(i_in, 0, 0);
-            // answer the position with the temperature closest to the measured value
-            int min_diff = 9999;
-            for (int i_out = 0; i_out < N; i_out++) {
-                const Pos& pos = landing_pos[i_out];
-                int diff = abs(temperature[pos.y][pos.x] - measured_value);
-                if (diff < min_diff) {
-                    min_diff = diff;
-                    estimate[i_in] = i_out;
-                }
-            }
+
+            int it = (measured_value + 7) / 14;
+            estimate[i_in] = min(max(it, 0), N - 1);
         }
         return estimate;
     }
@@ -99,3 +101,15 @@ int main() {
     Solver solver(L, N, S, landing_pos);
     solver.solve();
 }
+
+/*
+# MEMO
+
+標準偏差について考える必要性がある
+g++-13 -std=c++17 -I.. 1.cpp -o tools/a.out && cd tools && cargo run --release --bin tester ./a.out < in/0011.txt > out.txt && cd ..
+幅大きめ→誤差を無視できるようにした、でもその文差がデカくなって配置コスト大
+配置コストを削減してみる。間を埋めるように配置する→これだと評価下がった→配置コストを下げれば良さそう
+
+
+
+*/
