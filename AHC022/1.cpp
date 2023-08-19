@@ -56,7 +56,7 @@ struct Solver {
         judge.answer(estimate);
     }
 
-    int d = 5;
+    int d = 2;
 
     vector<vector<int>> create_temperature() {
         vector<vector<int>> temperature(L, vector<int>(L, -1));
@@ -111,15 +111,13 @@ struct Solver {
             //     measured_value += judge.measure(i_in, 0, 0);
             //     measured_value /= 3;
             // }
-            int max_rep = 10;
+            int max_rep = 6;
             int sum_measured_value = 0;
             int ave = 0;
             for (int i = 0; i < max_rep; i++) {
                 sum_measured_value += judge.measure(i_in, 0, 0);
                 ave = sum_measured_value / (i + 1);
-                int tmp = ave / d;
-                int dis = min(abs(tmp * d - ave), abs((tmp + 1) * d - ave));
-                if (4 * dis < d) break;
+                if (i >= 4 && ave % d == 0) break;
             }
 
             int it = (ave + d / 2) / d;
