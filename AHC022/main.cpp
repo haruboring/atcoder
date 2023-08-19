@@ -106,11 +106,6 @@ struct Solver {
             // you can output comment
             cout << "# measure i=" << i_in << " y=0 x=0" << endl;
 
-            // if (4 * dis > d) {
-            //     measured_value += judge.measure(i_in, 0, 0);
-            //     measured_value += judge.measure(i_in, 0, 0);
-            //     measured_value /= 3;
-            // }
             int max_rep = 6;
             int sum_measured_value = 0;
             int ave = 0;
@@ -127,41 +122,12 @@ struct Solver {
     }
 };
 
-struct ZikuJudge {
-    void set_temperature(const vector<vector<int>>& temperature) {
-        for (const vector<int>& row : temperature) {
-            for (int i = 0; i < row.size(); i++) {
-                cout << row[i] << (i == row.size() - 1 ? "\n" : " ");
-            }
-        }
-        cout.flush();
-    }
-
-    int measure(int i, int y, int x) {
-        cout << i << " " << y << " " << x << endl;  // endl does flush
-        int v;
-        cin >> v;
-        if (v == -1) {
-            cerr << "something went wrong. i=" << i << " y=" << y << " x=" << x << endl;
-            exit(1);
-        }
-        return v;
-    }
-
-    void answer(const vector<int>& estimate) {
-        cout << "-1 -1 -1" << endl;
-        for (int e : estimate) {
-            cout << e << endl;
-        }
-    }
-};
-
 struct ZikuSolver {
     const int L;
     const int N;
     const int S;
     const vector<Pos> landing_pos;
-    ZikuJudge judge;
+    Judge judge;
 
     ZikuSolver(int L, int N, int S, const vector<Pos>& landing_pos) : L(L), N(N), S(S), landing_pos(landing_pos), judge() {
     }
@@ -173,10 +139,30 @@ struct ZikuSolver {
         judge.answer(estimate);
     }
 
+    int high = 1000;
     vector<vector<int>> create_temperature() {
+        vector<vector<bool>> visited(L, vector<bool>(L, false));
+        queue<Pos> q;
         vector<vector<int>> temperature(L, vector<int>(L, 0));
         // (0. 0)が500度
-        temperature[0][0] = 1000;  // cost: 500*500*4 = 1^6
+        temperature[0][0] = high;  // cost: 500*500*4 = 1^6
+        visited[0][0] = true;
+        q.push({0, 0});
+
+        // temperature[L / 2][L / 2] = high;
+        int base = 0;
+        vector<vector<int>> dydx = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        while (!q.empty()) {
+            Pos now = q.front();
+            q.pop();
+            for (auto d : dydx) {
+                Pos next = {(now.y + d[0] + L) % L, (now.x + d[1] + L) % L};
+                if (visited[next.y][next.x]) continue;
+                temperature[next.y][next.x] = (temperature[now.y][now.x] + base) / 2;
+                visited[next.y][next.x] = true;
+                q.push(next);
+            }
+        }
 
         return temperature;
     }
@@ -199,12 +185,19 @@ struct ZikuSolver {
                 dy = -y;
                 dx = -x;
 
+                // int dy1 = L/2 - y, dx1 = L/2 - x;
+
+                // if(abs(dy) + abs(dx) > abs(dy1) + abs(dx1)) {
+                //     dy = dy1;
+                //     dx = dx1;
+                // }
+
                 if (rest.count(i) == 0) continue;
 
                 int temperature = judge.measure(i_in, dy, dx);
                 mp[temperature] = Pos{y, x};
                 max_temperature = max(max_temperature, temperature);
-                if(temperature > st) break;
+                if (temperature > st) break;
             }
 
             Pos pos = mp[max_temperature];
@@ -248,5 +241,12 @@ g++-13 -std=c++17 -I.. 1.cpp -o tools/a.out && cd tools && cargo run --release -
 幅大きめ→誤差を無視できるようにした、でもその文差がデカくなって配置コスト大
 配置コストを削減してみる。間を埋めるように配置する→これだと評価下がった→配置コストを下げれば良さそ
 
-3232, 759,389,060
+Result:
+123456789
+794963763
+3391
+
+332953622
+
+3,193,074,910
 */
