@@ -56,18 +56,40 @@ struct Solver {
         judge.answer(estimate);
     }
 
+    int d = 5;
+
     vector<vector<int>> create_temperature() {
         vector<vector<int>> temperature(L, vector<int>(L, -1));
+        vector<vector<bool>> visited(L, vector<bool>(L, false));
+        queue<Pos> q;
+
         // set the temperature to i * 10 for i-th position
         for (int i = 0; i < N; i++) {
             // 1000まで。Nは60 ~ 100
-            temperature[landing_pos[i].y][landing_pos[i].x] = (i * 8);
+            if (i > 1000 / d) break;
+            temperature[landing_pos[i].y][landing_pos[i].x] = (i * d);
+            visited[landing_pos[i].y][landing_pos[i].x] = true;
+            q.push(landing_pos[i]);
+        }
+
+        int base = min(N, 1000 / d) * d / 2;
+        vector<vector<int>> dydx = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        while (!q.empty()) {
+            Pos now = q.front();
+            q.pop();
+            for (auto d : dydx) {
+                Pos next = {(now.y + d[0] + L) % L, (now.x + d[1] + L) % L};
+                if (visited[next.y][next.x]) continue;
+                temperature[next.y][next.x] = (temperature[now.y][now.x] + base) / 2;
+                visited[next.y][next.x] = true;
+                q.push(next);
+            }
         }
 
         for (int i = 0; i < L; i++) {
             for (int j = 0; j < L; j++) {
                 if (temperature[i][j] == -1) {
-                    temperature[i][j] = N * 4;
+                    temperature[i][j] = base;
                 }
             }
         }
@@ -77,12 +99,16 @@ struct Solver {
     vector<int> predict(const vector<vector<int>>& temperature) {
         vector<int> estimate(N);
         for (int i_in = 0; i_in < N; i_in++) {
-            // you can output comment
-            cout << "# measure i=" << i_in << " y=0 x=0" << endl;
+            if (i_in > 1000 / d){
+                estimate[i_in] = N-1;
+                continue;
+            }
+                // you can output comment
+                cout << "# measure i=" << i_in << " y=0 x=0" << endl;
 
             int measured_value = judge.measure(i_in, 0, 0);
 
-            int it = (measured_value + 4) / 8;
+            int it = (measured_value + d / 2) / d;
             estimate[i_in] = min(max(it, 0), N - 1);
         }
         return estimate;
@@ -107,7 +133,7 @@ int main() {
 標準偏差について考える必要性がある
 g++-13 -std=c++17 -I.. 1.cpp -o tools/a.out && cd tools && cargo run --release --bin tester ./a.out < in/0011.txt > out.txt && cd ..
 幅大きめ→誤差を無視できるようにした、でもその文差がデカくなって配置コスト大
-配置コストを削減してみる。間を埋めるように配置する→これだと評価下がった→配置コストを下げれば良さそう
+配置コストを削減してみる。間を埋めるように配置する→これだと評価下がった→配置コストを下げれば良さそ
 
 
 
