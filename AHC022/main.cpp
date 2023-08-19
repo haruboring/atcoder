@@ -222,23 +222,84 @@ struct BigSolver {
         judge.answer(estimate);
     }
 
+    int high = 1000;
     vector<vector<int>> create_temperature() {
-        vector<vector<int>> temperature(L, vector<int>(L, 500));
+        vector<vector<bool>> visited(L, vector<bool>(L, false));
+        queue<Pos> q;
+        vector<vector<int>> temperature(L, vector<int>(L, 0));
+        // (0. 0)が500度
+        temperature[0][0] = high;  // cost: 500*500*4 = 1^6
+        visited[0][0] = true;
+        q.push({0, 0});
+
+        int base = 0;
+        vector<vector<int>> dydx = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        while (!q.empty()) {
+            Pos now = q.front();
+            q.pop();
+            for (auto d : dydx) {
+                Pos next = {(now.y + d[0] + L) % L, (now.x + d[1] + L) % L};
+                if (visited[next.y][next.x]) continue;
+                temperature[next.y][next.x] = int(0.35 * (temperature[now.y][now.x] + base));
+                visited[next.y][next.x] = true;
+                q.push(next);
+            }
+        }
+
         return temperature;
     }
 
     vector<int> predict(const vector<vector<int>>& temperature) {
         vector<int> estimate(N);
 
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        std::uniform_int_distribution<> dis(0, N - 1);
+        set<int> rest;
+        for (int i = 0; i < N; i++) rest.insert(i);
 
-        // ランダムな整数を取得
-        rep(i, N) {
-            estimate[i] = dis(gen);
+        int st = 850;
+        int cnt = 0;
+        for (int i_in = 0; i_in < N; i_in++) {
+            if (i_in == N - 1) {
+                continue;
+            }
+            map<int, Pos> mp;
+            int max_temperature = 0;
+            for (int i = 0; i < N; i++) {
+                if (rest.count(i) == 0) continue;
+
+                if (cnt >= 10000) {
+                    cnt = 11111;
+                    break;
+                }
+
+                int y = landing_pos[i].y;
+                int x = landing_pos[i].x;
+                int dy, dx;
+
+                dy = -y;
+                dx = -x;
+
+                int temperature = judge.measure(i_in, dy, dx);
+                cnt++;
+                temperature += judge.measure(i_in, dy, dx);
+                cnt++;
+                mp[temperature] = Pos{y, x};
+                max_temperature = max(max_temperature, temperature);
+            }
+
+            if (cnt == 11111) {
+                estimate[i_in] = *rest.begin();
+                rest.erase(*rest.begin());
+                continue;
+            }
+            Pos pos = mp[max_temperature];
+            for (int i = 0; i < N; i++) {
+                if (landing_pos[i].y == pos.y && landing_pos[i].x == pos.x) {
+                    estimate[i_in] = i;
+                    rest.erase(i);
+                    break;
+                }
+            }
         }
-
         return estimate;
     }
 };
@@ -254,7 +315,7 @@ int main() {
         cin >> landing_pos[i].y >> landing_pos[i].x;
     }
 
-    if (S > 550) {
+    if (S > 250) {
         BigSolver solver(L, N, S, landing_pos);
         solver.solve();
     } else if (S > 3) {
@@ -276,10 +337,10 @@ g++-13 -std=c++17 -I.. 1.cpp -o tools/a.out && cd tools && cargo run --release -
 
 Result:
 123456789
-794963763
-3391
+850734867
+2388
 
-340638656
+349664525
 
-3,498,283,128
+3,847,021,325
 */
