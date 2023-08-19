@@ -61,14 +61,13 @@ struct Solver {
         // set the temperature to i * 10 for i-th position
         for (int i = 0; i < N; i++) {
             // 1000まで。Nは60 ~ 100
-            temperature[landing_pos[i].y][landing_pos[i].x] = ((i % 72) * 14);
-            if (i >= 72) break;
+            temperature[landing_pos[i].y][landing_pos[i].x] = (i * 8);
         }
 
         for (int i = 0; i < L; i++) {
             for (int j = 0; j < L; j++) {
                 if (temperature[i][j] == -1) {
-                    temperature[i][j] = N * 7;
+                    temperature[i][j] = N * 4;
                 }
             }
         }
@@ -83,7 +82,7 @@ struct Solver {
 
             int measured_value = judge.measure(i_in, 0, 0);
 
-            int it = (measured_value + 7) / 14;
+            int it = (measured_value + 4) / 8;
             estimate[i_in] = min(max(it, 0), N - 1);
         }
         return estimate;
