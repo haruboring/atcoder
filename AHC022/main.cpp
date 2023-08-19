@@ -186,8 +186,6 @@ struct ZikuSolver {
                 dy = -y;
                 dx = -x;
 
-                int dy1 = L / 2 - y, dx1 = L / 2 - x;
-
                 int temperature = judge.measure(i_in, dy, dx);
                 mp[temperature] = Pos{y, x};
                 max_temperature = max(max_temperature, temperature);
@@ -207,6 +205,44 @@ struct ZikuSolver {
     }
 };
 
+struct BigSolver {
+    const int L;
+    const int N;
+    const int S;
+    const vector<Pos> landing_pos;
+    Judge judge;
+
+    BigSolver(int L, int N, int S, const vector<Pos>& landing_pos) : L(L), N(N), S(S), landing_pos(landing_pos), judge() {
+    }
+
+    void solve() {
+        const vector<vector<int>> temperature = create_temperature();
+        judge.set_temperature(temperature);
+        const vector<int> estimate = predict(temperature);
+        judge.answer(estimate);
+    }
+
+    vector<vector<int>> create_temperature() {
+        vector<vector<int>> temperature(L, vector<int>(L, 500));
+        return temperature;
+    }
+
+    vector<int> predict(const vector<vector<int>>& temperature) {
+        vector<int> estimate(N);
+
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(0, N - 1);
+
+        // ランダムな整数を取得
+        rep(i, N) {
+            estimate[i] = dis(gen);
+        }
+
+        return estimate;
+    }
+};
+
 int main() {
     int L, N, S;
     cin >> L >> N >> S;
@@ -218,7 +254,10 @@ int main() {
         cin >> landing_pos[i].y >> landing_pos[i].x;
     }
 
-    if (S > 3) {
+    if (S > 550) {
+        BigSolver solver(L, N, S, landing_pos);
+        solver.solve();
+    } else if (S > 3) {
         ZikuSolver solver(L, N, S, landing_pos);
         solver.solve();
     } else {
@@ -240,7 +279,7 @@ Result:
 794963763
 3391
 
-340634530
+340638656
 
-3,497,852,486
+3,498,283,128
 */
