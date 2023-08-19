@@ -99,16 +99,30 @@ struct Solver {
     vector<int> predict(const vector<vector<int>>& temperature) {
         vector<int> estimate(N);
         for (int i_in = 0; i_in < N; i_in++) {
-            if (i_in > 1000 / d){
-                estimate[i_in] = N-1;
+            if (i_in > 1000 / d) {
+                estimate[i_in] = N - 1;
                 continue;
             }
-                // you can output comment
-                cout << "# measure i=" << i_in << " y=0 x=0" << endl;
+            // you can output comment
+            cout << "# measure i=" << i_in << " y=0 x=0" << endl;
 
-            int measured_value = judge.measure(i_in, 0, 0);
+            // if (4 * dis > d) {
+            //     measured_value += judge.measure(i_in, 0, 0);
+            //     measured_value += judge.measure(i_in, 0, 0);
+            //     measured_value /= 3;
+            // }
+            int max_rep = 10;
+            int sum_measured_value = 0;
+            int ave = 0;
+            for (int i = 0; i < max_rep; i++) {
+                sum_measured_value += judge.measure(i_in, 0, 0);
+                ave = sum_measured_value / (i + 1);
+                int tmp = ave / d;
+                int dis = min(abs(tmp * d - ave), abs((tmp + 1) * d - ave));
+                if (4 * dis < d) break;
+            }
 
-            int it = (measured_value + d / 2) / d;
+            int it = (ave + d / 2) / d;
             estimate[i_in] = min(max(it, 0), N - 1);
         }
         return estimate;
