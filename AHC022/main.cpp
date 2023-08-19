@@ -149,7 +149,6 @@ struct ZikuSolver {
         visited[0][0] = true;
         q.push({0, 0});
 
-        // temperature[L / 2][L / 2] = high;
         int base = 0;
         vector<vector<int>> dydx = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
         while (!q.empty()) {
@@ -158,7 +157,7 @@ struct ZikuSolver {
             for (auto d : dydx) {
                 Pos next = {(now.y + d[0] + L) % L, (now.x + d[1] + L) % L};
                 if (visited[next.y][next.x]) continue;
-                temperature[next.y][next.x] = (temperature[now.y][now.x] + base) / 2;
+                temperature[next.y][next.x] = int(0.35 * (temperature[now.y][now.x] + base));
                 visited[next.y][next.x] = true;
                 q.push(next);
             }
@@ -178,6 +177,8 @@ struct ZikuSolver {
             map<int, Pos> mp;
             int max_temperature = 0;
             for (int i = 0; i < N; i++) {
+                if (rest.count(i) == 0) continue;
+
                 int y = landing_pos[i].y;
                 int x = landing_pos[i].x;
                 int dy, dx;
@@ -185,14 +186,7 @@ struct ZikuSolver {
                 dy = -y;
                 dx = -x;
 
-                // int dy1 = L/2 - y, dx1 = L/2 - x;
-
-                // if(abs(dy) + abs(dx) > abs(dy1) + abs(dx1)) {
-                //     dy = dy1;
-                //     dx = dx1;
-                // }
-
-                if (rest.count(i) == 0) continue;
+                int dy1 = L / 2 - y, dx1 = L / 2 - x;
 
                 int temperature = judge.measure(i_in, dy, dx);
                 mp[temperature] = Pos{y, x};
@@ -246,7 +240,7 @@ Result:
 794963763
 3391
 
-332953622
+340634530
 
-3,193,074,910
+3,497,852,486
 */
