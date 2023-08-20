@@ -8,5 +8,19 @@ using namespace std;
 using ll = long long;
 
 int main() {
-    
+    string s;
+    cin >> s;
+
+    set<char> st;
+    st.insert('a');
+    st.insert('i');
+    st.insert('u');
+    st.insert('e');
+    st.insert('o');
+
+    rep(i, s.size()) {
+        if (st.count(s[i])) continue;
+        cout << s[i];
+    }
+    cout << endl;
 }

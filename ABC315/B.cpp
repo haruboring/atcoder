@@ -8,4 +8,26 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int M;
+    cin >> M;
+    vector<int> D(M);
+    rep(i, M) cin >> D[i];
+
+    set<int> ds;
+    rep(i, M) ds.insert(D[i]);
+
+    int all_days = 0;
+    rep(i, M) all_days += D[i];
+    int half_days = (all_days + 1) / 2;
+    rep(i, M) {
+        rep(j, D[i]) {
+            half_days--;
+            if (half_days == 0) {
+                cout << i + 1 << " " << j + 1 << endl;
+                return 0;
+            }
+        }
+    }
+
+    for(auto )
 }
