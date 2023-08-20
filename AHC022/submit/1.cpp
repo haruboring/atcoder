@@ -205,6 +205,111 @@ struct ZikuSolver {
     }
 };
 
+struct BigSolver {
+    const int L;
+    const int N;
+    const int S;
+    const vector<Pos> landing_pos;
+    Judge judge;
+
+    BigSolver(int L, int N, int S, const vector<Pos>& landing_pos) : L(L), N(N), S(S), landing_pos(landing_pos), judge() {
+    }
+
+    void solve() {
+        const vector<vector<int>> temperature = create_temperature();
+        judge.set_temperature(temperature);
+        const vector<int> estimate = predict(temperature);
+        judge.answer(estimate);
+    }
+
+    int high = 1000;
+    vector<vector<int>> create_temperature() {
+        vector<vector<bool>> visited(L, vector<bool>(L, false));
+        queue<Pos> q;
+        vector<vector<int>> temperature(L, vector<int>(L, 0));
+        // (0. 0)が500度
+        temperature[0][0] = high;  // cost: 500*500*4 = 1^6
+        visited[0][0] = true;
+        q.push({0, 0});
+
+        int base = 0;
+        vector<vector<int>> dydx = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        while (!q.empty()) {
+            Pos now = q.front();
+            q.pop();
+            for (auto d : dydx) {
+                Pos next = {(now.y + d[0] + L) % L, (now.x + d[1] + L) % L};
+                if (visited[next.y][next.x]) continue;
+                temperature[next.y][next.x] = int(0.15 * (temperature[now.y][now.x] + base));
+                visited[next.y][next.x] = true;
+                q.push(next);
+            }
+        }
+
+        return temperature;
+    }
+
+    vector<int> predict(const vector<vector<int>>& temperature) {
+        vector<int> estimate(N);
+
+        set<int> rest;
+        for (int i = 0; i < N; i++) rest.insert(i);
+
+        int cnt = 0;
+        int tarinai = max(0, N * N - 10000);
+        int st = 750 * 2;
+        for (int i_in = 0; i_in < N; i_in++) {
+            map<int, Pos> mp;
+            int max_temperature = 0;
+            for (int i = 0; i < N; i++) {
+                if (rest.count(i) == 0) continue;
+
+                if (cnt >= 10000) {
+                    cnt = 11111;
+                    break;
+                }
+
+                int y = landing_pos[i].y;
+                int x = landing_pos[i].x;
+                int dy, dx;
+
+                dy = -y;
+                dx = -x;
+
+                int temperature = judge.measure(i_in, dy, dx);
+                cnt++;
+
+                if (cnt >= 10000) {
+                    cnt = 11111;
+                    break;
+                }
+
+                temperature += judge.measure(i_in, dy, dx);
+
+                mp[temperature] = Pos{y, x};
+                max_temperature = max(max_temperature, temperature);
+
+                if (temperature > st) break;
+            }
+
+            if (cnt == 11111) {
+                estimate[i_in] = *rest.begin();
+                rest.erase(*rest.begin());
+                continue;
+            }
+            Pos pos = mp[max_temperature];
+            for (int i = 0; i < N; i++) {
+                if (landing_pos[i].y == pos.y && landing_pos[i].x == pos.x) {
+                    estimate[i_in] = i;
+                    rest.erase(i);
+                    break;
+                }
+            }
+        }
+        return estimate;
+    }
+};
+
 struct MedSolver {
     const int L;
     const int N;
@@ -313,111 +418,6 @@ struct MedSolver {
     }
 };
 
-struct BigSolver {
-    const int L;
-    const int N;
-    const int S;
-    const vector<Pos> landing_pos;
-    Judge judge;
-
-    BigSolver(int L, int N, int S, const vector<Pos>& landing_pos) : L(L), N(N), S(S), landing_pos(landing_pos), judge() {
-    }
-
-    void solve() {
-        const vector<vector<int>> temperature = create_temperature();
-        judge.set_temperature(temperature);
-        const vector<int> estimate = predict(temperature);
-        judge.answer(estimate);
-    }
-
-    int high = 1000;
-    vector<vector<int>> create_temperature() {
-        vector<vector<bool>> visited(L, vector<bool>(L, false));
-        queue<Pos> q;
-        vector<vector<int>> temperature(L, vector<int>(L, 0));
-        // (0. 0)が500度
-        temperature[0][0] = high;  // cost: 500*500*4 = 1^6
-        visited[0][0] = true;
-        q.push({0, 0});
-
-        int base = 0;
-        vector<vector<int>> dydx = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-        while (!q.empty()) {
-            Pos now = q.front();
-            q.pop();
-            for (auto d : dydx) {
-                Pos next = {(now.y + d[0] + L) % L, (now.x + d[1] + L) % L};
-                if (visited[next.y][next.x]) continue;
-                temperature[next.y][next.x] = int(0.15 * (temperature[now.y][now.x] + base));
-                visited[next.y][next.x] = true;
-                q.push(next);
-            }
-        }
-
-        return temperature;
-    }
-
-    vector<int> predict(const vector<vector<int>>& temperature) {
-        vector<int> estimate(N);
-
-        set<int> rest;
-        for (int i = 0; i < N; i++) rest.insert(i);
-
-        int cnt = 0;
-        int tarinai = max(0, N * N - 10000);
-        int st = 750 * 2;
-        for (int i_in = 0; i_in < N; i_in++) {
-            map<int, Pos> mp;
-            int max_temperature = 0;
-            for (int i = 0; i < N; i++) {
-                if (rest.count(i) == 0) continue;
-
-                if (cnt >= 10000) {
-                    cnt = 11111;
-                    break;
-                }
-
-                int y = landing_pos[i].y;
-                int x = landing_pos[i].x;
-                int dy, dx;
-
-                dy = -y;
-                dx = -x;
-
-                int temperature = judge.measure(i_in, dy, dx);
-                cnt++;
-
-                if (cnt >= 10000) {
-                    cnt = 11111;
-                    break;
-                }
-
-                temperature += judge.measure(i_in, dy, dx);
-
-                mp[temperature] = Pos{y, x};
-                max_temperature = max(max_temperature, temperature);
-
-                if (temperature > st) break;
-            }
-
-            if (cnt == 11111) {
-                estimate[i_in] = *rest.begin();
-                rest.erase(*rest.begin());
-                continue;
-            }
-            Pos pos = mp[max_temperature];
-            for (int i = 0; i < N; i++) {
-                if (landing_pos[i].y == pos.y && landing_pos[i].x == pos.x) {
-                    estimate[i_in] = i;
-                    rest.erase(i);
-                    break;
-                }
-            }
-        }
-        return estimate;
-    }
-};
-
 struct ExBigSolver {
     const int L;
     const int N;
@@ -426,123 +426,6 @@ struct ExBigSolver {
     Judge judge;
 
     ExBigSolver(int L, int N, int S, const vector<Pos>& landing_pos) : L(L), N(N), S(S), landing_pos(landing_pos), judge() {
-    }
-
-    void solve() {
-        const vector<vector<int>> temperature = create_temperature();
-        judge.set_temperature(temperature);
-        const vector<int> estimate = predict(temperature);
-        judge.answer(estimate);
-    }
-
-    int high = 1000;
-    vector<vector<int>> create_temperature() {
-        vector<vector<bool>> visited(L, vector<bool>(L, false));
-        queue<Pos> q;
-        vector<vector<int>> temperature(L, vector<int>(L, 0));
-        // (0. 0)が500度
-        temperature[0][0] = high;  // cost: 500*500*4 = 1^6
-        visited[0][0] = true;
-        q.push({0, 0});
-
-        int base = 0;
-        vector<vector<int>> dydx = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-        while (!q.empty()) {
-            Pos now = q.front();
-            q.pop();
-            for (auto d : dydx) {
-                Pos next = {(now.y + d[0] + L) % L, (now.x + d[1] + L) % L};
-                if (visited[next.y][next.x]) continue;
-                temperature[next.y][next.x] = int(0.15 * (temperature[now.y][now.x] + base));
-                visited[next.y][next.x] = true;
-                q.push(next);
-            }
-        }
-
-        return temperature;
-    }
-
-    vector<int> predict(const vector<vector<int>>& temperature) {
-        vector<int> estimate(N);
-
-        set<int> rest;
-        for (int i = 0; i < N; i++) rest.insert(i);
-
-        int cnt = 0;
-        int tarinai = max(0, N * N - 10000);
-        int max_rep = 20000 / (N * N);
-        int ama = 20000 % (N * N);
-
-        int st = 750 * max_rep;
-        for (int i_in = 0; i_in < N; i_in++) {
-            map<int, Pos> mp;
-            int max_temperature = 0;
-            for (int i = 0; i < N; i++) {
-                if (rest.count(i) == 0) continue;
-
-                int y = landing_pos[i].y;
-                int x = landing_pos[i].x;
-                int dy, dx;
-
-                dy = -y;
-                dx = -x;
-
-                int temperature = 0;
-
-                rep(j, max_rep) {
-                    if (cnt >= 10000) {
-                        cnt = 11111;
-                        break;
-                    }
-                    temperature += judge.measure(i_in, dy, dx);
-                    cnt++;
-                }
-                if (ama < i_in) {
-                    if (cnt >= 10000) {
-                        cnt = 11111;
-                        break;
-                    }
-                    temperature += judge.measure(i_in, dy, dx);
-                    temperature = (3 * temperature) / 2;
-                    cnt++;
-                }
-
-                mp[temperature] = Pos{y, x};
-                max_temperature = max(max_temperature, temperature);
-
-                if (cnt >= 10000) {
-                    cnt = 11111;
-                    break;
-                }
-                if (temperature > st) break;
-            }
-
-            if (cnt == 11111) {
-                estimate[i_in] = *rest.begin();
-                rest.erase(*rest.begin());
-                continue;
-            }
-            Pos pos = mp[max_temperature];
-            for (int i = 0; i < N; i++) {
-                if (landing_pos[i].y == pos.y && landing_pos[i].x == pos.x) {
-                    estimate[i_in] = i;
-                    rest.erase(i);
-                    break;
-                }
-            }
-        }
-        return estimate;
-    }
-};
-
-struct RamdomSolver {
-    const int L;
-    const int N;
-    const int S;
-    const vector<Pos> landing_pos;
-    Judge judge;
-
-    RamdomSolver(int L, int N, int S, const vector<Pos>& landing_pos) : L(L), N(N), S(S), landing_pos(landing_pos), judge() {
     }
 
     void solve() {
@@ -586,23 +469,20 @@ int main() {
         cin >> landing_pos[i].y >> landing_pos[i].x;
     }
 
-    if (S > 700) {
-        RamdomSolver solver(L, N, S, landing_pos);  // random
-        solver.solve();
-    } else if (S > 400) {
-        ExBigSolver solver(L, N, S, landing_pos);  // random
+    if (S > 800) {
+        ExBigSolver solver(L, N, S, landing_pos);
         solver.solve();
     } else if (S > 350) {
-        BigSolver solver(L, N, S, landing_pos);  // Like ZikuSolver
+        BigSolver solver(L, N, S, landing_pos);
         solver.solve();
     } else if (S > 200) {
-        MedSolver solver(L, N, S, landing_pos);  // Like ZikuSolver
+        MedSolver solver(L, N, S, landing_pos);
         solver.solve();
     } else if (S > 3) {
-        ZikuSolver solver(L, N, S, landing_pos);  // search one Tower
+        ZikuSolver solver(L, N, S, landing_pos);
         solver.solve();
     } else {
-        Solver solver(L, N, S, landing_pos);  // measure same place
+        Solver solver(L, N, S, landing_pos);
         solver.solve();
     }
 }
@@ -623,33 +503,4 @@ Result:
 357533215
 
 4,194,836,125
-
-
-Processing file: 0096.txt  26 72 900
-    Finished release [optimized] target(s) in 0.03s
-     Running `target/aarch64-apple-darwin/release/tester ./a.out`
-Score = 8
-Number of wrong answers = 64
-Placement cost = 3094080
-Measurement cost = 5718800
-Measurement count = 1658
-
-Processing file: 0097.txt  33 87 529
-    Finished release [optimized] target(s) in 0.03s
-     Running `target/aarch64-apple-darwin/release/tester ./a.out`
-Score = 72
-Number of wrong answers = 50
-Placement cost = 3094080
-Measurement cost = 16677200
-Measurement count = 4116
-
-Processing file: 0098.txt  26 84 676
-    Finished release [optimized] target(s) in 0.03s
-     Running `target/aarch64-apple-darwin/release/tester ./a.out`
-Score = 2
-Number of wrong answers = 69
-Placement cost = 3094080
-Measurement cost = 9841000
-Measurement count = 2964
-
 */

@@ -106,6 +106,11 @@ struct Solver {
             // you can output comment
             cout << "# measure i=" << i_in << " y=0 x=0" << endl;
 
+            // if (4 * dis > d) {
+            //     measured_value += judge.measure(i_in, 0, 0);
+            //     measured_value += judge.measure(i_in, 0, 0);
+            //     measured_value /= 3;
+            // }
             int max_rep = 6;
             int sum_measured_value = 0;
             int ave = 0;
@@ -168,12 +173,10 @@ struct ZikuSolver {
         judge.answer(estimate);
     }
 
-    int high = 1000;
-
     vector<vector<int>> create_temperature() {
         vector<vector<int>> temperature(L, vector<int>(L, 0));
         // (0. 0)が500度
-        temperature[0][0] = high;  // cost: 500*500*4 = 1^6
+        temperature[0][0] = 1000;  // cost: 500*500*4 = 1^6
 
         return temperature;
     }
@@ -184,7 +187,7 @@ struct ZikuSolver {
         set<int> rest;
         for (int i = 0; i < N; i++) rest.insert(i);
 
-        int st = 1000000;
+        int st = 850;
         for (int i_in = 0; i_in < N; i_in++) {
             map<int, Pos> mp;
             int max_temperature = 0;
@@ -201,7 +204,7 @@ struct ZikuSolver {
                 int temperature = judge.measure(i_in, dy, dx);
                 mp[temperature] = Pos{y, x};
                 max_temperature = max(max_temperature, temperature);
-                if (temperature > st) break;
+                if(temperature > st) break;
             }
 
             Pos pos = mp[max_temperature];
@@ -245,24 +248,9 @@ g++-13 -std=c++17 -I.. 1.cpp -o tools/a.out && cd tools && cargo run --release -
 幅大きめ→誤差を無視できるようにした、でもその文差がデカくなって配置コスト大
 配置コストを削減してみる。間を埋めるように配置する→これだと評価下がった→配置コストを下げれば良さそ
 
+エ
 
 
-Processing file: 0098.txt
-    Finished release [optimized] target(s) in 0.03s
-     Running `target/aarch64-apple-darwin/release/tester ./a.out`
-Score = 1
-Number of wrong answers = 83
-Placement cost = 1000000
-Measurement cost = 908000
-Measurement count = 248
-Processing file: 0099.txt
-    Finished release [optimized] target(s) in 0.03s
-     Running `target/aarch64-apple-darwin/release/tester ./a.out`
-Score = 22170000
-Number of wrong answers = 0
-Placement cost = 1000000
-Measurement cost = 3410600
-Measurement count = 1218
-
-
+3232, 759,389,060
+zz
 */

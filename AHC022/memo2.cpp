@@ -106,6 +106,11 @@ struct Solver {
             // you can output comment
             cout << "# measure i=" << i_in << " y=0 x=0" << endl;
 
+            // if (4 * dis > d) {
+            //     measured_value += judge.measure(i_in, 0, 0);
+            //     measured_value += judge.measure(i_in, 0, 0);
+            //     measured_value /= 3;
+            // }
             int max_rep = 6;
             int sum_measured_value = 0;
             int ave = 0;
@@ -168,7 +173,7 @@ struct ZikuSolver {
         judge.answer(estimate);
     }
 
-    int high = 1000;
+    int high = 500;
 
     vector<vector<int>> create_temperature() {
         vector<vector<int>> temperature(L, vector<int>(L, 0));
@@ -184,7 +189,7 @@ struct ZikuSolver {
         set<int> rest;
         for (int i = 0; i < N; i++) rest.insert(i);
 
-        int st = 1000000;
+        int st = 350;
         for (int i_in = 0; i_in < N; i_in++) {
             map<int, Pos> mp;
             int max_temperature = 0;
@@ -214,6 +219,27 @@ struct ZikuSolver {
             }
         }
         return estimate;
+    }
+
+    int ff() {
+        // 乱数エンジンの初期化
+        std::random_device rd;
+        std::mt19937 gen(rd());
+
+        std::normal_distribution<> d(0, S);  // 平均0、標準偏差Sの正規分布
+
+        double sum = 0.0;
+
+        // 正規分布からランダムな値を1000回取り出す
+        for (int i = 0; i < 1000; ++i) {
+            double value = d(gen);
+            sum += std::abs(value);  // 絶対値を合計に加算
+        }
+
+        // 絶対値の平均を計算
+        double average = sum / 1000.0;
+
+        return average;
     }
 };
 
@@ -245,24 +271,9 @@ g++-13 -std=c++17 -I.. 1.cpp -o tools/a.out && cd tools && cargo run --release -
 幅大きめ→誤差を無視できるようにした、でもその文差がデカくなって配置コスト大
 配置コストを削減してみる。間を埋めるように配置する→これだと評価下がった→配置コストを下げれば良さそ
 
-
-
-Processing file: 0098.txt
-    Finished release [optimized] target(s) in 0.03s
-     Running `target/aarch64-apple-darwin/release/tester ./a.out`
-Score = 1
-Number of wrong answers = 83
-Placement cost = 1000000
-Measurement cost = 908000
-Measurement count = 248
-Processing file: 0099.txt
-    Finished release [optimized] target(s) in 0.03s
-     Running `target/aarch64-apple-darwin/release/tester ./a.out`
-Score = 22170000
-Number of wrong answers = 0
-Placement cost = 1000000
-Measurement cost = 3410600
-Measurement count = 1218
-
+Result:
+123456789
+784414170
+4674
 
 */

@@ -170,10 +170,64 @@ fn main() {
             eprintln!("Placement cost = {}", outcome.arrange_cost);
             eprintln!("Measurement cost = {}", outcome.measure_cost);
             eprintln!("Measurement count = {}", outcome.measure_cnt);
+            match read_current_score() {
+                Ok(current_score) => {
+                    let updated_score = current_score + outcome.score as i64;
+                    if let Err(e) = write_updated_score(updated_score) {
+                        eprintln!("Failed to write updated score to SumScore.txt: {}", e);
+                    }
+                }
+                Err(e) => {
+                    eprintln!("Failed to read current score from SumScore.txt: {}", e);
+                }
+            }
+
+            match read_current_wrong() {
+                Ok(current_wrong) => {
+                    let updated_wrong = current_wrong + outcome.wrong_answer as i64;
+                    if let Err(e) = write_updated_wrong(updated_wrong) {
+                        eprintln!("Failed to write updated wrong to SumWrong.txt: {}", e);
+                    }
+                }
+                Err(e) => {
+                    eprintln!("Failed to read current wrong from SumWrong.txt: {}", e);
+                }
+            }
+
         }
         Err(err) => {
             eprintln!("{}", err);
             p.kill().unwrap();
         }
     }
+}
+
+fn read_current_score() -> Result<i64, std::io::Error> {
+    let content = std::fs::read_to_string("SumScore.txt")?;
+    content.trim().parse::<i64>().map_err(|_| {
+        std::io::Error::new(
+            std::io::ErrorKind::InvalidData,
+            "Failed to parse score from SumScore.txt",
+        )
+    })
+}
+
+// 更新されたスコアをSumScore.txtに保存する関数
+fn write_updated_score(new_score: i64) -> Result<(), std::io::Error> {
+    std::fs::write("SumScore.txt", new_score.to_string())
+}
+
+fn read_current_wrong() -> Result<i64, std::io::Error> {
+    let content = std::fs::read_to_string("SumWrong.txt")?;
+    content.trim().parse::<i64>().map_err(|_| {
+        std::io::Error::new(
+            std::io::ErrorKind::InvalidData,
+            "Failed to parse score from SumWrong.txt",
+        )
+    })
+}
+
+// 更新されたCoorectをSumwrong,.txtに保存する関数
+fn write_updated_wrong(new_wrong: i64) -> Result<(), std::io::Error> {
+    std::fs::write("SumWrong.txt", new_wrong.to_string())
 }

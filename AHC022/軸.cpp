@@ -10,7 +10,7 @@ struct Pos {
     int y, x;
 };
 
-struct Judge {
+struct ZikuJudge {
     void set_temperature(const vector<vector<int>>& temperature) {
         for (const vector<int>& row : temperature) {
             for (int i = 0; i < row.size(); i++) {
@@ -39,14 +39,14 @@ struct Judge {
     }
 };
 
-struct Solver {
+struct ZikuSolver {
     const int L;
     const int N;
     const int S;
     const vector<Pos> landing_pos;
-    Judge judge;
+    ZikuJudge judge;
 
-    Solver(int L, int N, int S, const vector<Pos>& landing_pos) : L(L), N(N), S(S), landing_pos(landing_pos), judge() {
+    ZikuSolver(int L, int N, int S, const vector<Pos>& landing_pos) : L(L), N(N), S(S), landing_pos(landing_pos), judge() {
     }
 
     void solve() {
@@ -56,80 +56,42 @@ struct Solver {
         judge.answer(estimate);
     }
 
-    int d = 2;
-
     vector<vector<int>> create_temperature() {
-        vector<vector<int>> temperature(L, vector<int>(L, -1));
-        vector<vector<bool>> visited(L, vector<bool>(L, false));
-        queue<Pos> q;
+        vector<vector<int>> temperature(L, vector<int>(L, 0));
+        // (0. 0)が500度
+        temperature[0][0] = 1000;  // cost: 500*500*4 = 1^6
 
-        // set the temperature to i * 10 for i-th position
-        for (int i = 0; i < N; i++) {
-            // 1000まで。Nは60 ~ 100
-            if (i > 1000 / d) break;
-            temperature[landing_pos[i].y][landing_pos[i].x] = (i * d);
-            visited[landing_pos[i].y][landing_pos[i].x] = true;
-            q.push(landing_pos[i]);
-        }
-
-        int base = min(N, 1000 / d) * d / 2;
-        vector<vector<int>> dydx = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-        while (!q.empty()) {
-            Pos now = q.front();
-            q.pop();
-            for (auto d : dydx) {
-                Pos next = {(now.y + d[0] + L) % L, (now.x + d[1] + L) % L};
-                if (visited[next.y][next.x]) continue;
-                temperature[next.y][next.x] = (temperature[now.y][now.x] + base) / 2;
-                visited[next.y][next.x] = true;
-                q.push(next);
-            }
-        }
-
-        for (int i = 0; i < L; i++) {
-            for (int j = 0; j < L; j++) {
-                if (temperature[i][j] == -1) {
-                    temperature[i][j] = base;
-                }
-            }
-        }
         return temperature;
     }
 
     vector<int> predict(const vector<vector<int>>& temperature) {
         vector<int> estimate(N);
+
         for (int i_in = 0; i_in < N; i_in++) {
-            if (i_in > 1000 / d) {
-                estimate[i_in] = N - 1;
-                continue;
-            }
-            // you can output comment
-            cout << "# measure i=" << i_in << " y=0 x=0" << endl;
+            map<int, Pos> mp;
+            int max_temperature = 0;
+            for (auto [y, x] : landing_pos) {
+                int dy, dx;
 
-            int max_rep = 10000 / N;
-            int sum_measured_value = 0;
-            int ave = 0;
-            for (int i = 0; i < max_rep; i++) {
-                // 10000回まで回せる
-                sum_measured_value += judge.measure(i_in, 0, 0);
-                ave = sum_measured_value / (i + 1);
+                dy = -y;
+                dx = -x;
 
-                int tmp = ave / d;
-                int dis = min(abs(tmp * d - ave), abs((tmp + 1) * d - ave));
-                if (i >= 4 && dis <= 0) break;
+                int temperature = judge.measure(i_in, dy, dx);
+                mp[temperature] = Pos{y, x};
+                max_temperature = max(max_temperature, temperature);
             }
 
-            int it = (ave + d / 2) / d;
-            estimate[i_in] = min(max(it, 0), N - 1);
+            Pos pos = mp[max_temperature];
+            for (int i = 0; i < N; i++) {
+                if (landing_pos[i].y == pos.y && landing_pos[i].x == pos.x) {
+                    estimate[i_in] = i;
+                    break;
+                }
+            }
         }
         return estimate;
     }
 };
-
-int get_d(int S){
-    // Sは標準偏差で、1から900まで
-
-}
 
 int main() {
     int L, N, S;
@@ -141,7 +103,7 @@ int main() {
         cin >> landing_pos[i].y >> landing_pos[i].x;
     }
 
-    Solver solver(L, N, S, landing_pos);
+    ZikuSolver solver(L, N, S, landing_pos);
     solver.solve();
 }
 

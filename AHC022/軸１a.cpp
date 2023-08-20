@@ -122,41 +122,12 @@ struct Solver {
     }
 };
 
-struct ZikuJudge {
-    void set_temperature(const vector<vector<int>>& temperature) {
-        for (const vector<int>& row : temperature) {
-            for (int i = 0; i < row.size(); i++) {
-                cout << row[i] << (i == row.size() - 1 ? "\n" : " ");
-            }
-        }
-        cout.flush();
-    }
-
-    int measure(int i, int y, int x) {
-        cout << i << " " << y << " " << x << endl;  // endl does flush
-        int v;
-        cin >> v;
-        if (v == -1) {
-            cerr << "something went wrong. i=" << i << " y=" << y << " x=" << x << endl;
-            exit(1);
-        }
-        return v;
-    }
-
-    void answer(const vector<int>& estimate) {
-        cout << "-1 -1 -1" << endl;
-        for (int e : estimate) {
-            cout << e << endl;
-        }
-    }
-};
-
 struct ZikuSolver {
     const int L;
     const int N;
     const int S;
     const vector<Pos> landing_pos;
-    ZikuJudge judge;
+    Judge judge;
 
     ZikuSolver(int L, int N, int S, const vector<Pos>& landing_pos) : L(L), N(N), S(S), landing_pos(landing_pos), judge() {
     }
@@ -184,7 +155,7 @@ struct ZikuSolver {
         set<int> rest;
         for (int i = 0; i < N; i++) rest.insert(i);
 
-        int st = 1000000;
+        int st = 850;
         for (int i_in = 0; i_in < N; i_in++) {
             map<int, Pos> mp;
             int max_temperature = 0;
@@ -217,6 +188,91 @@ struct ZikuSolver {
     }
 };
 
+struct BigSolver {
+    const int L;
+    const int N;
+    const int S;
+    const vector<Pos> landing_pos;
+    Judge judge;
+
+    BigSolver(int L, int N, int S, const vector<Pos>& landing_pos) : L(L), N(N), S(S), landing_pos(landing_pos), judge() {
+    }
+
+    void solve() {
+        const vector<vector<int>> temperature = create_temperature();
+        judge.set_temperature(temperature);
+        const vector<int> estimate = predict(temperature);
+        judge.answer(estimate);
+    }
+
+    int d = 2;
+
+    vector<vector<int>> create_temperature() {
+        vector<vector<int>> temperature(L, vector<int>(L, -1));
+        vector<vector<bool>> visited(L, vector<bool>(L, false));
+        queue<Pos> q;
+
+        // set the temperature to i * 10 for i-th position
+        for (int i = 0; i < N; i++) {
+            // 1000まで。Nは60 ~ 100
+            if (i > 1000 / d) break;
+            temperature[landing_pos[i].y][landing_pos[i].x] = 400 + i * d;
+            visited[landing_pos[i].y][landing_pos[i].x] = true;
+            q.push(landing_pos[i]);
+        }
+
+        // 差を出すのがむずいから、SORTするか。
+        int base = min(N, 1000 / d) * d / 2;
+        vector<vector<int>> dydx = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        while (!q.empty()) {
+            Pos now = q.front();
+            q.pop();
+            for (auto d : dydx) {
+                Pos next = {(now.y + d[0] + L) % L, (now.x + d[1] + L) % L};
+                if (visited[next.y][next.x]) continue;
+                temperature[next.y][next.x] = (temperature[now.y][now.x] + base) / 2;
+                visited[next.y][next.x] = true;
+                q.push(next);
+            }
+        }
+
+        for (int i = 0; i < L; i++) {
+            for (int j = 0; j < L; j++) {
+                if (temperature[i][j] == -1) {
+                    temperature[i][j] = base;
+                }
+            }
+        }
+        return temperature;
+    }
+
+    vector<int> predict(const vector<vector<int>>& temperature) {
+        vector<int> estimate(N);
+        vector<pair<int, int>> ave_i_in(N);
+
+        for (int i_in = 0; i_in < N; i_in++) {
+            if (i_in > 1000 / d) {
+                estimate[i_in] = N - 1;
+                continue;
+            }
+            // you can output comment
+            cout << "# measure i=" << i_in << " y=0 x=0" << endl;
+
+            int max_rep = 10000 / N;
+            int sum_measured_value = 0;
+            for (int i = 0; i < max_rep; i++) {
+                int tmp = judge.measure(i_in, 0, 0);
+                sum_measured_value += tmp;
+            }
+
+            int ave = sum_measured_value / max_rep - 400;
+
+            estimate[i_in] = min(max((ave + d/2) / d, 0), N - 1);
+        }
+        return estimate;
+    }
+};
+
 int main() {
     int L, N, S;
     cin >> L >> N >> S;
@@ -228,13 +284,19 @@ int main() {
         cin >> landing_pos[i].y >> landing_pos[i].x;
     }
 
-    if (S > 3) {
+    if (S > 1000) {
+        BigSolver solver(L, N, S, landing_pos);
+        solver.solve();
+    } else if (S > 3) {
+        // ある程度ズレがある時
         ZikuSolver solver(L, N, S, landing_pos);
         solver.solve();
     } else {
         Solver solver(L, N, S, landing_pos);
         solver.solve();
     }
+
+    // Sが大きめの時にゴミすぎるから、修正したい→同じところを何回も計測して、平均出すしかない。
 }
 
 /*
@@ -255,6 +317,7 @@ Number of wrong answers = 83
 Placement cost = 1000000
 Measurement cost = 908000
 Measurement count = 248
+
 Processing file: 0099.txt
     Finished release [optimized] target(s) in 0.03s
      Running `target/aarch64-apple-darwin/release/tester ./a.out`
