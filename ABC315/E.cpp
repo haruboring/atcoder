@@ -28,6 +28,35 @@ int unite(int x, int y) {
     }
 }
 
+vector<int> topological_sort(vector<vector<int>> graph) {
+    int n = graph.size();
+
+    vector<int> indegree(n);
+    for (int i = 0; i < n; i++){
+        for (int j : graph[i]) {
+            indegree[j]++;
+        }
+    }
+
+    vector<int> res;
+    queue<int> que;
+    for (int i = 0; i < n; i++) {
+        if (indegree[i] == 0) que.push(i);
+    }
+
+    while (!que.empty()) {
+        int ver = que.front();
+        que.pop();
+        res.push_back(ver);
+        for (int i : graph[ver]) {
+            indegree[i]--;
+            if (indegree[i] == 0) que.push(i);
+        }
+    }
+
+    return res;
+}
+
 int main() {
     int N;
     cin >> N;
@@ -44,58 +73,35 @@ int main() {
             cin >> a;
             a--;
 
-            if (a != 0) {
-                G[i].push_back(a);
-                rG[a].push_back(i);
-                in[i].push_back(a);
-            }
+            G[i].push_back(a);
         }
     }
 
-    vector<int> dim(N);
-    rep(i, N) {
-        dim[i] = G[i].size();
-    }
-
-    set<int> st;
-    init(N);
-    rep(i, N) {
-        for (auto a : in[i]) {
-            if (root(i) != root(a)) unite(i, a);
-        }
-    }
-    rep(i, N) {
-        if (root(i) == root(0)) st.insert(i);
-    }
-
-    vector<int> ans;
-    queue<int> q;
     vector<bool> used(N, false);
-    rep(i, N) {
-        if (st.count(i) != 0 && dim[i] == 0) {
-            q.push(i);
-        }
-    }
-
+    set<int> s;
+    queue<int> q;
+    q.push(0);
+    used[0] = true;
     while (!q.empty()) {
         int v = q.front();
         q.pop();
-        ans.push_back(v);
-        for (auto a : rG[v]) {
-            if (used[a]) continue;
-            dim[a]--;
-            if (dim[a] == 0) {
-                q.push(a);
-            }
+        s.insert(v);
+        for (auto nv : G[v]) {
+            if (used[nv]) continue;
+            used[nv] = true;
+            q.push(nv);
         }
-        used[v] = true;
     }
 
+    s.erase(0);
+
+    vector<int> ans = topological_sort(G);
+    reverse(all(ans));
+
     for (auto a : ans) {
-        if (a == 0) {
-            break;
-        }
+        if (s.count(a) == 0) continue;
         cout << a + 1 << " ";
     }
+
     cout << endl;
 }
