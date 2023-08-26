@@ -8,5 +8,15 @@ using namespace std;
 using ll = long long;
 
 int main() {
-    
+    int N, H, X;
+    cin >> N >> H >> X;
+    vector<int> P(N);
+    rep(i, N) cin >> P.at(i);
+
+    rep(i, N) {
+        if (X - H <= P.at(i)) {
+            cout << i + 1 << endl;
+            return 0;
+        }
+    }
 }
