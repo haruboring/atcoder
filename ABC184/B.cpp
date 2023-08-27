@@ -8,4 +8,18 @@ using namespace std;
 using ll = long long;
 
 int main() {
+    int N, X;
+    cin >> N >> X;
+    string S;
+    cin >> S;
+
+    rep(i, N) {
+        if (S.at(i) == 'o') {
+            X++;
+        } else {
+            X = max(0, X - 1);
+        }
+    }
+
+    cout << X << endl;
 }
