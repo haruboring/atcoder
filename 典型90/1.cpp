@@ -12,24 +12,27 @@ int main() {
     cin >> N >> L;
     int K;
     cin >> K;
-    vector<int> A(N + 2);
-    A[0] = 0;
-    rep(i, N) cin >> A[i + 1];
-    A[N + 1] = L;
+    vector<int> A(N+1);
+    rep(i, N) cin >> A[i];
+    A[N] = L;
 
-    multiset<int> st;
-    rep(i, N + 1) {
-        st.insert(A[i + 1] - A[i]);
+    int left = 0, right = 1e9;
+    while (right - left > 1) {
+        int mid = (left + right) / 2;
+        int cnt = 0;
+        int prev = 0;
+        rep(i, N + 1) {
+            if (A[i] - prev >= mid) {
+                cnt++;
+                prev = A[i];
+            }
+        }
+        if (cnt >= K + 1) {
+            left = mid;
+        } else {
+            right = mid;
+        }
     }
 
-    rep(i, K) {
-        int sm1 = *st.begin();
-        st.erase(sm1);
-        int sm2 = *st.rbegin();
-        st.erase(sm2);
-
-        st.insert(sm1 + sm2);
-    }
-
-    cout << *st.begin() << endl;
+    cout << left << endl;
 }
