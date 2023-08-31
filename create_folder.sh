@@ -1,3 +1,6 @@
+# 色々
+rm */tempCodeRunnerFile.cpp
+
 read -p "new folder name: " new_folder_name
 
 # 新しいフォルダを作成
