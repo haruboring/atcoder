@@ -43,8 +43,8 @@ signed main() {
     string str_L = to_string(L);
 
     repp(i, 1, str_L.size() + 1) {
-        int s = llpow(10, i - 1);
-        int t = llpow(10, i) - 1;
+        int s = powl(10, i - 1);
+        int t = powl(10, i) - 1;
 
         t = min(t, L - 1);
 
@@ -55,8 +55,8 @@ signed main() {
     int right_ans = 0;
     string str_R = to_string(R);
     repp(i, 1, str_R.size() + 1) {
-        int s = llpow(10, i - 1);
-        int t = llpow(10, i) - 1;
+        int s = powl(10, i - 1);
+        int t = powl(10, i) - 1;
 
         t = min(t, R);
 
