@@ -7,5 +7,5 @@
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
 
-int main() {
+signed main() {
 }
