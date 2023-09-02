@@ -8,17 +8,13 @@
 using namespace std;
 
 signed main() {
-    int N, K;
-    cin >> N >> K;
+    int N, M, P;
+    cin >> N >> M >> P;
 
-    int ans = N;
-    rep(i, K) {
-        string g1 = to_string(ans);
-        sort(all(g1));
-        string g2 = g1;
-        reverse(all(g2));
-        ans = stoll(g2) - stoll(g1);
+    int cnt = 0;
+    repp(i, M, N + 1) {
+        if ((i - M) % P == 0) cnt++;
     }
 
-    cout << ans << endl;
+    cout << cnt << endl;
 }

@@ -8,17 +8,4 @@
 using namespace std;
 
 signed main() {
-    int N, K;
-    cin >> N >> K;
-
-    int ans = N;
-    rep(i, K) {
-        string g1 = to_string(ans);
-        sort(all(g1));
-        string g2 = g1;
-        reverse(all(g2));
-        ans = stoll(g2) - stoll(g1);
-    }
-
-    cout << ans << endl;
 }
