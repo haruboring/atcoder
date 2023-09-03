@@ -1,11 +1,18 @@
-#include <iostream>
-#include <queue>
-#include <vector>
+#include "bits/stdc++.h"
+#define int long long
+#define all(v) v.begin(), v.end()
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define repp(i, m, n) for (int i = m; i < (int)(n); i++)
+#define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
 
 int T, K, H, W, i0;
 vector<int> S, D;
 vector<vector<bool>> h, v;
+
+random_device rd;
+mt19937 engine(rd());
+uniform_int_distribution<int> dist_W(0, 20 - 1), dist_H(0, 20 - 1);
 
 void read_input() {
     cin >> T >> H >> W >> i0;
@@ -96,8 +103,13 @@ bool is_valid_plan(const vector<Work> &plan, const vector<vector<vector<pair<int
     return true;
 }
 
-int main() {
+signed main() {
     read_input();
+    // Tは100
+    // H = W = 20
+    // 0 <= i0 <= H - 1
+    // 0 < K <= HWT, 40000 = 4*10^4
+    // 1 <= S[k] < D[k] <= T
 
     // construct a graph
     vector adj(H, vector(W, vector<pair<int, int>>()));
@@ -117,17 +129,21 @@ int main() {
     }
 
     vector<Work> plan;
-    for (int k = 0; k < min(K, 10); ++k) {
+    // k:     40000
+    int max = 500;
+    for (int k = 0; k < min(K, max); ++k) {
         // try to plant crop k
         bool found = false;
-        for (int i = 0; i < H && !found; ++i) {
-            for (int j = 0; j < W && !found; ++j) {
-                plan.push_back({k, i, j, S[k]});
-                if (!is_valid_plan(plan, adj)) {
-                    plan.pop_back();
-                } else {
-                    found = true;
-                }
+
+        for (int _ = 0; _ < 10 && !found; _++) {
+            int i = dist_H(engine);
+            int j = dist_W(engine);
+
+            plan.push_back({k, i, j, S[k]});
+            if (!is_valid_plan(plan, adj)) {
+                plan.pop_back();
+            } else {
+                found = true;
             }
         }
     }
@@ -139,4 +155,24 @@ int main() {
     }
 }
 
-// score 3325 (#case100)
+/*
+min(K, 10)としていたので、ここを拡張して
+min(K, 500)とした. スコアは約50倍になった.
+実行時間が1765msだからもうこれ以上は無理そう
+
+ただし、元は一ループごとにHW回（400回）回していたので、
+今回はランダムに10回実施して、それがうまく時のみ採用するようにした。
+
+とりあえずこの100というハイパラを修正してこの手法の限界を探るのが今日の目標
+あと、ローカルの実行環境を構築する
+
+今後の手法として、
+- 有効かどうかのチェックに対する計算量の削減
+    - Kは40000までなので、チェックの計算量を減らせればそれなりのスコアは出せそう
+- そもそも配置のためのアルゴリズムを変える
+    - おそらく上の手法だと、チェックの計算量はO(N)ぐらいになりそう。これだとKが上限近い時に上手くいかない
+    - なので配置のアルゴリズムを工夫するという手もある
+- 現状植える時期を考慮していないので、これを工夫する
+
+の3つがある。
+*/
