@@ -247,7 +247,7 @@ signed main() {
             auto [_, i1, j1] = dist_i_j[idx];
             plan.push_back({k, i1, j1, s});
             idx++;
-        }
+        }3
     }
 
     // write output
