@@ -25,7 +25,7 @@ signed main() {
             tmp[i] = abs(m - X[i]);
         }
         sort(all(tmp));
-        
+
         if (cnt % 2 == 0)
             l = m;
         else
