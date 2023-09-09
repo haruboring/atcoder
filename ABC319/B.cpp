@@ -8,4 +8,28 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+
+    string s = "";
+
+    for (int i = 0; i <= N; ++i) {
+        bool found = false;
+
+        for (int j = 1; j <= 9; ++j) {
+            if (N % j == 0 && i % (N / j) == 0) {
+                s += to_string(j);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            s += "-";
+        }
+    }
+
+    cout << s << endl;
+
+    return 0;
 }
