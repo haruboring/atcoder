@@ -73,8 +73,8 @@ signed main() {
         st5.insert({7, 4});
     }
     if (C[0][1] == C[2][1]) {
-        st6.insert({1, 7});
-        st6.insert({7, 1});
+        st5.insert({1, 7});
+        st5.insert({7, 1});
     }
 
     if (C[0][2] == C[1][2]) {
