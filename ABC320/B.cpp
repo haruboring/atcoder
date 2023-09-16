@@ -8,4 +8,25 @@
 using namespace std;
 
 signed main() {
+    string S;
+    cin >> S;
+
+    int ans = 0;
+    rep(i, S.size()) {
+        repp(j, i, S.size()) {
+            bool ok = true;
+            rep(k, (j - i + 1) / 2) {
+                if (S[i + k] != S[j - k]) {
+                    ok = false;
+                    break;
+                }
+            }
+
+            if (ok) {
+                ans = max(ans, j - i + 1);
+            }
+        }
+    }
+
+    cout << ans << endl;
 }

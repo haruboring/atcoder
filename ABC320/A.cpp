@@ -8,4 +8,7 @@
 using namespace std;
 
 signed main() {
+    int A, B;
+    cin >> A >> B;
+    cout << (int)(pow(A, B) + pow(B, A)) << endl;
 }
