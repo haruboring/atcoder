@@ -1,11 +1,13 @@
+#include "atcoder/all"
 #include "bits/stdc++.h"
+#define int long long
 #define all(v) v.begin(), v.end()
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 #define repp(i, m, n) for (int i = m; i < (int)(n); i++)
+#define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
-using ll = long long;
 
-int main() {
+signed main() {
     ll N;
     cin >> N;
     vector<vector<ll>> X(N + 1, vector<ll>(0)), min_max_X(N + 1, vector<ll>(2));

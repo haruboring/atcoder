@@ -1,11 +1,13 @@
+#include "atcoder/all"
 #include "bits/stdc++.h"
+#define int long long
 #define all(v) v.begin(), v.end()
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 #define repp(i, m, n) for (int i = m; i < (int)(n); i++)
+#define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
-using ll = long long;
 
-int main() {
+signed main() {
     ll N;
     cin >> N;
     vector<ll> primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
