@@ -26,7 +26,7 @@ int main() {
         BASE += abs(d[i]);
     }
 
-    rep(i, Q){
+    rep(i, Q) {
         if (L[i] != 0) {
             BASE -= abs(d[L[i] - 1]);
             d[L[i] - 1] -= V[i];
