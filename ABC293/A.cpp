@@ -8,4 +8,14 @@
 using namespace std;
 
 signed main() {
+    string S;
+    cin >> S;
+
+    rep(i, S.size() / 2) {
+        char a = S[2 * i];
+        S[2 * i] = S[2 * i + 1];
+        S[2 * i + 1] = a;
+    }
+
+    cout << S << endl;
 }

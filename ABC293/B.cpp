@@ -8,4 +8,23 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+    rep(i, N) A[i]--;
+
+    set<int> called;
+
+    rep(i, N) {
+        if (called.count(i)) continue;
+        called.insert(A[i]);
+    }
+
+    cout << N - called.size() << endl;
+    rep(i, N) {
+        if (called.count(i)) continue;
+        cout << i + 1 << " ";
+    }
+    cout << endl;
 }
