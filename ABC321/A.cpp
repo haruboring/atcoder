@@ -8,4 +8,15 @@
 using namespace std;
 
 signed main() {
+    string S;
+    cin >> S;
+
+    rep(i, S.size() - 1) {
+        if (S[i] - '0' <= S[i + 1] - '0') {
+            cout << "No" << endl;
+            return 0;
+        }
+    }
+
+    cout << "Yes" << endl;
 }
