@@ -8,4 +8,14 @@
 using namespace std;
 
 signed main() {
+    int N, M;
+    cin >> N >> M;
+    vector<int> A(M + 1);
+    rep(i, M) cin >> A[i];
+    A[M] = 1e9;
+
+    rep(i, N) {
+        int u = *upper_bound(all(A), i);
+        cout << u - i - 1 << endl;
+    }
 }

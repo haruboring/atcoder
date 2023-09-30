@@ -8,4 +8,17 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    string S;
+    cin >> S;
+
+    rep(i, N - 2) {
+        if (S[i] == 'A' && S[i + 1] == 'B' && S[i + 2] == 'C') {
+            cout << i + 1 << endl;
+            return 0;
+        }
+    }
+
+    cout << -1 << endl;
 }
