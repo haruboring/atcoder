@@ -40,7 +40,7 @@ signed main() {
     }
 
     int ans = 0;
-    rep(i, N - 1) {
+    rep(i, N) {
         ans = max(ans, up[i] + down[i] - 1);
     }
 
