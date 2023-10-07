@@ -8,4 +8,16 @@
 using namespace std;
 
 signed main() {
+    string S;
+    cin >> S;
+
+    rep(i, 16) {
+        if (i % 2 == 1) {
+            if (S[i] == '1') {
+                cout << "No" << endl;
+                return 0;
+            }
+        }
+    }
+    cout << "Yes" << endl;
 }
