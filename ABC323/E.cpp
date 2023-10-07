@@ -7,40 +7,62 @@
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
 
+int llpow(int a, int n) {
+    int res = 1;
+    while (n > 0) {
+        if (n & 1) res = res * a;
+        a = a * a;
+        n >>= 1;
+    }
+    return res;
+}
+
+// a^n mod を計算する
+int modpow(int a, int n, int mod) {
+    int res = 1;
+    while (n > 0) {
+        if (n & 1) res = res * a % mod;
+        a = a * a % mod;
+        n >>= 1;
+    }
+    return res;
+}
+
+// a^{-1} mod を計算する
+int modinv(int a, int mod) {
+    return modpow(a, mod - 2, mod);
+}
+
 signed main() {
     int N, X;
     cin >> N >> X;
 
     vector<int> T(N);
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < N; i++) {
         cin >> T[i];
     }
 
     int MOD = 998244353;
 
-    // dp[i][j]はi曲目までの曲をj秒以内に再生する確率を表す
-    vector<vector<int>> dp(N + 1, vector<int>(X + 1, 0));
+    vector<int> dp(X + 10, 0);
 
-    // 初期条件
-    dp[0][0] = 1;
-
-    for (int i = 1; i <= N; ++i) {
-        for (int j = 0; j <= X; ++j) {
-            // i曲目を再生しない場合
-            dp[i][j] += dp[i - 1][j];
-            dp[i][j] %= MOD;
-
-            // i曲目を再生する場合
-            if (j >= T[i - 1]) {
-                dp[i][j] += dp[i - 1][j - T[i - 1]];
-                dp[i][j] %= MOD;
-            }
+    dp[0] = 1;
+    rep(i, X) {
+        rep(j, N) {
+            if (i + T[j] > X) continue;
+            int tmp = dp[i] * modinv(N, MOD) % MOD;
+            dp[i + T[j]] += tmp;
+            dp[i + T[j]] %= MOD;
         }
     }
 
-    // 時刻(X+0.5)秒後に曲1が再生されている確率を出力
-    int answer = dp[0][X] % MOD;
-    cout << answer << endl;
+    int ans = 0;
+    repp(i, max(0LL, X - T[0] + 1), X + 1) {
+        ans += dp[i];
+        ans %= MOD;
+    }
 
-    return 0;
+    ans *= modinv(N, MOD);
+
+    cout << ans % MOD << endl;
 }
