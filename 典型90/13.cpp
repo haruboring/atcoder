@@ -13,22 +13,46 @@ int main() {
     vector<int> A(M), B(M), C(M);
     rep(i, M) cin >> A[i] >> B[i] >> C[i];
 
-    vector<vector<int>> weight(N, vector<int>(N, 1e9));
-    rep(i, N) weight[i][i] = 0;
+    vector<vector<pair<int, int>>> G(N);
     rep(i, M) {
-        weight[A[i] - 1][B[i] - 1] = C[i];
-        weight[B[i] - 1][A[i] - 1] = C[i];
+        A[i]--;
+        B[i]--;
+        G[A[i]].push_back({B[i], C[i]});
+        G[B[i]].push_back({A[i], C[i]});
     }
 
-    for (int k = 0; k < N; k++) {              // 経由する頂点
-        for (int i = 0; i < 1; i++) {          // 始点
-            for (int j = 0; j < N; j++) {  // 終点
-                weight[i][j] = min(weight[i][j], weight[i][k] + weight[k][j]);
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    pq.push({0, 0});
+    vector<int> dist_from_0(N, 1e9);
+    dist_from_0[0] = 0;
+    while (!pq.empty()) {
+        auto [d, v] = pq.top();
+        pq.pop();
+        if (dist_from_0[v] < d) continue;
+        for (auto [i, w] : G[v]) {
+            if (dist_from_0[i] > dist_from_0[v] + w) {
+                dist_from_0[i] = dist_from_0[v] + w;
+                pq.push({dist_from_0[i], i});
+            }
+        }
+    }
+
+    pq.push({0, N - 1});
+    vector<int> dist_from_N_1(N, 1e9);
+    dist_from_N_1[N - 1] = 0;
+    while (!pq.empty()) {
+        auto [d, v] = pq.top();
+        pq.pop();
+        if (dist_from_N_1[v] < d) continue;
+        for (auto [i, w] : G[v]) {
+            if (dist_from_N_1[i] > dist_from_N_1[v] + w) {
+                dist_from_N_1[i] = dist_from_N_1[v] + w;
+                pq.push({dist_from_N_1[i], i});
             }
         }
     }
 
     rep(i, N) {
-        cout << weight[0][i] + weight[i][N - 1] << endl;
+        cout << dist_from_0[i] + dist_from_N_1[i] << endl;
     }
 }
