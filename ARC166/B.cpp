@@ -38,7 +38,7 @@ signed main() {
                     }
                 }
 
-                debug(tmp);
+                // debug(tmp);
 
                 if (x % tmp == 0) {
                     dp[i + 1][j | k] = min(dp[i + 1][j | k], dp[i][j] + 0);
