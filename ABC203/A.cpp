@@ -8,4 +8,16 @@
 using namespace std;
 
 signed main() {
+    vector<int> s(3);
+    rep(i, 3) cin >> s[i];
+
+    sort(all(s));
+
+    if (s[0] == s[1]) {
+        cout << s[2] << endl;
+    } else if (s[1] == s[2]) {
+        cout << s[0] << endl;
+    } else {
+        cout << 0 << endl;
+    }
 }
