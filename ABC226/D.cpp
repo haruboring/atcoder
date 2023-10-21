@@ -8,4 +8,28 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> x(N), y(N);
+    rep(i, N) cin >> x[i] >> y[i];
+
+    int ans = 0;
+    set<pair<int, int>> st;
+    rep(i, N) {
+        rep(j, N) {
+            if (i == j) continue;
+
+            int dx = x[i] - x[j];
+            int dy = y[i] - y[j];
+
+            int dc = gcd(dx, dy);
+
+            dx /= dc;
+            dy /= dc;
+
+            st.insert(make_pair(dx, dy));
+        }
+    }
+
+    cout << st.size() << endl;
 }
