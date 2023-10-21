@@ -8,4 +8,27 @@
 using namespace std;
 
 signed main() {
+    int N, M;
+    cin >> N >> M;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    int ans = 0;
+
+    sort(all(A));
+    reverse(all(A));
+
+    vector<int> B(M);
+    rep(i, N) {
+        if (i < M)
+            B[i] += A[i];
+        else
+            B[M - 1 - i % M] += A[i];
+    }
+
+    rep(i, M) {
+        ans += B[i] * B[i];
+    }
+
+    cout << ans << endl;
 }
