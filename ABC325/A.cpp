@@ -8,4 +8,8 @@
 using namespace std;
 
 signed main() {
+    string S, T;
+    cin >> S >> T;
+
+    cout << S << " san" << endl;
 }
