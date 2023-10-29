@@ -8,4 +8,17 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+
+    while (1) {
+        string s = to_string(N);
+        int tm = s[0] - '0';
+        tm *= s[1] - '0';
+        if (tm == s[2] - '0') {
+            cout << N << endl;
+            return 0;
+        }
+        N++;
+    }
 }

@@ -8,4 +8,18 @@
 using namespace std;
 
 signed main() {
+    int X, Y;
+    cin >> X >> Y;
+
+    if (X > Y) {
+        if (abs(X - Y) < 4)
+            cout << "Yes" << endl;
+        else
+            cout << "No" << endl;
+    } else {
+        if (abs(X - Y) < 3)
+            cout << "Yes" << endl;
+        else
+            cout << "No" << endl;
+    }
 }

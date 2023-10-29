@@ -8,4 +8,19 @@
 using namespace std;
 
 signed main() {
+    int N, M;
+    cin >> N >> M;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    sort(all(A));
+
+    int ans = -1;
+
+    rep(i, N) {
+        int itr = lower_bound(all(A), A[i] + M) - A.begin();
+        ans = max(ans, itr - i);
+    }
+
+    cout << ans << endl;
 }
