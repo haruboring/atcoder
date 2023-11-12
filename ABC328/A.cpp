@@ -8,4 +8,13 @@
 using namespace std;
 
 signed main() {
+    int N, X;
+    cin >> N, X;
+    int ans = 0;
+    rep(_, N) {
+        int S;
+        cin >> S;
+        if (S <= X) ans += S;
+    }
+    cout << ans << endl;
 }
