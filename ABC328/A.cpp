@@ -9,7 +9,7 @@ using namespace std;
 
 signed main() {
     int N, X;
-    cin >> N, X;
+    cin >> N >> X;
     int ans = 0;
     rep(_, N) {
         int S;
