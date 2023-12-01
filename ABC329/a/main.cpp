@@ -8,4 +8,11 @@
 using namespace std;
 
 signed main() {
+    string S;
+    cin >> S;
+
+    for (auto c : S) {
+        cout << c << " ";
+    }
+    cout << endl;
 }
