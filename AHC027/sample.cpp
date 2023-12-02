@@ -56,7 +56,7 @@ int main(int argc, char* argv[]) {
 }
 
 // // 提出用
-// signed main() {
+// int main() {
 //     int N;
 //     cin >> N;
 //     vector<string> h(N - 1);
