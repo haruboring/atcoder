@@ -14,7 +14,7 @@ sum=0
 g++-13 -std=c++17 -I../.. $source_file -o tools/a.out
 
 # 0000.txtから0100.txtまで繰り返し実行
-for i in $(seq -f "%04g" 0 100); do
+for i in $(seq -f "%04g" 0 99); do
     input_file_name="${i}.txt"
     echo ""
     echo "Processing file: ${input_file_name}"
