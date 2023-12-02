@@ -8,4 +8,10 @@
 using namespace std;
 
 signed main() {
+    int M, D;
+    cin >> M >> D;
+    int y, m, d;
+    cin >> y >> m >> d;
+
+    cout << y + ((m + d / D - 1) / M) << " " << (m + d / D - 1) % M + 1 << " " << d % D + 1 << endl;
 }
