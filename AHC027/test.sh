@@ -20,10 +20,10 @@ for i in $(seq -f "%04g" 0 99); do
     echo "Processing file: ${input_file_name}"
 
     # プログラムを実行
-    ./tools/a.out "tools/in/${input_file_name}"
+    ./tools/a.out "${input_file_name}"
 
     # cargo run コマンドの出力を取得し、echo する
-    output=$(cd tools && cargo run -r --bin vis in/${input_file_name} tmp_out.txt)
+    output=$(cd tools && cargo run -r --bin vis in/${input_file_name} out/${input_file_name})
     echo "Output for ${input_file_name}: $output"
 
     # 数値のみを抽出して足し合わせる

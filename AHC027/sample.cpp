@@ -29,13 +29,13 @@ void dfs(int i, int j, int N, vector<string>& h, vector<string>& v, vector<vecto
 }
 
 int main(int argc, char* argv[]) {
-    ifstream fin(argv[1]);
+    ifstream fin("tools/in/" + string(argv[1]));
     if (!fin) {
-        cerr << "can not open " << argv[1] << endl;
+        cerr << "can not open " << "tools/in/" + string(argv[1]) << endl;
         return 1;
     }
-
-    ofstream fout("tools/tmp_out.txt");
+    cout << "tools/out/" + string(argv[1]) << endl;
+    ofstream fout("tools/out/" + string(argv[1]));
 
     int N;
     fin >> N;
