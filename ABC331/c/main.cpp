@@ -8,4 +8,21 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    vector<int> wa(1e6 + 100, 0);
+    rep(i, N) {
+        wa[A[i]] += A[i];
+    }
+    rep(i, 1e6 + 99) {
+        wa[i + 1] += wa[i];
+    }
+
+    rep(i, N) {
+        cout << wa[1e6 + 50] - wa[A[i]] << " ";
+    }
+    cout << endl;
 }
