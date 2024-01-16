@@ -8,4 +8,16 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    set<int> st;
+    rep(i, N) st.insert(A[i]);
+
+    debug(*st.rbegin());
+
+    st.erase(*st.rbegin());
+    cout << *st.rbegin() << endl;
 }
