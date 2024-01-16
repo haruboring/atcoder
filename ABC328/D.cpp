@@ -8,4 +8,22 @@
 using namespace std;
 
 signed main() {
+    string S;
+    cin >> S;
+
+    string ans = "";
+    int N = S.size();
+    rep(i, N) {
+        ans += S[i];
+        while (1) {
+            if (ans.size() > 2 && ans[ans.size() - 3] == 'A' && ans[ans.size() - 2] == 'B' && ans[ans.size() - 1] == 'C') {
+                ans.pop_back();
+                ans.pop_back();
+                ans.pop_back();
+            } else
+                break;
+        }
+    }
+
+    cout << ans << endl;
 }
