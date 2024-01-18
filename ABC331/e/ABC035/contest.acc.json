@@ -1,0 +1,33 @@
+{
+  "contest": {
+    "id": "ABC035",
+    "title": "AtCoder Beginner Contest 035",
+    "url": "https://atcoder.jp/contests/ABC035"
+  },
+  "tasks": [
+    {
+      "id": "abc035_a",
+      "label": "A",
+      "title": "テレビ",
+      "url": "https://atcoder.jp/contests/ABC035/tasks/abc035_a"
+    },
+    {
+      "id": "abc035_b",
+      "label": "B",
+      "title": "ドローン",
+      "url": "https://atcoder.jp/contests/ABC035/tasks/abc035_b"
+    },
+    {
+      "id": "abc035_c",
+      "label": "C",
+      "title": "オセロ",
+      "url": "https://atcoder.jp/contests/ABC035/tasks/abc035_c"
+    },
+    {
+      "id": "abc035_d",
+      "label": "D",
+      "title": "トレジャーハント",
+      "url": "https://atcoder.jp/contests/ABC035/tasks/abc035_d"
+    }
+  ]
+}
