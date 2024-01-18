@@ -8,4 +8,19 @@
 using namespace std;
 
 signed main() {
+    int N, M;
+    cin >> N >> M;
+    vector<int> A(M);
+    rep(i, M) cin >> A[i];
+
+    vector<int> cnt(N + 2);
+    int winner = N + 1;
+
+    rep(i, M) {
+        cnt[A[i]]++;
+        if (cnt[A[i]] >= cnt[winner]) {
+            if (!(cnt[A[i]] == cnt[winner] && A[i] > winner)) winner = A[i];
+        }
+        cout << winner << endl;
+    }
 }
