@@ -44,6 +44,11 @@ signed main() {
     vector<int> a(N);
     rep(i, N) cin >> a[i];
 
+    if (N == 1) {
+        cout << abs(a[0] - W) << endl;
+        return 0;
+    }
+
     int ans = max({abs(a[N - 1] - W), abs(a[N - 1] - a[N - 2])});
     cout << ans << endl;
 }
