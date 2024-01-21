@@ -8,4 +8,24 @@
 using namespace std;
 
 signed main() {
+    string S;
+    cin >> S;
+
+    string original = S;
+
+    int N = S.size();
+
+    int ans = 1e9;
+
+    vector<int> order(N);
+    rep(i, N) order[i] = i;
+    do {
+        string T = S;
+        rep(i, N){
+            string ss
+        }
+        ans = min(ans, cnt);
+    } while (next_permutation(all(order)));
+
+    cout << ans << endl;
 }
