@@ -134,15 +134,10 @@ signed main() {
 
     N--;
     int ans = N * (N - 1) / 2 - (N - 1);
-    debug(ans);
     rep(i, free.size()) {
-        debug(free[i]);
-        debug(free[i] * (free[i] - 1) / 2 - (free[i] - 1));
         ans -= free[i] * (free[i] - 1) / 2 - (free[i] - 1);
     }
     rep(i, dup.size()) {
-        debug(dup[i]);
-        debug(dup[i] * (dup[i] - 1) / 2 - (dup[i] - 1));
         ans += dup[i] * (dup[i] - 1) / 2 - (dup[i] - 1);
     }
 
