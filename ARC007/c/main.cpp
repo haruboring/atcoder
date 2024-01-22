@@ -14,17 +14,28 @@ signed main() {
     string original = S;
 
     int N = S.size();
+    vector<int> order(N - 1);
+    rep(i, N - 1) order[i] = i + 1;
 
-    int ans = 1e9;
-
-    vector<int> order(N);
-    rep(i, N) order[i] = i;
+    int ans = N;
     do {
         string T = S;
-        rep(i, N){
-            string ss
+        int watch_time = 0;
+        rep(i, N) if (T[i] == 'o') watch_time++;
+        rep(i, N - 1) {
+            if (watch_time == N) {
+                ans = min(ans, i + 1);
+                break;
+            }
+
+            rep(j, N) {
+                if (T[j] == 'o') continue;
+                if (original[(j + order[i]) % N] == 'o') {
+                    watch_time++;
+                    T[j] = 'o';
+                }
+            }
         }
-        ans = min(ans, cnt);
     } while (next_permutation(all(order)));
 
     cout << ans << endl;
