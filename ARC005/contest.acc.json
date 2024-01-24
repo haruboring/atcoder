@@ -1,0 +1,53 @@
+{
+  "contest": {
+    "id": "ARC005",
+    "title": "AtCoder Regular Contest 005",
+    "url": "https://atcoder.jp/contests/ARC005"
+  },
+  "tasks": [
+    {
+      "id": "arc005_1",
+      "label": "A",
+      "title": "大好き高橋君",
+      "url": "https://atcoder.jp/contests/ARC005/tasks/arc005_1",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc005_2",
+      "label": "B",
+      "title": "P-CASカードと高橋君",
+      "url": "https://atcoder.jp/contests/ARC005/tasks/arc005_2",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc005_3",
+      "label": "C",
+      "title": "器物損壊！高橋君",
+      "url": "https://atcoder.jp/contests/ARC005/tasks/arc005_3",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc005_4",
+      "label": "D",
+      "title": "連射王高橋君",
+      "url": "https://atcoder.jp/contests/ARC005/tasks/arc005_4",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}
