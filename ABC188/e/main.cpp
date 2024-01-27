@@ -1,7 +1,3 @@
-// """
-// WAなの知ってっから！！！
-// """
-
 #include "atcoder/all"
 #include "bits/stdc++.h"
 #define int long long
@@ -22,23 +18,32 @@ signed main() {
     vector<vector<int>> G(N);
     rep(i, M) G[X[i] - 1].push_back(Y[i] - 1);
 
-    int ans = -1e9 - 100;
-    int buy = A[0], sell = -1;
+    vector<pair<int, int>> Ai(N);
+    rep(i, N) Ai[i] = make_pair(A[i], i);
+    sort(all(Ai));
+
     vector<bool> visited(N, false);
-    visited[0] = true;
-    queue<int> q;
-    q.push(0);
-    while (!q.empty()) {
-        int now = q.front();
-        q.pop();
-        sell = max(sell, A[now]);
-        ans = max(ans, sell - buy);
-        buy = min(buy, A[now]);
-        for (auto next : G[now]) {
-            if (visited[next]) continue;
-            visited[next] = true;
-            q.push(next);
+
+    int ans = -1e18;
+    rep(i, N) {
+        auto [buy, v] = Ai[i];
+        if (visited[v]) continue;
+        queue<int> q;
+        q.push(v);
+        visited[v] = true;
+        int sell = -1e18;
+        while(!q.empty()) {
+            int u = q.front();
+            q.pop();
+            for (int w : G[u]) {
+                if (!visited[w]) q.push(w);
+                visited[w] = true;
+                sell = max(sell, A[w]);
+            }
         }
+        debug(buy);
+        debug(sell);
+        ans = max(ans, sell- buy);
     }
 
     cout << ans << endl;
