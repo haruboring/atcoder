@@ -8,4 +8,15 @@
 using namespace std;
 
 signed main() {
+    int n, m, d;
+    cin >> n >> m >> d;
+
+    double k = -1;
+    if (d == 0) {
+        k = 1 / (double)n;
+    } else {
+        k = (double)(n - d) * 2.0 / (double)(n * n);
+    }
+
+    cout << fixed << setprecision(10) << k * (m - 1) << endl;
 }
