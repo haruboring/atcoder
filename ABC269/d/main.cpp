@@ -10,10 +10,10 @@ vector<pair<int, int>> adjacent = {make_pair(1, 1), make_pair(0, 1), make_pair(1
 set<pair<int, int>> XY, visited_XY;
 
 void visit(int x, int y) {
-    visited_XY.insert(make_pair(x,y));
+    visited_XY.insert(make_pair(x, y));
     rep(i, 6) {
-        pair<int,int> adjacent_XY = make_pair(x+adjacent[i].first, y+adjacent[i].second);
-        if(XY.count(adjacent_XY) && visited_XY.count(adjacent_XY)==0){
+        pair<int, int> adjacent_XY = make_pair(x + adjacent[i].first, y + adjacent[i].second);
+        if (XY.count(adjacent_XY) && visited_XY.count(adjacent_XY) == 0) {
             visit(adjacent_XY.first, adjacent_XY.second);
         }
     }
@@ -29,8 +29,8 @@ int main() {
         XY.insert(xy);
     }
     ll cnt = 0;
-    for(auto xy : XY){
-        if(visited_XY.count(xy)==0){
+    for (auto xy : XY) {
+        if (visited_XY.count(xy) == 0) {
             visit(xy.first, xy.second);
             cnt++;
         }

@@ -8,12 +8,12 @@
 using namespace std;
 
 signed main() {
-    ll N;
+    int N;
     cin >> N;
-    ll Ncopy = N;
-    vector<ll> ans(0);
+    int Ncopy = N;
+    vector<int> ans(0);
     ans.push_back(0);
-    ll bit_cnt = 1;
+    int bit_cnt = 1;
     while (1) {
         if (bit_cnt > Ncopy) {
             break;
