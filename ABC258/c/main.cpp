@@ -8,17 +8,17 @@
 using namespace std;
 
 signed main() {
-    ll N, Q;
+    int N, Q;
     cin >> N >> Q;
     string S;
     cin >> S;
-    vector<pair<ll, ll>> query(0);
-    ll t, x;
+    vector<pair<int, int>> query(0);
+    int t, x;
     rep(i, Q) {
         cin >> t >> x;
         query.push_back(make_pair(t, x));
     }
-    ll swipe = 0;
+    int swipe = 0;
     rep(i, Q) {
         if (query[i].first == 1) {
             swipe += query[i].second;
