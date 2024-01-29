@@ -8,4 +8,13 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+
+    double ans = 0;
+    repp(i, 2, N + 1) {
+        ans += (double)N / (double)(N - i + 1);
+        // debug(ans);
+    }
+    cout << fixed << setprecision(10) << ans << endl;
 }
