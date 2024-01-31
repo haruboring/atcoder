@@ -8,16 +8,16 @@
 using namespace std;
 
 signed main() {
-    ll N, T;
+    int N, T;
     cin >> N >> T;
-    vector<ll> A(N);
-    ll sum = 0;
+    vector<int> A(N);
+    int sum = 0;
     rep(i, N) {
         cin >> A[i];
         sum += A[i];
     }
     T %= sum;
-    ll ans = 0;
+    int ans = 0;
     rep(i, N) {
         if (ans + A[i] >= T) {
             cout << i + 1 << " " << T - ans << endl;
