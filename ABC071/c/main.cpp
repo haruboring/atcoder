@@ -8,4 +8,26 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    sort(all(A));
+    reverse(all(A));
+
+    int a = 0, b = 0;
+    rep(i, N - 1) {
+        if (A[i] == A[i + 1]) {
+            if (a == 0) {
+                a = A[i];
+                i++;
+            } else {
+                b = A[i];
+                break;
+            }
+        }
+    }
+
+    cout << a * b << endl;
 }

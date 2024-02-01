@@ -8,4 +8,22 @@
 using namespace std;
 
 signed main() {
+    string S;
+    cin >> S;
+
+    for (char c = 'a'; c <= 'z'; c++) {
+        bool ok = false;
+        rep(i, S.size()) {
+            if (S[i] == c) {
+                ok = true;
+                break;
+            }
+        }
+        if (!ok) {
+            cout << c << endl;
+            return 0;
+        }
+    }
+
+    cout << "None" << endl;
 }
