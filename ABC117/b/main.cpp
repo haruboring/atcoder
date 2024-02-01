@@ -8,4 +8,18 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> L(N);
+    rep(i, N) cin >> L[i];
+
+    sort(all(L));
+    int max_L = L[N - 1];
+    int sum_L = accumulate(all(L), 0LL) - max_L;
+
+    if (max_L < sum_L) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
 }

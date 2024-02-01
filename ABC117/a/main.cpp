@@ -8,4 +8,8 @@
 using namespace std;
 
 signed main() {
+    double T, X;
+    cin >> T >> X;
+
+    cout << fixed << setprecision(10) << T / X << endl;
 }
