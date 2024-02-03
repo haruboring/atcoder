@@ -13,6 +13,7 @@ signed main() {
     vector<string> S(N);
     rep(i, N) cin >> S[i];
 
+    // 本来乱択でやるべき．
     vector<int> mod = {1000000007, 1000000009, 998244353};
     vector<vector<int>> A(N, vector<int>(3));
     rep(i, N) {
