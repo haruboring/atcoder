@@ -10,85 +10,70 @@ using namespace std;
 signed main() {
     int N;
     cin >> N;
-    vector<string> S(N), oS(N);
+    vector<string> S(N);
     rep(i, N) {
         cin >> S[i];
     }
 
-    int opos_A_i = -1, opos_A_j = -1, opos_B_i = -1, opos_B_j = -1;
+    vector<vector<vector<vector<int>>>> dist(N, vector<vector<vector<int>>>(N, vector<vector<int>>(N, vector<int>(N, 1e9))));
+    queue<tuple<int, int, int, int>> q;
     rep(i, N) {
         rep(j, N) {
-            if (opos_A_i == -1 && S[i][j] == 'P') {
-                opos_A_i = i;
-                opos_A_j = j;
-            } else if (S[i][j] == 'P') {
-                opos_B_i = i;
-                opos_B_j = j;
+            rep(k, N) {
+                rep(l, N) {
+                    if (i == k && j == l) continue;
+                    if (S[i][j] == 'P' && S[k][l] == 'P') {
+                        dist[i][j][k][l] = 0;
+                        q.push({i, j, k, l});
+                    }
+                }
+            }
+        }
+    }
+    vector<int> di = {0, 1, 0, -1}, dj = {1, 0, -1, 0};
+    q.pop();
+    debug(q.size());
+    while (!q.empty()) {
+        auto [i, j, k, l] = q.front();
+        if (i == k && j == l) {
+            cout << dist[i][j][k][l] << endl;
+            return 0;
+        }
+        q.pop();
+        rep(n, 4) {
+            int ni = i + di[n], nj = j + dj[n];
+            bool is_move_1 = true;
+            if (ni < 0 || ni >= N || nj < 0 || nj >= N) {
+                is_move_1 = false;
+            }
+            if (is_move_1 && S[ni][nj] == '#') {
+                is_move_1 = false;
+            }
+            int nk = k + di[n], nl = l + dj[n];
+            bool is_move_2 = true;
+            if (nk < 0 || nk >= N || nl < 0 || nl >= N) {
+                is_move_2 = false;
+            }
+            if (is_move_2 && S[nk][nl] == '#') {
+                is_move_2 = false;
+            }
+
+            if (!is_move_1) {
+                ni = i;
+                nj = j;
+            }
+            if (!is_move_2) {
+                nk = k;
+                nl = l;
+            }
+
+            if (!is_move_1 && !is_move_2) continue;
+            if (dist[ni][nj][nk][nl] > dist[i][j][k][l] + 1) {
+                dist[ni][nj][nk][nl] = dist[i][j][k][l] + 1;
+                q.push({ni, nj, nk, nl});
             }
         }
     }
 
-    S[opos_A_i][opos_A_j] = '.';
-    S[opos_B_i][opos_B_j] = '.';
-
-    rep(i, N) {
-        oS[i] = S[i];
-    }
-
-    vector<vector<int>> moves = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
-    vector<int> orders = {0, 1, 2, 3};
-    sort(all(orders));
-
-    int ans = 1e9;
-    do {
-        S = oS;
-        int pos_A_i = opos_A_i, pos_A_j = opos_A_j, pos_B_i = opos_B_i, pos_B_j = opos_B_j;
-        int cnt = 0;
-        rep(i, 4) {
-            while (1) {
-                if (pos_A_i == pos_B_i && pos_A_j == pos_B_j) {
-                    ans = min(ans, cnt);
-                    break;
-                }
-
-                int npos_A_i = pos_A_i + moves[orders[i]][0];
-                int npos_A_j = pos_A_j + moves[orders[i]][1];
-                int npos_B_i = pos_B_i + moves[orders[i]][0];
-                int npos_B_j = pos_B_j + moves[orders[i]][1];
-
-                bool unmove = true;
-                if (npos_A_i >= 0 && npos_A_i < N && npos_A_j >= 0 && npos_A_j < N && S[npos_A_i][npos_A_j] == '.') {
-                    pos_A_i = npos_A_i;
-                    pos_A_j = npos_A_j;
-                    unmove = false;
-                }
-                if (npos_B_i >= 0 && npos_B_i < N && npos_B_j >= 0 && npos_B_j < N && S[npos_B_i][npos_B_j] == '.') {
-                    pos_B_i = npos_B_i;
-                    pos_B_j = npos_B_j;
-                    unmove = false;
-                }
-                if (!unmove) {
-                    cnt++;
-                }
-                if (unmove) {
-                    break;
-                }
-            }
-        }
-    } while (next_permutation(all(orders)));
-
-    if (ans == 1e9) {
-        cout << -1 << endl;
-    } else {
-        cout << ans << endl;
-    }
+    cout << -1 << endl;
 }
-
-/*
-5
-P....
-P....
-.....
-.....
-.....
-*/
