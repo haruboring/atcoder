@@ -8,17 +8,17 @@
 using namespace std;
 
 signed main() {
-    ll N, K, X;
+    int N, K, X;
     cin >> N >> K >> X;
-    vector<ll> A(N);
+    vector<int> A(N);
     rep(i, N) {
         cin >> A[i];
     }
     sort(all(A));
     reverse(all(A));
     rep(i, N) {
-        ll used = (min(A[i] / X, K));
-        A[i] = max(ll(0), A[i] - (X * used));
+        int used = (min(A[i] / X, K));
+        A[i] = max(0LL, A[i] - (X * used));
         K -= used;
     }
     sort(all(A));
@@ -28,7 +28,7 @@ signed main() {
             A[i] = 0;
         }
     }
-    ll ans = 0;
+    int ans = 0;
     rep(i, N) {
         ans += A[i];
     }
