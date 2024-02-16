@@ -10,31 +10,35 @@ using namespace std;
 int sumop(int a, int b) { return a + b; }
 int sum_e() { return 0; }
 pair<int, int> min_op(pair<int, int> a, pair<int, int> b) { return min(a, b); }
-pair<int, int> min_e() { return {0, 0}; }
+pair<int, int> min_e() { return {1e9, 1e9}; }
 
-vector<pair<int, int>> depth(200000 + 100);
+map<int, int> depth;
 map<pair<int, int>, int> weight;
 vector<int> dist(0);
 vector<pair<int, int>> dept(0);
 map<pair<int, int>, vector<int>> edge2idx;
-map<int, vector<int>> top2idx;
+map<int, vector<int>> top2idx, top2idx1;
 vector<bool> visited(200000);
-int idx = 0;
+int idx = 0, idx1 = 0;
 void dfs(int v, int p, vector<vector<int>> &G) {
     dist.push_back(weight[{v, p}]);
-    dept.push_back({depth[v].first, v});
     edge2idx[{min(v, p), max(v, p)}].push_back(idx);
     top2idx[v].push_back(idx);
-    idx++;
     visited[v] = true;
+    idx++;
 
     for (auto nv : G[v]) {
+        dept.push_back({depth[v], v});
+        top2idx1[v].push_back(idx1);
+        idx1++;
         if (visited[nv]) continue;
         dfs(nv, v, G);
+        dept.push_back({depth[v], v});
+        top2idx1[v].push_back(idx1);
+        idx1++;
     }
 
     dist.push_back(-weight[{v, p}]);
-    dept.push_back({depth[v].first, v});
     edge2idx[{min(v, p), max(v, p)}].push_back(idx);
     top2idx[v].push_back(idx);
     idx++;
@@ -62,7 +66,7 @@ signed main() {
     }
     rep(i, N) weight[{i, i}] = 0;
 
-    depth[0] = {0, 0};
+    depth[0] = 0;
     vector<bool> visited(N);
     visited[0] = true;
     queue<int> que;
@@ -72,8 +76,7 @@ signed main() {
         que.pop();
         for (auto nv : G[v]) {
             if (visited[nv]) continue;
-            depth[nv].first = depth[v].first + 1;
-            depth[nv].second = nv;
+            depth[nv] = depth[v] + 1;
             visited[nv] = true;
             que.push(nv);
         }
@@ -89,14 +92,35 @@ signed main() {
             seg_dist.set(idxs[0], y[i]);
             seg_dist.set(idxs[1], -y[i]);
         } else {
+            if (N == 1) {
+                cout << 0 << endl;
+                continue;
+            }
             int i1 = top2idx[x[i] - 1][0];
             int i2 = top2idx[y[i] - 1][0];
             if (i1 > i2) swap(i1, i2);
 
-            auto [dep, pa] = seg_dept.prod(i1, i2 + 1);
+            int i11 = top2idx1[x[i] - 1][0];
+            int i21 = top2idx1[y[i] - 1][0];
+
+            if (i11 > i21) swap(i11, i21);
+
+            auto [dep, pa] = seg_dept.prod(i11, i21 + 1);
 
             int ans = seg_dist.prod(0, i1 + 1) + seg_dist.prod(0, i2 + 1) - 2 * seg_dist.prod(0, top2idx[pa][0] + 1);
             cout << ans << endl;
         }
     }
 }
+/*
+8
+1 2 105
+1 3 103
+2 4 105
+2 5 100
+5 6 101
+3 7 106
+3 8 100
+1
+2 5 5
+*/
