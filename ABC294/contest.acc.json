@@ -1,0 +1,97 @@
+{
+  "contest": {
+    "id": "ABC294",
+    "title": "AtCoder Beginner Contest 294",
+    "url": "https://atcoder.jp/contests/ABC294"
+  },
+  "tasks": [
+    {
+      "id": "abc294_a",
+      "label": "A",
+      "title": "Filter",
+      "url": "https://atcoder.jp/contests/ABC294/tasks/abc294_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc294_b",
+      "label": "B",
+      "title": "ASCII Art",
+      "url": "https://atcoder.jp/contests/ABC294/tasks/abc294_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc294_c",
+      "label": "C",
+      "title": "Merge Sequences",
+      "url": "https://atcoder.jp/contests/ABC294/tasks/abc294_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc294_d",
+      "label": "D",
+      "title": "Bank",
+      "url": "https://atcoder.jp/contests/ABC294/tasks/abc294_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc294_e",
+      "label": "E",
+      "title": "2xN Grid",
+      "url": "https://atcoder.jp/contests/ABC294/tasks/abc294_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc294_f",
+      "label": "F",
+      "title": "Sugar Water 2",
+      "url": "https://atcoder.jp/contests/ABC294/tasks/abc294_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc294_g",
+      "label": "G",
+      "title": "Distance Queries on a Tree",
+      "url": "https://atcoder.jp/contests/ABC294/tasks/abc294_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc294_h",
+      "label": "Ex",
+      "title": "K-Coloring",
+      "url": "https://atcoder.jp/contests/ABC294/tasks/abc294_h",
+      "directory": {
+        "path": "ex",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}
