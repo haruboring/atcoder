@@ -27,7 +27,7 @@ signed main() {
             call.erase(x);
             go.insert(x);
         } else {
-            cout << int(*begin(call)) << endl;
+            cout << (int)(*begin(call)) << endl;
         }
     }
 }
