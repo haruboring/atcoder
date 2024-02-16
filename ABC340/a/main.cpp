@@ -8,11 +8,14 @@
 using namespace std;
 
 signed main() {
-    int N;
-    cin >> N;
-    vector<int> P(N), Q(N);
-    rep(i, N) cin >> P[i];
-    rep(i, N) cin >> Q[i];
+    int A, B, D;
+    cin >> A >> B >> D;
 
-    
+    int a = A;
+    while (1) {
+        cout << a << " ";
+        a += D;
+        if (a > B) break;
+    }
+    cout << endl;
 }

@@ -8,11 +8,16 @@
 using namespace std;
 
 signed main() {
-    int N;
-    cin >> N;
-    vector<int> P(N), Q(N);
-    rep(i, N) cin >> P[i];
-    rep(i, N) cin >> Q[i];
-
-    
+    int Q;
+    cin >> Q;
+    vector<int> v(0);
+    rep(i, Q) {
+        int t, x;
+        cin >> t >> x;
+        if (t == 1) {
+            v.push_back(x);
+        } else {
+            cout << v[v.size() - 1 - (x - 1)] << endl;
+        }
+    }
 }

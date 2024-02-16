@@ -7,12 +7,21 @@
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
 
+map<int, int> memo;
+int f(int n) {
+    if (memo.count(n)) return memo[n];
+    return memo[n] = n + f(n / 2) + f((n + 1) / 2);
+}
+
 signed main() {
     int N;
     cin >> N;
-    vector<int> P(N), Q(N);
-    rep(i, N) cin >> P[i];
-    rep(i, N) cin >> Q[i];
 
-    
+    memo[0] = 0;
+    memo[1] = 0;
+    memo[2] = 2;
+    memo[3] = 5;
+
+    int ans = f(N);
+    cout << memo[N] << endl;
 }

@@ -1,0 +1,20 @@
+{
+  "contest": {
+    "id": "AHC030",
+    "title": "THIRD PROGRAMMING CONTEST 2023（AtCoder Heuristic Contest 030）",
+    "url": "https://atcoder.jp/contests/AHC030"
+  },
+  "tasks": [
+    {
+      "id": "ahc030_a",
+      "label": "A",
+      "title": "Polyomino Mining",
+      "url": "https://atcoder.jp/contests/AHC030/tasks/ahc030_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}
