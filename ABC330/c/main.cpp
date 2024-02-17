@@ -8,4 +8,20 @@
 using namespace std;
 
 signed main() {
+    int D;
+    cin >> D;
+
+    int ans = 1e18;
+    repp(x, 1, 1e7) {
+        int y2 = abs(D - x * x);
+        int y = sqrt(y2);
+
+        ans = min(ans, abs(D - x * x - y * y));
+        y--;
+        ans = min(ans, abs(D - x * x - y * y));
+        y += 2;
+        ans = min(ans, abs(D - x * x - y * y));
+    }
+
+    cout << ans << endl;
 }

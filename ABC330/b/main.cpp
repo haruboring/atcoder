@@ -8,4 +8,18 @@
 using namespace std;
 
 signed main() {
+    int N, L, R;
+    cin >> N >> L >> R;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    rep(i, N) {
+        if (L <= A[i] && A[i] <= R)
+            cout << A[i] << " ";
+        else if (A[i] < L)
+            cout << L << " ";
+        else
+            cout << R << " ";
+    }
+    cout << endl;
 }
