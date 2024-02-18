@@ -8,11 +8,20 @@
 using namespace std;
 
 signed main() {
-    string S;
-    cin >> S;
-    rep(i, S.size()) {
-        if (S[i] >= 'A' && S[i] <= 'Z') {
-            cout << i + 1 << endl;
+    int N, K;
+    cin >> N >> K;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    sort(all(A));
+    set<int> st;
+    rep(i, N) {
+        st.insert(A[i]);
+        if ((int)st.size() == K) break;
+    }
+    rep(i, K + 10) {
+        if (!st.count(i)) {
+            cout << i << endl;
             return 0;
         }
     }
