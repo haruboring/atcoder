@@ -8,4 +8,35 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    string S;
+    cin >> S;
+
+    set<pair<int, int>> st;
+    int i = 0, j = 0;
+    st.insert({i, j});
+    rep(k, N) {
+        int ni = i, nj = j;
+        if (S[k] == 'R') {
+            ni++;
+        }
+        if (S[k] == 'L') {
+            ni--;
+        }
+        if (S[k] == 'U') {
+            nj++;
+        }
+        if (S[k] == 'D') {
+            nj--;
+        }
+        if (st.count({ni, nj})) {
+            cout << "Yes" << endl;
+            return 0;
+        }
+        st.insert({ni, nj});
+        i = ni;
+        j = nj;
+    }
+    cout << "No" << endl;
 }

@@ -8,4 +8,15 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> X(5 * N);
+    rep(i, 5 * N) cin >> X[i];
+
+    sort(all(X));
+    int ans = 0;
+    repp(i, N, 5 * N - N) {
+        ans += X[i];
+    }
+    cout << fixed << setprecision(19) << (double)ans / (3 * N) << endl;
 }
