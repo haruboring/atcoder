@@ -7,53 +7,27 @@
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
 
+int f(int i, vector<int> A) {
+    if (i == -1) return 0;
+    vector<int> S, T;
+    rep(j, A.size()) {
+        if ((A[j] >> i) & 1)
+            S.push_back(A[j]);
+        else
+            T.push_back(A[j]);
+    }
+
+    if (S.size() == 0) return f(i - 1, T);
+    if (T.size() == 0) return f(i - 1, S);
+
+    return min(f(i - 1, S), f(i - 1, T)) | (1 << i);
+}
+
 signed main() {
     int N;
     cin >> N;
     vector<int> A(N);
     rep(i, N) cin >> A[i];
 
-    vector<string> as(N);
-    rep(i, N) {
-        bitset<30> b(A[i]);
-        as[i] = b.to_string();
-        cout << as[i] << " ";
-    }
-    cout << endl;
-
-    vector<int> zero(30), one(30);
-    rep(i, N) {
-        bool empty = true;
-        rep(j, 30) {
-            if (as[i][j] == '1') {
-                if (!empty) one[j]++;
-                empty = false;
-            } else if (!empty) {
-                zero[j]++;
-            }
-        }
-    }
-    reverse(all(zero));
-    reverse(all(one));
-
-    rep(i, 30) {
-        cout << zero[i] << " ";
-    }
-    cout << endl;
-
-    rep(i, 30) {
-        cout << one[i] << " ";
-    }
-    cout << endl;
-
-    int ans = 0;
-    rep(i, 30) {
-        if (one[i] > zero[i]) {
-            ans += (1LL << i) * one[i];
-        } else {
-            ans += (1LL << i) * zero[i];
-        }
-    }
-
-    cout << ans << endl;
+    cout << f(30, A) << endl;
 }
