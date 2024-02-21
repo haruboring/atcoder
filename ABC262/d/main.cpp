@@ -10,13 +10,13 @@ using namespace std;
 signed main() {
     int N;
     cin >> N;
-    vector<ll> A(N);
+    vector<int> A(N);
     rep(i, N) cin >> A[i];
 
-    ll BASE = 998244353;
-    ll ans = 0;
+    int BASE = 998244353;
+    int ans = 0;
     for (int i = 1; i <= N; i++) {
-        vector<vector<vector<ll>>> dp(N + 1, vector<vector<ll>>(i + 2, vector<ll>(i, 0)));
+        vector<vector<vector<int>>> dp(N + 1, vector<vector<int>>(i + 2, vector<int>(i, 0)));
         dp[0][0][0] = 1;
         for (int j = 0; j < N; j++) {
             for (int k = 0; k <= min(i, j); k++) {

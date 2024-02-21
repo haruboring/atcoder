@@ -12,7 +12,7 @@ signed main() {
     cin >> N;
     vector<vector<int>> a_i(N, vector<int>(2));
     int a;
-    ll same_num_cnt = 0;
+    int same_num_cnt = 0;
     rep(i, N) {
         cin >> a;
         a_i[i][0] = a;
@@ -23,7 +23,7 @@ signed main() {
         sort(all(a_i[i]));
     }
     sort(all(a_i));
-    ll ans = (same_num_cnt * (same_num_cnt - 1)) / 2;
+    int ans = (same_num_cnt * (same_num_cnt - 1)) / 2;
     rep(i, N - 1) {
         if (a_i[i][0] == a_i[i + 1][0] && a_i[i][1] == a_i[i + 1][1]) {
             ans++;
