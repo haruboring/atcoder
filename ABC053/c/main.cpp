@@ -8,4 +8,14 @@
 using namespace std;
 
 signed main() {
+    int x;
+    cin >> x;
+
+    int ans = x / 11 * 2;
+    if (x - ans * 11 / 2 > 6) {
+        ans += 2;
+    } else if (x - ans * 11 / 2 > 0) {
+        ans++;
+    }
+    cout << ans << endl;
 }

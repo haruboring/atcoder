@@ -8,4 +8,23 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    set<int> s;
+    int dup_cnt = 0;
+    rep(i, N) {
+        if (s.count(A[i])) {
+            dup_cnt++;
+        }
+        s.insert(A[i]);
+    }
+
+    if (dup_cnt % 2 == 0) {
+        cout << s.size() << endl;
+    } else {
+        cout << s.size() - 1 << endl;
+    }
 }
