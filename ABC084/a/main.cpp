@@ -8,12 +8,7 @@
 using namespace std;
 
 signed main() {
-    int N;
-    cin >> N;
-    vector<int> A(N);
-    rep(i, N) cin >> A[i];
-
-    sort(all(A));
-
-    cout << A[N - 1] - A[0] << endl;
+    int M;
+    cin >> M;
+    cout << 48 - M << endl;
 }

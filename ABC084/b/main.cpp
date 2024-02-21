@@ -8,27 +8,21 @@
 using namespace std;
 
 signed main() {
-    int N;
-    cin >> N;
+    int A, B;
+    cin >> A >> B;
     string S;
     cin >> S;
 
-    int cnt = 0;
-    string ans = "";
-    rep(i, N) {
-        if (S[i] == '(') {
-            cnt++;
-        } else {
-            cnt--;
-        }
-        ans += S[i];
-
-        if (cnt < 0) {
-            ans = "(" + ans;
-            cnt = 0;
-        }
+    bool ok = true;
+    if (S[A] != '-') ok = false;
+    rep(i, A + B + 1) {
+        if (i == A) continue;
+        if (!('0' <= S[i] && S[i] <= '9')) ok = false;
     }
-    rep(i, cnt) ans += ")";
 
-    cout << ans << endl;
+    if (ok) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
 }

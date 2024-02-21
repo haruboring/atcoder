@@ -8,4 +8,22 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    set<int> st;
+    int cnt = 0;
+    rep(i, N) {
+        if (A[i] >= 3200)
+            cnt++;
+        else
+            st.insert(A[i] / 400);
+    }
+
+    int ans1 = max((int)st.size(), 1LL);
+    int ans2 = (int)st.size() + cnt;
+
+    cout << ans1 << " " << ans2 << endl;
 }
