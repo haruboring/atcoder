@@ -1,0 +1,64 @@
+{
+  "contest": {
+    "id": "adt_easy_20240222_1",
+    "title": "AtCoder Daily Training EASY 2024/02/22 16:30start",
+    "url": "https://atcoder.jp/contests/adt_easy_20240222_1"
+  },
+  "tasks": [
+    {
+      "id": "abc298_a",
+      "label": "A",
+      "title": "Job Interview",
+      "url": "https://atcoder.jp/contests/adt_easy_20240222_1/tasks/abc298_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc336_a",
+      "label": "B",
+      "title": "Long Loong",
+      "url": "https://atcoder.jp/contests/adt_easy_20240222_1/tasks/abc336_a",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc324_b",
+      "label": "C",
+      "title": "3-smooth Numbers",
+      "url": "https://atcoder.jp/contests/adt_easy_20240222_1/tasks/abc324_b",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc233_b",
+      "label": "D",
+      "title": "A Reverse",
+      "url": "https://atcoder.jp/contests/adt_easy_20240222_1/tasks/abc233_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc301_c",
+      "label": "E",
+      "title": "AtCoder Cards",
+      "url": "https://atcoder.jp/contests/adt_easy_20240222_1/tasks/abc301_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}
