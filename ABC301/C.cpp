@@ -46,8 +46,8 @@ signed main() {
         } else {
             // cout << cnt_s[c] << " " << s.second << " , " << cnt_t[s.first] << endl;
             cnt += cnt_t[c] - cnt_s[c];
-            sw_cnt += max(0, cnt_t[c] - cnt_s[c]);
-            tw_cnt += max(0, cnt_s[c] - cnt_t[c]);
+            sw_cnt += max(0LL, cnt_t[c] - cnt_s[c]);
+            tw_cnt += max(0LL, cnt_s[c] - cnt_t[c]);
         }
     }
 
