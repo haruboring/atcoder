@@ -7,7 +7,7 @@ using ll = long long;
 
 set<int> S;
 vector<vector<int>> G(200000 + 100, vector<int>(0));
-ll cnt = 1;
+int cnt = 1;
 
 void dfs(int v) {
     if (cnt > 1000000 + 100) {
@@ -33,5 +33,5 @@ int main() {
         G[v].push_back(u);
     }
     dfs(1);
-    cout << min(cnt, (ll)1000000) << endl;
+    cout << min(cnt, (int)1000000) << endl;
 }

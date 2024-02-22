@@ -10,13 +10,13 @@ using namespace std;
 signed main() {
     int T;
     cin >> T;
-    vector<ll> test(T);
+    vector<int> test(T);
     rep(i, T) {
         cin >> test[i];
     }
     rep(i, T) {
-        ll q, p;
-        for (ll a = 2; a < 3 * 1000000 + 100; a++) {
+        int q, p;
+        for (int a = 2; a < 3 * 1000000 + 100; a++) {
             if (test[i] % a == 0) {
                 test[i] /= a;
                 if (test[i] % a == 0) {
@@ -24,7 +24,7 @@ signed main() {
                     q = test[i] / a;
                 } else {
                     q = a;
-                    p = (ll)sqrt(test[i]);
+                    p = (int)sqrt(test[i]);
                 }
                 break;
             }
