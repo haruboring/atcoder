@@ -12,7 +12,7 @@ signed main() {
     cin >> N;
     map<pair<int, int>, int> mp;
     vector<pair<int, int>> vp;
-    int cnt = 1;
+    int cnt = 0;
     int tmp = 1;
 
     while (tmp <= N) {
@@ -43,6 +43,6 @@ signed main() {
         //     cout << -1 << " " << -1 << endl;
         //     continue;
         // }
-        cout << mp[{a, a + (tmp - 1)}] << " " << mp[{b - (tmp - 1), b}] << endl;
+        cout << mp[{a, a + (tmp - 1)}] + 1 << " " << mp[{b - (tmp - 1), b}] + 1 << endl;
     }
 }
