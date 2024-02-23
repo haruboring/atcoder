@@ -8,4 +8,15 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+
+    int ans = 0;
+
+    while (N > 0 && N % 2 == 0) {
+        N /= 2;
+        ans++;
+    }
+
+    cout << ans << endl;
 }

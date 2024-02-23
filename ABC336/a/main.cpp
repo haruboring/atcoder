@@ -8,4 +8,10 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+
+    cout << "L";
+    rep(i, N) cout << "o";
+    cout << "ng" << endl;
 }
