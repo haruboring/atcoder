@@ -8,4 +8,17 @@
 using namespace std;
 
 signed main() {
+    int N, Q;
+    cin >> N >> Q;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+    vector<int> x(Q);
+    rep(i, Q) cin >> x[i];
+
+    sort(all(A));
+
+    rep(i, Q) {
+        int ans = A.end() - lower_bound(all(A), x[i]);
+        cout << ans << endl;
+    }
 }

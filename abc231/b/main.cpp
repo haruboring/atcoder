@@ -8,4 +8,23 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    map<string, int> mp;
+    rep(i, N) {
+        string s;
+        cin >> s;
+        mp[s]++;
+    }
+
+    int max = -1;
+    string ans = "";
+    for (auto [k, v] : mp) {
+        if (v > max) {
+            max = v;
+            ans = k;
+        }
+    }
+
+    cout << ans << endl;
 }
