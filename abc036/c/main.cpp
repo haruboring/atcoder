@@ -8,12 +8,20 @@
 using namespace std;
 
 signed main() {
-    int N, Q;
-    cin >> N >> Q;
-    vector<int> A(N);
-    rep(i, N) cin >> A[i];
-    vector<int> L(Q), R(Q);
-    rep(i, Q) cin >> L[i] >> R[i];
+    int N;
+    cin >> N;
+    vector<int> a(N);
+    rep(i, N) cin >> a[i];
 
-    
+    set<int> s(all(a));
+    map<int, int> m;
+    int cnt = 0;
+    for (auto x : s) {
+        m[x] = cnt;
+        cnt++;
+    }
+
+    rep(i, N) {
+        cout << m[a[i]] << endl;
+    }
 }

@@ -8,12 +8,8 @@
 using namespace std;
 
 signed main() {
-    int N, Q;
-    cin >> N >> Q;
-    vector<int> A(N);
-    rep(i, N) cin >> A[i];
-    vector<int> L(Q), R(Q);
-    rep(i, Q) cin >> L[i] >> R[i];
+    int A, B;
+    cin >> A >> B;
 
-    
+    cout << (B + A - 1) / A << endl;
 }
