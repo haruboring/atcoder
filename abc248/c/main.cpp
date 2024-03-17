@@ -9,9 +9,9 @@ using namespace std;
 
 signed main() {
     int N, M, K;
-    ll BASE = 998244353;
+    int BASE = 998244353;
     cin >> N >> M >> K;
-    vector<vector<ll>> dp(N + 1, vector<ll>(K + 1));
+    vector<vector<int>> dp(N + 1, vector<int>(K + 1));
     dp[0][0] = 1;
     rep(i, N) {
         rep(j, K) {
@@ -23,7 +23,7 @@ signed main() {
             }
         }
     }
-    ll ans = 0;
+    int ans = 0;
     rep(i, K) {
         ans += dp[N][i + 1];
         ans %= BASE;
