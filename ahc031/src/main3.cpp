@@ -7,7 +7,7 @@
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
 
-// https://atcoder.jp/contests/ahc031/submissions/51531367
+// https://atcoder.jp/contests/ahc031/submissions/51533359
 signed main() {
     int W, D, N;
     cin >> W >> D >> N;
@@ -16,11 +16,16 @@ signed main() {
 
     // W = 1000, 各日の予約数はNで一定
 
-    map<int, vector<tuple<int, int, int, int>>> rect;
+    vector<vector<tuple<int, int, int, int>>> rect(D, vector<tuple<int, int, int, int>>(N));
     rep(i, D) {
-        rep(j, N) {
-            rect[i].push_back({(W / N) * j, 0, (W / N) * (j + 1), W});
+        int used_width = 0;
+        rep(j, N - 1) {
+            // Wで割り切った区間を提供
+            int width = min(W - used_width, (a[i][j] + W - 1) / W);
+            rect[i][j] = {used_width, 0, used_width + width, W};
+            used_width += width;
         }
+        rect[i][N - 1] = {used_width, 0, W, W};
     }
 
     rep(i, D) {
