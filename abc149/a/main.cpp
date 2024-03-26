@@ -8,18 +8,8 @@
 using namespace std;
 
 signed main() {
-    int L;
-    cin >> L;
+    string S, T;
+    cin >> S >> T;
 
-    // (L-1) C (11)
-    __int128_t ans = 1;
-
-    for (int i = L - 1; i > L - 12; i--) {
-        ans *= i;
-    }
-    rep(i, 11) {
-        ans /= i + 1;
-    }
-
-    cout << (int)ans << endl;
+    cout << T << S << endl;
 }

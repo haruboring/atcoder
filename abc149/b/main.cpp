@@ -8,18 +8,8 @@
 using namespace std;
 
 signed main() {
-    int L;
-    cin >> L;
+    int A, B, K;
+    cin >> A >> B >> K;
 
-    // (L-1) C (11)
-    __int128_t ans = 1;
-
-    for (int i = L - 1; i > L - 12; i--) {
-        ans *= i;
-    }
-    rep(i, 11) {
-        ans /= i + 1;
-    }
-
-    cout << (int)ans << endl;
+    cout << max(0LL, A - K) << " " << max(0LL, B - K + A - max(0LL, A - K)) << endl;
 }
