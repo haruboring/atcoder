@@ -8,11 +8,11 @@
 using namespace std;
 
 signed main() {
-    int N;
-    cin >> N;
-    vector<int> A(N), B(N);
-    rep(i, N) cin >> A[i];
-    rep(i, N) cin >> B[i];
+    int a, b, c;
+    cin >> a >> b >> c;
 
-    eref
+    if (b - a == c - b)
+        cout << "YES" << endl;
+    else
+        cout << "NO" << endl;
 }

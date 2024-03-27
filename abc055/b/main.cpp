@@ -8,11 +8,4 @@
 using namespace std;
 
 signed main() {
-    int N;
-    cin >> N;
-    vector<int> A(N), B(N);
-    rep(i, N) cin >> A[i];
-    rep(i, N) cin >> B[i];
-
-    eref
 }
