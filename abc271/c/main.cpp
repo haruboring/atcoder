@@ -8,10 +8,10 @@
 using namespace std;
 
 signed main() {
-    ll N;
+    int N;
     cin >> N;
-    vector<ll> a(N);
-    set<ll> set_a;
+    vector<int> a(N);
+    set<int> set_a;
     rep(i, N) {
         cin >> a[i];
         set_a.insert(a[i]);

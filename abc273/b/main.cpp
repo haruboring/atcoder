@@ -8,4 +8,18 @@
 using namespace std;
 
 signed main() {
+    int X, K;
+    cin >> X >> K;
+
+    rep(i, K) {
+        int amari = X % (int)(pow(10, i + 1));
+        if (amari < 5 * (int)(pow(10, i))){
+            X -= amari;
+        }
+        else{
+            X -= amari;
+            X += (int)(pow(10, i + 1));
+        }
+    }
+    cout << X << endl;
 }
