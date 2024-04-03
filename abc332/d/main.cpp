@@ -27,8 +27,19 @@ signed main() {
             bool ok = true;
             rep(i, H) rep(j, W) if (C[i][j] != B[i][j]) ok = false;
             if (ok) {
-                cout << "Yes" << endl;
-                return 0;
+                int cnt = 0;
+                rep(s, H - 1) {
+                    repp(t, s + 1, H) {
+                        if (orders_i[s] > orders_i[t]) cnt++;
+                    }
+                }
+                rep(s, W - 1) {
+                    repp(t, s + 1, W) {
+                        if (orders_j[s] > orders_j[t]) cnt++;
+                    }
+                }
+
+                ans = min(ans, cnt);
             }
         } while (next_permutation(all(orders_j)));
     } while (next_permutation(all(orders_i)));
