@@ -8,4 +8,13 @@
 using namespace std;
 
 signed main() {
+    int T;
+    cin >> T;
+    rep(_, T) {
+        int N, D, K;
+        cin >> N >> D >> K;
+
+        int loop = N / gcd(D, N);
+        cout << ((K - 1) / loop + ((K - 1) * D) % N) % N << endl;
+    }
 }
