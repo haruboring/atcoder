@@ -8,14 +8,15 @@
 using namespace std;
 
 signed main() {
-    int N, K;
-    cin >> N >> K;
-    vector<int> A(N);
-    rep(i, N) cin >> A[i];
+    int N;
+    cin >> N;
 
-    rep(i, N) {
-        if (A[i] % K == 0) {
-            cout << A[i] / K << endl;
+    repp(i, 1, N + 1) {
+        if (i % 3 == 0) {
+            cout << 'x';
+        } else {
+            cout << 'o';
         }
     }
+    cout << endl;
 }

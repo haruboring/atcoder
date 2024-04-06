@@ -8,16 +8,4 @@
 using namespace std;
 
 signed main() {
-    // cout << 200 << " " << 200 << endl;
-    // rep(i, 200) {
-    //     rep(j, 200) {
-    //         cout << '.';
-    //     }
-    //     cout << endl;
-    // }
-    int N = 300;
-    cout << N << endl;
-    rep(i, N) {
-        cout << (i / 200) + 1 << " " << (i % 200) + 1 << " " << 400 << endl;
-    }
 }

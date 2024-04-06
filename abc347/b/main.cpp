@@ -8,18 +8,25 @@
 using namespace std;
 
 signed main() {
-    string S;
-    cin >> S;
-    set<string> ss;
-    rep(i, S.size()) {
-        repp(j, i, S.size()) {
-            ss.insert(S.substr(i, j - i + 1));
+    int N;
+    cin >> N;
+    vector<int> X(N), Y(N);
+    rep(i, N) {
+        cin >> X[i] >> Y[i];
+    }
+
+    rep(i, N) {
+        int ans = -1;
+        int ma = -1;
+        rep(j, N) {
+            int dis = abs(X[i] - X[j]) * abs(X[i] - X[j]) + abs(Y[i] - Y[j]) * abs(Y[i] - Y[j]);
+
+            if (ma < dis) {
+                ma = dis;
+                ans = j;
+            }
         }
-    }
 
-    if (ss.count("")) {
-        ss.erase("");
+        cout << ans + 1 << endl;
     }
-
-    cout << ss.size() << endl;
 }

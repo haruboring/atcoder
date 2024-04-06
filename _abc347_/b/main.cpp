@@ -8,16 +8,18 @@
 using namespace std;
 
 signed main() {
-    // cout << 200 << " " << 200 << endl;
-    // rep(i, 200) {
-    //     rep(j, 200) {
-    //         cout << '.';
-    //     }
-    //     cout << endl;
-    // }
-    int N = 300;
-    cout << N << endl;
-    rep(i, N) {
-        cout << (i / 200) + 1 << " " << (i % 200) + 1 << " " << 400 << endl;
+    string S;
+    cin >> S;
+    set<string> ss;
+    rep(i, S.size()) {
+        repp(j, i, S.size()) {
+            ss.insert(S.substr(i, j - i + 1));
+        }
     }
+
+    if (ss.count("")) {
+        ss.erase("");
+    }
+
+    cout << ss.size() << endl;
 }

@@ -8,22 +8,27 @@
 using namespace std;
 
 signed main() {
-    int N, A, B;
-    cin >> N >> A >> B;
-    vector<int> D(N);
-    rep(i, N) cin >> D[i];
-
-    set<int> ss, ss1;
+    int N;
+    cin >> N;
+    vector<int> A(N), C(N);
     rep(i, N) {
-        ss.insert(D[i] % (A + B));
-        ss1.insert((D[i] + A) % (A + B));
+        cin >> A[i] >> C[i];
     }
 
-    int diff = *ss.rbegin() - *ss.begin();
-    int diff1 = *ss1.rbegin() - *ss1.begin();
-    if (diff <= A - 1 || diff1 <= A - 1) {
-        cout << "Yes" << endl;
-    } else {
-        cout << "No" << endl;
+    map<int, int> mp;
+    rep(i, N) {
+        if (mp.find(C[i]) == mp.end()) {
+            mp[C[i]] = A[i];
+        } else {
+            int mi = min(mp[C[i]], A[i]);
+            mp[C[i]] = mi;
+        }
     }
+
+    int ans = 0;
+    for (auto [c, a] : mp) {
+        ans = max(ans, a);
+    }
+
+    cout << ans << endl;
 }

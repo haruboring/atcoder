@@ -8,96 +8,55 @@
 using namespace std;
 
 signed main() {
-    int a, b, C;
-    cin >> a >> b >> C;
+    int H, W;
+    cin >> H >> W;
+    vector<string> A(H);
+    rep(i, H) cin >> A[i];
+    int N;
+    cin >> N;
+    vector<int> R(N), C(N), E(N);
+    rep(i, N) cin >> R[i] >> C[i] >> E[i];
 
-    bitset<60> bs(C);
-    int pop_count = bs.count();
+    rep(i, N) R[i]--, C[i]--;
 
-    debug(pop_count);
-
-    int zero_count = 60 - pop_count;
-
-    int same_pop_count = 0;
-    while (pop_count + 2 * same_pop_count < a + b) {
-        same_pop_count++;
+    map<pair<int, int>, int> med;
+    rep(i, N) {
+        med[{R[i], C[i]}] = E[i];
     }
 
-    if (pop_count + 2 * same_pop_count != a + b || same_pop_count > zero_count) {
-        cout << -1 << endl;
-        return 0;
+    pair<int, int> s, t;
+    rep(i, H) rep(j, W) {
+        if (A[i][j] == 'S') s = {i, j};
+        if (A[i][j] == 'T') t = {i, j};
     }
 
-    int only_a_count = a - same_pop_count, only_b_count = b - same_pop_count;
+    debug(s.first);
 
-    if (only_a_count < 0 || only_b_count < 0) {
-        cout << -1 << endl;
-        return 0;
-    }
-
-    string A = "", B = "";
-    rep(i, 60) {
-        if (bs[i]) {
-            if (only_a_count > 0) {
-                A += "1";
-                B += "0";
-                only_a_count--;
-            } else {
-                A += "0";
-                B += "1";
+    // r[i], c[i]の距離を全て求める
+    map<tuple<int, int, int, int>, int> dist;
+    rep(i, N) {
+        int br = R[i], bc = C[i];
+        vector<vector<int>> d(H, vector<int>(W, 1e9));
+        priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> q;
+        q.push({0, br, bc});
+        while (!q.empty()) {
+            auto [dd, r, c] = q.top();
+            q.pop();
+            d[r][c] = dd;
+            for (auto [dr, dc] : vector<pair<int, int>>{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}) {
+                int nr = r + dr, nc = c + dc;
+                if (nr < 0 || nr >= H || nc < 0 || nc >= W) continue;
+                if (A[nr][nc] == '#') continue;
+                if (d[nr][nc] == 1e9) {
+                    d[nr][nc] = dd + 1;
+                    q.push({dd + 1, nr, nc});
+                }
             }
-        } else {
-            if (same_pop_count > 0) {
-                A += "1";
-                B += "1";
-                same_pop_count--;
-            } else {
-                A += "0";
-                B += "0";
-            }
+            // debug(dd);
+        }
+
+        rep(j, N) {
+            dist[{br, bc, R[j], C[j]}] = d[R[j]][C[j]];
         }
     }
-
-    debug(A);
-    debug(B);
-
-    int ansA = 0, ansB = 0;
-    int tmp = 1LL;
-    int cc = 0;
-    int ccnt = 0;
-    string sc = "";
-    int acnt = 0, bcnt = 0;
-    rep(i, 60) {
-        if (A[i] == '1') {
-            ansA += tmp;
-            acnt++;
-        }
-        if (B[i] == '1') {
-            ansB += tmp;
-            bcnt++;
-        }
-
-        if (A[i] == '1' && B[i] == '0') {
-            cc += tmp;
-            sc += "1";
-            ccnt++;
-        } else if (A[i] == '0' && B[i] == '1') {
-            cc += tmp;
-            sc += "1";
-            ccnt++;
-        } else {
-            sc += "0";
-        }
-
-        tmp *= 2LL;
-    }
-
-    debug(acnt);
-    debug(bcnt);
-
-    debug(cc);
-    debug(sc);
-    debug(ccnt);
-
-    cout << ansA << " " << ansB << endl;
 }

@@ -8,45 +8,64 @@
 using namespace std;
 
 signed main() {
-    int N, Q;
-    cin >> N >> Q;
-    vector<int> x(Q);
-    rep(i, Q) cin >> x[i];
+    int H, W;
+    cin >> H >> W;
+    vector<string> A(H);
+    rep(i, H) cin >> A[i];
+    int N;
+    cin >> N;
+    vector<int> R(N), C(N), E(N);
+    rep(i, N) cin >> R[i] >> C[i] >> E[i];
 
-    set<int> s;
-    vector<int> s_size(Q);
-    rep(i, Q) {
-        if (s.count(x[i])) {
-            s.erase(x[i]);
+    rep(i, N) R[i]--, C[i]--;
 
-        } else {
-            s.insert(x[i]);
-        }
-        s_size[i] = s.size();
-    }
-
-    s.clear();
-    vector<int> ruiseki_s_size(Q + 1);
-    rep(i, Q) {
-        ruiseki_s_size[i + 1] = ruiseki_s_size[i] + s_size[i];
-    }
-    map<int, int> add;
-    map<int, int> tmp;
-    rep(i, Q) {
-        if (tmp.count(x[i])) {
-            debug(x[i]);
-            int idx = tmp[x[i]];
-            add[x[i]] += ruiseki_s_size[i] - ruiseki_s_size[idx];
-            tmp.erase(x[i]);
-        } else {
-            tmp[x[i]] = i;
-        }
-    }
-    for (auto [key, value] : tmp) {
-        add[key] += ruiseki_s_size[Q] - ruiseki_s_size[tmp[key]];
-    }
-
+    map<pair<int, int>, int> med;
     rep(i, N) {
-        cout << add[i + 1] << endl;
+        med[{R[i], C[i]}] = E[i];
     }
+
+    pair<int, int> s, t;
+    rep(i, H) rep(j, W) {
+        if (A[i][j] == 'S') s = {i, j};
+        if (A[i][j] == 'T') t = {i, j};
+    }
+
+    set<pair<int, int>> md;
+    for (auto [p, e] : med) {
+        md.insert(p);
+    }
+
+    debug(s.first);
+
+    vector<pair<int, int>> moves = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    vector<vector<int>> dp(H, vector<int>(W, -1e9));
+    dp[s.first][s.second] = 0;  // tokurei
+    priority_queue<tuple<int, int, int>> q;
+    q.push({0, s.first, s.second});
+    while (!q.empty()) {
+        auto [d, i, j] = q.top();
+        q.pop();
+        if (i == t.first && j == t.second) {
+            cout << "Yes" << endl;
+            return 0;
+        }
+        if (md.count({i, j}) && d < med[{i, j}]) {
+            d = med[{i, j}];
+            med[{i, j}] = 0;
+            md.erase({i, j});
+        }
+
+        dp[i][j] = d;
+
+        for (auto [di, dj] : moves) {
+            int ni = i + di, nj = j + dj;
+            if (ni < 0 || ni >= H || nj < 0 || nj >= W) continue;
+            if (A[ni][nj] == '#') continue;
+            if (d - 1 < 0) continue;
+            if (dp[ni][nj] >= d - 1) continue;
+            q.push({d - 1, ni, nj});
+        }
+    }
+
+    cout << "No" << endl;
 }

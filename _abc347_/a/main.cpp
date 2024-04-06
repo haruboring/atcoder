@@ -8,16 +8,14 @@
 using namespace std;
 
 signed main() {
-    // cout << 200 << " " << 200 << endl;
-    // rep(i, 200) {
-    //     rep(j, 200) {
-    //         cout << '.';
-    //     }
-    //     cout << endl;
-    // }
-    int N = 300;
-    cout << N << endl;
+    int N, K;
+    cin >> N >> K;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
     rep(i, N) {
-        cout << (i / 200) + 1 << " " << (i % 200) + 1 << " " << 400 << endl;
+        if (A[i] % K == 0) {
+            cout << A[i] / K << endl;
+        }
     }
 }
