@@ -7,65 +7,48 @@
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
 
+vector<vector<int>> G(200000);
+vector<int> C(200000);
+vector<int> sum_c(200000), sum_cd(200000);
+
+void dfs0(int u, int p) {
+    sum_c[u] = C[u];
+    sum_cd[u] = 0;
+    for (int v : G[u]) {
+        if (v == p) continue;
+        dfs0(v, u);
+        sum_c[u] += sum_c[v];
+        sum_cd[u] += sum_cd[v] + sum_c[v];
+    }
+}
+
+int ans = 9e18;
+
+void dfs1(int v, int p, int p_sum_c, int p_sum_cd) {
+    ans = min(ans, p_sum_cd + sum_cd[v]);
+    for (int nv : G[v]) {
+        if (nv == p) continue;
+        int np_sum_c = p_sum_c + sum_c[v] - sum_c[nv];
+        dfs1(nv, v, np_sum_c, p_sum_cd + sum_cd[v] - sum_c[nv] - sum_cd[nv] + np_sum_c);
+    }
+}
+
 signed main() {
-    int H, W;
-    cin >> H >> W;
-    vector<string> A(H);
-    rep(i, H) cin >> A[i];
     int N;
     cin >> N;
-    vector<int> R(N), C(N), E(N);
-    rep(i, N) cin >> R[i] >> C[i] >> E[i];
+    vector<int> A(N - 1), B(N - 1);
+    rep(i, N - 1) cin >> A[i] >> B[i];
+    rep(i, N) cin >> C[i];
 
-    rep(i, N) R[i]--, C[i]--;
+    rep(i, N - 1) A[i]--, B[i]--;
 
-    map<pair<int, int>, int> med;
-    rep(i, N) {
-        med[{R[i], C[i]}] = E[i];
+    rep(i, N - 1) {
+        G[A[i]].push_back(B[i]);
+        G[B[i]].push_back(A[i]);
     }
 
-    pair<int, int> s, t;
-    rep(i, H) rep(j, W) {
-        if (A[i][j] == 'S') s = {i, j};
-        if (A[i][j] == 'T') t = {i, j};
-    }
+    dfs0(0, -1);
+    dfs1(0, -1, 0, 0);
 
-    set<pair<int, int>> md;
-    for (auto [p, e] : med) {
-        md.insert(p);
-    }
-
-    debug(s.first);
-
-    vector<pair<int, int>> moves = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-    vector<vector<int>> dp(H, vector<int>(W, -1e9));
-    dp[s.first][s.second] = 0;  // tokurei
-    priority_queue<tuple<int, int, int>> q;
-    q.push({0, s.first, s.second});
-    while (!q.empty()) {
-        auto [d, i, j] = q.top();
-        q.pop();
-        if (i == t.first && j == t.second) {
-            cout << "Yes" << endl;
-            return 0;
-        }
-        if (md.count({i, j}) && d < med[{i, j}]) {
-            d = med[{i, j}];
-            med[{i, j}] = 0;
-            md.erase({i, j});
-        }
-
-        dp[i][j] = d;
-
-        for (auto [di, dj] : moves) {
-            int ni = i + di, nj = j + dj;
-            if (ni < 0 || ni >= H || nj < 0 || nj >= W) continue;
-            if (A[ni][nj] == '#') continue;
-            if (d - 1 < 0) continue;
-            if (dp[ni][nj] >= d - 1) continue;
-            q.push({d - 1, ni, nj});
-        }
-    }
-
-    cout << "No" << endl;
+    cout << ans << endl;
 }
