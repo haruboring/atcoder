@@ -8,7 +8,18 @@
 using namespace std;
 
 signed main() {
-    int X;
-    cin >> X;
-    cout << int(sqrt(sqrt(X))) << endl;
+    int N, K;
+    cin >> N >> K;
+    set<int> s;
+    rep(_, K) {
+        int d;
+        cin >> d;
+        rep(_, d) {
+            int A;
+            cin >> A;
+            s.insert(A);
+        }
+    }
+
+    cout << N - s.size() << endl;
 }
