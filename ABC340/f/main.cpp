@@ -7,38 +7,26 @@
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
 
+// 拡張ユークリッドの互除法
+// ax+by=gcd(a,b) となる整数の組 (x,y) を O(logmin(∣a∣,∣b∣)) で計算
+pair<int, int> extgcd(int a, int b) {
+    if (b == 0) return {1, 0};
+    auto [y, x] = extgcd(b, a % b);
+    y -= a / b * x;
+    return {x, y};
+}
+
 signed main() {
+    debug(gcd(-2,-2));
     int X, Y;
     cin >> X >> Y;
 
-    bool sswap = false;
-    if (X == 0) {
-        sswap = true;
-        swap(X, Y);
-    }
-
-    bool x_reversed = false;
-    if (X < 0) {
-        x_reversed = true;
-        X = -X;
-    }
-    bool y_reversed = false;
-    if (Y < 0) {
-        y_reversed = true;
-        Y = -Y;
-    }
-
-    if (gcd(X + 2, Y) == 1) {
+    int g = gcd(X, Y);
+    if (g > 2) {
         cout << -1 << endl;
         return 0;
     }
 
-    int s = (X + 2) / gcd(X + 2, Y) * Y;
-    s /= Y;
-    int t = double(Y) / X * s - (double)2 / X;
-
-    if (sswap) swap(s, t);
-    if (x_reversed) s = -s;
-    if (y_reversed) t = -t;
-    cout << s << " " << t << endl;
+    auto [A, B] = extgcd(Y, -X);
+    cout << 2 * A / g << " " << 2 * B / g << endl;
 }
