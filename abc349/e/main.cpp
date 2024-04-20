@@ -7,97 +7,78 @@
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
 
-signed main() {
-    vector<vector<int>> A(3, vector<int>(3));
-    rep(i, 3) rep(j, 3) cin >> A[i][j];
+vector<vector<int>> A(3, vector<int>(3)), used(3, vector<int>(3, 0));
 
-    vector<pair<int, int>> orders = {{0, 0}, {0, 1}, {0, 2}, {1, 0}, {1, 1}, {1, 2}, {2, 0}, {2, 1}, {2, 2}};
-    sort(all(orders));
-
-    vector<vector<int>> cA(3, vector<int>(3, -1));
-
-    map<pair<int, int>, set<int>> t_select_ans;
-
-    do {
-        vector<vector<int>> cA(3, vector<int>(3, -1));
-        bool ok = true;
-        int t_score = 0, a_score = 0;
-        bool skip = false;
-        rep(i, 9) {
-            auto [x, y] = orders[i];
-            cA[x][y] = i % 2;
-            if (i % 2 == 0) {
-                t_score += A[x][y];
-            } else {
-                a_score += A[x][y];
-            }
-
-            // 0 -> T
-
-            if (cA[0][0] == cA[0][1] && cA[0][1] == cA[0][2] && cA[0][2] != -1) {
-                t_select_ans[{orders[0].first, orders[0].second}].insert(cA[0][0]);
-                skip = true;
-                break;
-            }
-            if (cA[1][0] == cA[1][1] && cA[1][1] == cA[1][2] && cA[1][2] != -1) {
-                t_select_ans[{orders[0].first, orders[0].second}].insert(cA[1][0]);
-                skip = true;
-                break;
-            }
-            if (cA[2][0] == cA[2][1] && cA[2][1] == cA[2][2] && cA[2][2] != -1) {
-                t_select_ans[{orders[0].first, orders[0].second}].insert(cA[2][0]);
-                skip = true;
-                break;
-            }
-            if (cA[0][0] == cA[1][0] && cA[1][0] == cA[2][0] && cA[2][0] != -1) {
-                t_select_ans[{orders[0].first, orders[0].second}].insert(cA[0][0]);
-                skip = true;
-                break;
-            }
-            if (cA[0][1] == cA[1][1] && cA[1][1] == cA[2][1] && cA[2][1] != -1) {
-                t_select_ans[{orders[0].first, orders[0].second}].insert(cA[0][1]);
-                skip = true;
-                break;
-            }
-            if (cA[0][2] == cA[1][2] && cA[1][2] == cA[2][2] && cA[2][2] != -1) {
-                t_select_ans[{orders[0].first, orders[0].second}].insert(cA[0][2]);
-                skip = true;
-                break;
-            }
-            if (cA[0][0] == cA[1][1] && cA[1][1] == cA[2][2] && cA[2][2] != -1) {
-                t_select_ans[{orders[0].first, orders[0].second}].insert(cA[0][0]);
-                skip = true;
-                break;
-            }
-            if (cA[0][2] == cA[1][1] && cA[1][1] == cA[2][0] && cA[2][0] != -1) {
-                t_select_ans[{orders[0].first, orders[0].second}].insert(cA[0][2]);
-                skip = true;
-                break;
+bool dfs(int t) {
+    if (t == 9) {
+        // Aokiの手番
+        int sum = 0;
+        rep(i, 3) {
+            rep(j, 3) {
+                if (used[i][j] == -1) {
+                    sum += A[i][j];
+                } else {
+                    sum -= A[i][j];
+                }
             }
         }
-        if (skip) continue;
-        if (t_score < a_score) {
-            t_select_ans[{orders[0].first, orders[0].second}].insert(1);
+        if (sum > 0) {
+            return true;
         } else {
-            t_select_ans[{orders[0].first, orders[0].second}].insert(0);
-        }
-    } while (next_permutation(all(orders)));
-
-    for (auto [k, v] : t_select_ans) {
-        auto [x, y] = k;
-        if (x == 1 && y == 1) {
-            cout << t_select_ans[k] << endl;
-        }
-        if (v.size() == 1) {
-            if (*v.begin() == 1) {
-                cout << "Aoki" << endl;
-                return 0;
-            } else {
-                cout << "Takahashi" << endl;
-                return 0;
-            }
+            return false;
         }
     }
 
-    cout << "Aoki" << endl;
+    // 置く前に勝敗判定
+    // 横
+    rep(i, 3) {
+        if (used[i][0] == used[i][1] && used[i][1] == used[i][2] && used[i][0] != 0) {
+            return false;
+        }
+    }
+    // 縦
+    rep(i, 3) {
+        if (used[0][i] == used[1][i] && used[1][i] == used[2][i] && used[0][i] != 0) {
+            return false;
+        }
+    }
+    // 斜め
+    if (used[0][0] == used[1][1] && used[1][1] == used[2][2] && used[0][0] != 0) {
+        return false;
+    }
+    if (used[0][2] == used[1][1] && used[1][1] == used[2][0] && used[0][2] != 0) {
+        return false;
+    }
+
+    int cnt = 0;
+    rep(i, 3) {
+        rep(j, 3) {
+            if (used[i][j] == 0) {
+                if (t % 2 == 0) {
+                    used[i][j] = 1;
+                } else {
+                    used[i][j] = -1;
+                }
+                if (!dfs(t + 1)) {
+                    cnt++;
+                }
+                used[i][j] = 0;
+            }
+        }
+    }
+    if (cnt == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+signed main() {
+    rep(i, 3) rep(j, 3) cin >> A[i][j];
+
+    if (dfs(0)) {
+        cout << "Takahashi" << endl;
+    } else {
+        cout << "Aoki" << endl;
+    }
 }
