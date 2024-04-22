@@ -8,4 +8,19 @@
 using namespace std;
 
 signed main() {
+    int N, Q;
+    cin >> N >> Q;
+    set<int> teeth;
+    rep(i, N) teeth.insert(i + 1);
+    rep(_, Q) {
+        int T;
+        cin >> T;
+        if (teeth.count(T)) {
+            teeth.erase(T);
+        } else {
+            teeth.insert(T);
+        }
+    }
+
+    cout << teeth.size() << endl;
 }
