@@ -7,19 +7,7 @@
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
 
-int MOD;
-
-int fast_pow(int a, int b, int MOD) {
-    int ans = 1;
-    while (b > 0) {
-        if (b & 1) ans = ans * a % MOD;
-        a = a * a % MOD;
-        b >>= 1;
-    }
-    return ans;
-}
-
-vector<int> par(250'000 + 100);
+vector<int> par(200'000 + 100);
 
 void init(int n) {
     rep(i, n) par[i] = i;
@@ -47,26 +35,22 @@ signed main() {
     vector<int> A(N);
     rep(i, N) cin >> A[i];
 
-    MOD = M;
-    vector<tuple<int, int, int>> score;
+    sort(all(A));
+    init(N);
     rep(i, N - 1) {
-        repp(j, i + 1, N) {
-            int s = (fast_pow(A[i], A[j], M) + fast_pow(A[j], A[i], M)) % MOD;
-            score.push_back({s, i, j});
-        }
+        if (A[i] == A[i + 1]) unite(i, i + 1);
+        if (A[i] == A[i + 1] - 1) unite(i, i + 1);
     }
+    if (A[0] == (A[N - 1] + 1) % M) unite(0, N - 1);
 
-    sort(all(score));
-    reverse(all(score));
+    map<int, int> m;
+    rep(i, N) m[root(i)] += A[i];
 
-    init(N * N);
     int ans = 0;
-    for (auto [s, a, b] : score) {
-        int x = a, y = b;
-        if (root(x) == root(y)) continue;
-        ans += s;
-        unite(x, y);
+    for (auto [k, v] : m) {
+        ans = min(ans, -v);
     }
+    ans += accumulate(all(A), 0LL);
 
     cout << ans << endl;
 }
