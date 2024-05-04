@@ -8,8 +8,10 @@
 using namespace std;
 
 signed main() {
-    int R, G;
-    cin >> R >> G;
+    int N;
+    cin >> N;
+    string T;
+    cin >> T;
 
-    cout << G - R + G << endl;
+    
 }

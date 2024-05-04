@@ -8,25 +8,14 @@
 using namespace std;
 
 signed main() {
-    int N;
-    cin >> N;
+    string S;
+    cin >> S;
 
-    int cnt = 0;
-    for (int i = 1; i <= N; i += 2) {
-        int tmp = 0;
-        int ii = i;
-        bool t = false;
-
-        for (int j = 2; j <= ii; j++) {
-            if (ii % j == 0) {
-                t = true;
-            }
-            if (t) tmp++;
-        }
-        if (ii != 1) tmp++;
-
-        if (tmp == 8) cnt++;
+    int ans = 1e9;
+    rep(i, S.size() - 2) {
+        int si = stoll(S.substr(i, 3));
+        ans = min(ans, abs(753 - si));
     }
 
-    cout << cnt << endl;
+    cout << ans << endl;
 }

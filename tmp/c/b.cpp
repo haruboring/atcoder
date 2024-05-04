@@ -8,16 +8,31 @@
 using namespace std;
 
 signed main() {
-    int N;
-    cin >> N;
+    int N, Q;
+    cin >> N >> Q;
+    vector<int> C(N);
+    rep(i, N) cin >> C[i];
+    vector<int> A(Q), B(Q);
+    rep(i, Q) cin >> A[i] >> B[i];
 
-    int ans = N;
-    set<int> s;
-    repp(i, 2, sqrt(N) + 1) {
-        for (int j = 2; pow(i, j) <= N; j++) {
-            s.insert(pow(i, j));
+    rep(i, Q) A[i]--, B[i]--;
+
+    vector<set<int>> colors(N);
+    rep(i, N) colors[i].insert(C[i]);
+
+    map<int, int> mp;
+    rep(i, N) mp[i] = i;
+
+    rep(i, Q) {
+        if (colors[mp[A[i]]].size() < colors[mp[B[i]]].size()) {
+            colors[mp[B[i]]].insert(all(colors[mp[A[i]]]));
+            colors[mp[A[i]]].clear();
+        } else {
+            colors[mp[A[i]]].insert(all(colors[mp[B[i]]]));
+            colors[mp[B[i]]].clear();
+            swap(mp[A[i]], mp[B[i]]);
         }
-    }
 
-    cout << ans - s.size() << endl;
+        cout << colors[mp[B[i]]].size() << endl;
+    }
 }
