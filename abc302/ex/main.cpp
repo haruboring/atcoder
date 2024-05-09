@@ -8,7 +8,4 @@
 using namespace std;
 
 signed main() {
-    ll A, B;
-    cin >> A >> B;
-    cout << (A + B - 1) / B << endl;
 }

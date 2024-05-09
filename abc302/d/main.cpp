@@ -8,16 +8,16 @@
 using namespace std;
 
 signed main() {
-    ll N, M, D;
+    int N, M, D;
     cin >> N >> M >> D;
-    vector<ll> A(N), B(M);
+    vector<int> A(N), B(M);
     rep(i, N) cin >> A[i];
     rep(i, M) cin >> B[i];
 
     sort(all(A));
     sort(all(B));
 
-    ll sum = -1;
+    int sum = -1;
 
     rep(i, N) {
         int ind = lower_bound(all(B), A[i] + D) - B.begin();
