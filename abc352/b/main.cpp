@@ -8,18 +8,26 @@
 using namespace std;
 
 signed main() {
-    string S, T;
-    cin >> S >> T;
+    int N, K;
+    cin >> N >> K;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
 
-    int si = 0;
-    rep(i, T.size()) {
-        if (S[si] == T[i]) {
-            si++;
-            cout << i + 1 << " ";
-            if (si == S.size()) {
-                break;
-            }
+    int ans = 0;
+    queue<int> q;
+    rep(i, N) q.push(A[i]);
+    int cap = K;
+
+    while (!q.empty()) {
+        int a = q.front();
+        if (a <= cap) {
+            cap -= a;
+            q.pop();
+        } else {
+            ans++;
+            cap = K;
         }
     }
-    cout << endl;
+
+    cout << ans << endl;
 }
