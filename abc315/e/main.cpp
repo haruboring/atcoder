@@ -32,7 +32,7 @@ vector<int> topological_sort(vector<vector<int>> graph) {
     int n = graph.size();
 
     vector<int> indegree(n);
-    for (int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++) {
         for (int j : graph[i]) {
             indegree[j]++;
         }
