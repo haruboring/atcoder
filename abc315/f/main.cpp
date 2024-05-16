@@ -7,52 +7,57 @@
 using namespace std;
 using ll = long long;
 
+int fast_pow(int a, int b) {
+    int ans = 1;
+    while (b > 0) {
+        if (b & 1) ans = ans * a;
+        a = a * a;
+        b >>= 1;
+    }
+    return ans;
+}
+
 int main() {
     int N;
     cin >> N;
+    vector<int> X(N), Y(N);
+    rep(i, N) cin >> X[i] >> Y[i];
 
-    vector<vector<int>> G(N), rG(N);
+    int lim = 40;
+    double ans = 1e18;
+    queue<tuple<int, double, int>> q;
 
-    vector<vector<int>> in(N, vector<int>(0));
-    rep(i, N) {
-        int C;
-        cin >> C;
+    repp(i, 1, N) {
+        double dist = sqrt((X[i] - X[0]) * (X[i] - X[0]) + (Y[i] - Y[0]) * (Y[i] - Y[0]));
 
-        rep(j, C) {
-            int a;
-            cin >> a;
-            a--;
-            if (a != 0) G[i].push_back(a);
-        }
+        q.push({i, dist, 1});
     }
 
-    vector<int> ans;
-    vector<int> dis(N, -1);
-    dis[0] = 0;
-    queue<int> q;
-    q.push(0);
     while (!q.empty()) {
-        int v = q.front();
+        auto [i, dist, cnt] = q.front();
         q.pop();
-        ans.push_back(v);
-        for (auto nv : G[v]) {
-            if (dis[nv] < dis[v] + 1) {
-                dis[nv] = dis[v] + 1;
-                q.push(nv);
+
+        if (N - cnt >= lim) continue;
+
+        if (i == N - 1) {
+            if (cnt == 0) {
+                ans = min(ans, dist);
+            } else {
+                int sk = N - 1 - cnt;
+                if (sk == 0) {
+                    ans = min(ans, dist);
+                } else {
+                    ans = min(ans, dist + (double)fast_pow(2, sk - 1));
+                }
             }
+            continue;
+        }
+
+        repp(j, i + 1, N) {
+            double new_dist = sqrt((X[j] - X[i]) * (X[j] - X[i]) + (Y[j] - Y[i]) * (Y[j] - Y[i]));
+            q.push({j, dist + new_dist, cnt + 1});
         }
     }
 
-    vector<pair<int, int>> p;
-    rep(i, N) {
-        p.push_back({dis[i], i});
-    }
-    sort(all(p));
-    reverse(all(p));
-
-    for (auto pp : p) {
-        if (pp.first == 0) break;
-        cout << pp.second + 1 << " ";
-    }
-    cout << endl;
+    cout << fixed << setprecision(10) << ans << endl;
 }
