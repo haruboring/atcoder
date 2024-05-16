@@ -28,6 +28,4 @@ int main() {
             }
         }
     }
-
-    for(auto )
 }
