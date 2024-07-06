@@ -1,14 +1,16 @@
-#include "atcoder/all"
-#include "bits/stdc++.h"
-#define int long long
-#define all(v) v.begin(), v.end()
-#define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define repp(i, m, n) for (int i = m; i < (int)(n); i++)
-#define debug(x) cerr << #x << ": " << x << endl
+#include <algorithm>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <queue>
+#include <set>
+#include <string>
+#include <tuple>
+#include <vector>
 using namespace std;
 
-const int MAX = 2020000;
-int MOD = 998244353;
+const int MOD = 1000000000;  // これのあまりを見ることで下9桁を求められる
+const int MAX = 10+5;  // N, Mが10以下なので、余裕を持って15にしている
 int fac[MAX], finv[MAX], inv[MAX];
 
 void COMinit() {
@@ -28,21 +30,31 @@ int COM(int n, int k) {
     return fac[n] * (finv[k] * finv[n - k] % MOD) % MOD;
 }
 
-int fast_pow(int a, int b, int MOD) {
-    int ans = 1;
-    while (b > 0) {
-        if (b & 1) ans = ans * a % MOD;
-        a = a * a % MOD;
-        b >>= 1;
-    }
-    return ans;
-}
+int main(int argc, char *argv[]) {
+    int M, N, other_input;
 
-signed main() {
-    int d;
-    cin >> d;
+    if (!(cin >> M >> N)) {
+        return 100;
+    }
+    // if (cin >> other_input) {
+    //     return 100;
+    // }
+
+    // if (!((1 <= M && M <= 10) && (1 <= N && N <= 10))) {
+    //     return 100;
+    // }
+
+    // if ((M * N) % 2 == 1) {
+    //     cout << setfill('0') << setw(9) << 0 << endl;
+    //     return 0;
+    // }
+
+    int all_cnt = M * N;
+    int half_cnt = all_cnt / 2;
+    // 求める答えは all_cnt C half_cnt である
 
     COMinit();
+    cout << M << " " << N << endl;
+    cout << setfill('0') << setw(9) << COM(all_cnt, half_cnt) << endl;
 
-    cout << COM(2 * d, d) * fast_pow(2, MOD - 2, MOD) % MOD << endl;
 }
