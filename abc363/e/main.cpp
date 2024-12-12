@@ -25,7 +25,8 @@ signed main() {
 
     debug(coasts[1].size());
 
-    set<pair<int, int>> disappeared;
+    vector<vector<bool>> visited(H, vector<bool>(W, false));
+    int ans = H * W;
     repp(i, 1, Y + 1) {
         queue<pair<int, int>> q;
         for (auto p : coasts[i]) q.push(p);
@@ -34,38 +35,39 @@ signed main() {
             auto [y, x] = q.front();
             q.pop();
 
-            if (disappeared.count({y, x})) continue;
-            disappeared.insert({y, x});
+            if (visited[y][x]) continue;
+            visited[y][x] = true;
+            ans--;
 
             if (y > 0) {
                 if (A[y - 1][x] > i) {
                     coasts[A[y - 1][x]].insert({y - 1, x});
-                } else if (!disappeared.count({y - 1, x})) {
+                } else if (!visited[y - 1][x]) {
                     q.push({y - 1, x});
                 }
             }
             if (y < H - 1) {
                 if (A[y + 1][x] > i) {
                     coasts[A[y + 1][x]].insert({y + 1, x});
-                } else if (!disappeared.count({y + 1, x})) {
+                } else if (!visited[y + 1][x]) {
                     q.push({y + 1, x});
                 }
             }
             if (x > 0) {
                 if (A[y][x - 1] > i) {
                     coasts[A[y][x - 1]].insert({y, x - 1});
-                } else if (!disappeared.count({y, x - 1})) {
+                } else if (!visited[y][x - 1]) {
                     q.push({y, x - 1});
                 }
             }
             if (x < W - 1) {
                 if (A[y][x + 1] > i) {
                     coasts[A[y][x + 1]].insert({y, x + 1});
-                } else if (!disappeared.count({y, x + 1})) {
+                } else if (!visited[y][x + 1]) {
                     q.push({y, x + 1});
                 }
             }
         }
-        cout << H * W - disappeared.size() << endl;
+        cout << ans << endl;
     }
 }

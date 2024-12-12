@@ -1,0 +1,86 @@
+{
+  "contest": {
+    "id": "abc368",
+    "title": "Hitachi Vantara Programming Contest 2024（AtCoder Beginner Contest 368）",
+    "url": "https://atcoder.jp/contests/abc368"
+  },
+  "tasks": [
+    {
+      "id": "abc368_a",
+      "label": "A",
+      "title": "Cut",
+      "url": "https://atcoder.jp/contests/abc368/tasks/abc368_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc368_b",
+      "label": "B",
+      "title": "Decrease 2 max elements",
+      "url": "https://atcoder.jp/contests/abc368/tasks/abc368_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc368_c",
+      "label": "C",
+      "title": "Triple Attack",
+      "url": "https://atcoder.jp/contests/abc368/tasks/abc368_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc368_d",
+      "label": "D",
+      "title": "Minimum Steiner Tree",
+      "url": "https://atcoder.jp/contests/abc368/tasks/abc368_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc368_e",
+      "label": "E",
+      "title": "Train Delay",
+      "url": "https://atcoder.jp/contests/abc368/tasks/abc368_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc368_f",
+      "label": "F",
+      "title": "Dividing Game",
+      "url": "https://atcoder.jp/contests/abc368/tasks/abc368_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc368_g",
+      "label": "G",
+      "title": "Add and Multiply Queries",
+      "url": "https://atcoder.jp/contests/abc368/tasks/abc368_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}

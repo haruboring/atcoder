@@ -8,4 +8,25 @@
 using namespace std;
 
 signed main() {
+    int N, K;
+    cin >> N >> K;
+    vector<vector<int>> T(N, vector<int>(N));
+    rep(i, N) rep(j, N) cin >> T[i][j];
+
+    vector<int> order;
+    repp(i, 1, N) order.push_back(i);
+
+    int cnt = 0;
+    do {
+        int time = 0;
+        int from = 0;
+        for (int to : order) {
+            time += T[from][to];
+            from = to;
+        }
+        time += T[from][0];
+        if (time == K) cnt++;
+    } while (next_permutation(all(order)));
+
+    cout << cnt << endl;
 }

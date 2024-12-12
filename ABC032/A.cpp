@@ -1,4 +1,4 @@
-#include "atcoder/all"
+// #include "atcoder/all"
 #include "bits/stdc++.h"
 #define int long long
 #define all(v) v.begin(), v.end()
@@ -8,4 +8,10 @@
 using namespace std;
 
 signed main() {
+    int a, b, n;
+    cin >> a >> b >> n;
+
+    int m = a * b / gcd(a, b);
+    debug(m);
+    cout << m * ((n - 1) / m + 1) << endl;
 }
