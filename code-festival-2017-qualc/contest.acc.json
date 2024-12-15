@@ -1,0 +1,75 @@
+{
+  "contest": {
+    "id": "code-festival-2017-qualc",
+    "title": "CODE FESTIVAL 2017 qual C",
+    "url": "https://atcoder.jp/contests/code-festival-2017-qualc"
+  },
+  "tasks": [
+    {
+      "id": "code_festival_2017_qualc_a",
+      "label": "A",
+      "title": "Can you get AC?",
+      "url": "https://atcoder.jp/contests/code-festival-2017-qualc/tasks/code_festival_2017_qualc_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "code_festival_2017_qualc_b",
+      "label": "B",
+      "title": "Similar Arrays",
+      "url": "https://atcoder.jp/contests/code-festival-2017-qualc/tasks/code_festival_2017_qualc_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "code_festival_2017_qualc_c",
+      "label": "C",
+      "title": "Inserting 'x'",
+      "url": "https://atcoder.jp/contests/code-festival-2017-qualc/tasks/code_festival_2017_qualc_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "code_festival_2017_qualc_d",
+      "label": "D",
+      "title": "Yet Another Palindrome Partitioning",
+      "url": "https://atcoder.jp/contests/code-festival-2017-qualc/tasks/code_festival_2017_qualc_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "code_festival_2017_qualc_e",
+      "label": "E",
+      "title": "Cubes",
+      "url": "https://atcoder.jp/contests/code-festival-2017-qualc/tasks/code_festival_2017_qualc_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "code_festival_2017_qualc_f",
+      "label": "F",
+      "title": "Three Gluttons",
+      "url": "https://atcoder.jp/contests/code-festival-2017-qualc/tasks/code_festival_2017_qualc_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}

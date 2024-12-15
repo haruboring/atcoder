@@ -1,0 +1,53 @@
+{
+  "contest": {
+    "id": "arc046",
+    "title": "AtCoder Regular Contest 046",
+    "url": "https://atcoder.jp/contests/arc046"
+  },
+  "tasks": [
+    {
+      "id": "arc046_a",
+      "label": "A",
+      "title": "ゾロ目数",
+      "url": "https://atcoder.jp/contests/arc046/tasks/arc046_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc046_b",
+      "label": "B",
+      "title": "石取り大作戦",
+      "url": "https://atcoder.jp/contests/arc046/tasks/arc046_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc046_c",
+      "label": "C",
+      "title": "合コン大作戦",
+      "url": "https://atcoder.jp/contests/arc046/tasks/arc046_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc046_d",
+      "label": "D",
+      "title": "うさぎとマス目",
+      "url": "https://atcoder.jp/contests/arc046/tasks/arc046_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}
