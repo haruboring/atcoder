@@ -8,4 +8,22 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    int ans = 0;
+    int l = 1;
+    rep(i, N - 1) {
+        if (A[i] < A[i + 1])
+            l++;
+        else {
+            ans += l * (l + 1) / 2;
+            l = 1;
+        }
+    }
+    ans += l * (l + 1) / 2;
+
+    cout << ans << endl;
 }

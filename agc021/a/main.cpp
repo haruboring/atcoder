@@ -11,28 +11,29 @@ signed main() {
     int N;
     cin >> N;
 
-    vector<int> v;
-    int n = 9;
-    rep(i, 17) {
-        v.push_back(n);
-        n = n * 10 + 9;
-    }
-    sort(all(v));
-
-    int idx = lower_bound(all(v), N) - v.begin();
-    if (idx == 0) {
-        cout << N << endl;
-        return 0;
-    }
-
-    debug(idx);
+    string S = to_string(N);
+    reverse(all(S));
 
     int ans = 0;
-    rep(i, 17) {
-        ans += v[idx - 1] % 10;
-        v[idx - 1] /= 10;
-    }
-    string sn = to_string(N);
 
-    cout << ans + sn[0] - '0' - 1 << endl;
+    // 8未満の時桁落とした方がいいという話？
+    bool drop_keta = false;
+    vector<int> tmp;
+    rep(i, S.size()) {
+        int a = S[i] - '0';
+        if (drop_keta) a--;
+        if (a < 9 && i < S.size() - 1) {
+            a = 9;
+            drop_keta = true;
+        } else {
+            drop_keta = false;
+        }
+
+        ans += a;
+        tmp.push_back(a);
+    }
+    reverse(all(tmp));
+    // rep(i, tmp.size()) cout << tmp[i];
+    // cout << endl;
+    cout << ans << endl;
 }

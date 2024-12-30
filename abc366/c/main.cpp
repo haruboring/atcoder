@@ -8,4 +8,32 @@
 using namespace std;
 
 signed main() {
+    int Q;
+    cin >> Q;
+
+    multiset<int> ms;
+    set<int> s;
+    rep(_, Q) {
+        int q;
+        cin >> q;
+
+        if (q == 3) {
+            cout << s.size() << endl;
+            continue;
+        }
+
+        int x;
+        cin >> x;
+
+        if (q == 1) {
+            ms.insert(x);
+            s.insert(x);
+        }
+        if (q == 2) {
+            ms.erase(ms.find(x));
+            if (ms.count(x) == 0) {
+                s.erase(x);
+            }
+        }
+    }
 }

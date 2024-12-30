@@ -1,0 +1,75 @@
+{
+  "contest": {
+    "id": "arc180",
+    "title": "AtCoder Regular Contest 180",
+    "url": "https://atcoder.jp/contests/arc180"
+  },
+  "tasks": [
+    {
+      "id": "arc180_a",
+      "label": "A",
+      "title": "ABA and BAB",
+      "url": "https://atcoder.jp/contests/arc180/tasks/arc180_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc180_b",
+      "label": "B",
+      "title": "Improve Inversions",
+      "url": "https://atcoder.jp/contests/arc180/tasks/arc180_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc180_c",
+      "label": "C",
+      "title": "Subsequence and Prefix Sum",
+      "url": "https://atcoder.jp/contests/arc180/tasks/arc180_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc180_d",
+      "label": "D",
+      "title": "Division into 3",
+      "url": "https://atcoder.jp/contests/arc180/tasks/arc180_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc180_e",
+      "label": "E",
+      "title": "LIS and Inversion",
+      "url": "https://atcoder.jp/contests/arc180/tasks/arc180_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc180_f",
+      "label": "F",
+      "title": "Yet Another Expected Value",
+      "url": "https://atcoder.jp/contests/arc180/tasks/arc180_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}

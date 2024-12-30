@@ -8,4 +8,13 @@
 using namespace std;
 
 signed main() {
+    string S, T;
+    cin >> S >> T;
+
+    int cnt = 0;
+    rep(i, S.size()) {
+        if (S[i] != T[i]) cnt++;
+    }
+
+    cout << cnt << endl;
 }
