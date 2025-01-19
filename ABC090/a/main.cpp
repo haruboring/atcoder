@@ -8,4 +8,11 @@
 using namespace std;
 
 signed main() {
+    rep(i, 3) {
+        string s;
+        cin >> s;
+
+        cout << s[i];
+    }
+    cout << endl;
 }

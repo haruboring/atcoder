@@ -14,5 +14,21 @@ signed main() {
     rep(_, T) {
         int N, K;
         cin >> N >> K;
+
+        if (N >= pow(2, K - 1)) {
+            rep(i, N) cout << max((int)pow(2, K) - 1 - i, 1LL) << " ";
+            cout << endl;
+        } else {
+            repp(j, 1, N + 1) {
+                bitset<32> bs(j);
+                int a = 1;
+                rep(i, K - 1) {
+                    a *= 2;
+                    if (bs[i]) a += 1;
+                }
+                cout << a << " ";
+            }
+            cout << endl;
+        }
     }
 }
