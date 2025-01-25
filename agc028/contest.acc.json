@@ -1,0 +1,86 @@
+{
+  "contest": {
+    "id": "agc028",
+    "title": "AtCoder Grand Contest 028",
+    "url": "https://atcoder.jp/contests/agc028"
+  },
+  "tasks": [
+    {
+      "id": "agc028_a",
+      "label": "A",
+      "title": "Two Abbreviations",
+      "url": "https://atcoder.jp/contests/agc028/tasks/agc028_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc028_b",
+      "label": "B",
+      "title": "Removing Blocks",
+      "url": "https://atcoder.jp/contests/agc028/tasks/agc028_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc028_c",
+      "label": "C",
+      "title": "Min Cost Cycle",
+      "url": "https://atcoder.jp/contests/agc028/tasks/agc028_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc028_d",
+      "label": "D",
+      "title": "Chords",
+      "url": "https://atcoder.jp/contests/agc028/tasks/agc028_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc028_e",
+      "label": "E",
+      "title": "High Elements",
+      "url": "https://atcoder.jp/contests/agc028/tasks/agc028_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc028_f",
+      "label": "F",
+      "title": "Reachable Cells",
+      "url": "https://atcoder.jp/contests/agc028/tasks/agc028_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc028_f2",
+      "label": "F2",
+      "title": "Reachable Cells",
+      "url": "https://atcoder.jp/contests/agc028/tasks/agc028_f2",
+      "directory": {
+        "path": "f2",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}

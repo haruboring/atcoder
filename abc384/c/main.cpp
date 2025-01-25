@@ -8,4 +8,15 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    int ans = 0;
+    rep(i, N - 1) {
+        ans += N - (lower_bound(all(A), 2 * A[i]) - A.begin());
+    }
+
+    cout << ans << endl;
 }

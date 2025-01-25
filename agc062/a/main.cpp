@@ -15,6 +15,16 @@ signed main() {
         string S;
         cin >> N >> S;
 
-        
+        if (S[N - 1] == 'A') {
+            cout << 'A' << endl;
+        } else {
+            string sS = S;
+            sort(all(sS));
+            if (sS == S) {
+                cout << 'B' << endl;
+            } else {
+                cout << 'A' << endl;
+            }
+        }
     }
 }
