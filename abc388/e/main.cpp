@@ -8,4 +8,30 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    multiset<int> upper, lower;
+    rep(i, N) {
+        if (i < N / 2) {
+            upper.insert(A[i]);
+        } else {
+            lower.insert(A[i]);
+        }
+    }
+
+    int cnt = 0;
+    while (lower.size() > 0 && upper.size() > 0) {
+        int l = *lower.begin();
+        int u = *upper.begin();
+        // debug(l);
+        // debug(u);
+        if (l >= 2 * u) cnt++, upper.erase(upper.find(u));
+        lower.erase(lower.find(l));
+        // upper.erase(lower.find(u));
+    }
+
+    cout << cnt << endl;
 }
