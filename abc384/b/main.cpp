@@ -8,17 +8,15 @@
 using namespace std;
 
 signed main() {
-    int N, D;
-    cin >> N >> D;
-    vector<int> T(N), L(N);
-    rep(i, N) cin >> T[i] >> L[i];
+    int N, R;
+    cin >> N >> R;
+    vector<int> D(N), A(N);
+    rep(i, N) cin >> D[i] >> A[i];
 
-    repp(i, 1, D + 1) {
-        int ans = -1;
-        rep(j, N) {
-            ans = max(ans, (L[j] + i) * T[j]);
-        }
-
-        cout << ans << endl;
+    rep(i, N) {
+        if (D[i] == 1 && (1600 <= R && R < 2800)) R += A[i];
+        if (D[i] == 2 && (1200 <= R && R < 2400)) R += A[i];
     }
+
+    cout << R << endl;
 }
