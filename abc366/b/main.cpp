@@ -13,12 +13,24 @@ signed main() {
     vector<string> S(N);
     rep(i, N) cin >> S[i];
 
-    int H = -1;
-    rep(i, N) H = max(H, (int)S[i].size());
-    vector<vector<char>> T(H, vector<char>(N, '*'));
+    int pre = S[0].size();
+    rep(i, N - 1) {
+        while (S[i + 1].size() < pre) {
+            S[i + 1] += "*";
+            // debug(S[i + 1]);
+        }
+        pre = S[i + 1].size();
+    }
+
+    int M = 0;
+    rep(i, N) M = max(M, (int)S[i].size());
+
+    vector<string> U(M, "");
     rep(i, N) {
-        rep(j, S[i].size()){
-            T[]
+        rep(j, S[N - 1 - i].size()) {
+            U[j] += S[N - 1 - i][j];
         }
     }
+
+    rep(i, M) cout << U[i] << endl;
 }
