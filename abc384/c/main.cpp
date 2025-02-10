@@ -8,15 +8,38 @@
 using namespace std;
 
 signed main() {
-    int N;
-    cin >> N;
-    vector<int> A(N);
-    rep(i, N) cin >> A[i];
+    int a, b, c, d, e;
+    cin >> a >> b >> c >> d >> e;
 
-    int ans = 0;
-    rep(i, N - 1) {
-        ans += N - (lower_bound(all(A), 2 * A[i]) - A.begin());
+    vector<pair<int, string>> S(0);
+    for (int i = 1; i < (1 << 5); i++) {
+        int score = 0;
+        bitset<5> bs(i);
+        debug(bs);
+        string s = "";
+        if (bs[0]) {
+            score += a;
+            s += "A";
+        }
+        if (bs[1]) {
+            score += b;
+            s += "B";
+        }
+        if (bs[2]) {
+            score += c;
+            s += "C";
+        }
+        if (bs[3]) {
+            score += d;
+            s += "D";
+        }
+        if (bs[4]) {
+            score += e;
+            s += "E";
+        }
+        S.push_back({-score, s});
     }
 
-    cout << ans << endl;
+    sort(all(S));
+    rep(i, S.size()) cout << S[i].second << endl;
 }

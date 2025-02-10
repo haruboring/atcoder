@@ -8,19 +8,4 @@
 using namespace std;
 
 signed main() {
-    string S;
-    cin >> S;
-
-    int r, m;
-    rep(i, 3) {
-        if (S[i] == 'R') r = i;
-        if (S[i] == 'M') m = i;
-    }
-
-    if (r < m) {
-        cout << "Yes" << endl;
-    }
-    else{
-        cout << "No" << endl;
-    }
 }

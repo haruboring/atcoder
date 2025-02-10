@@ -8,19 +8,15 @@
 using namespace std;
 
 signed main() {
-    string S;
-    cin >> S;
+    vector<int> A(3);
+    rep(i, 3) cin >> A[i];
 
-    int r, m;
-    rep(i, 3) {
-        if (S[i] == 'R') r = i;
-        if (S[i] == 'M') m = i;
-    }
+    sort(all(A));
 
-    if (r < m) {
+    if (A[0] * A[1] == A[2]) {
         cout << "Yes" << endl;
-    }
-    else{
+        return 0;
+    } else {
         cout << "No" << endl;
     }
 }

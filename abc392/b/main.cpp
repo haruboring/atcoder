@@ -8,19 +8,18 @@
 using namespace std;
 
 signed main() {
-    string S;
-    cin >> S;
+    int N, M;
+    cin >> N >> M;
+    vector<int> A(M);
+    rep(i, M) cin >> A[i];
 
-    int r, m;
-    rep(i, 3) {
-        if (S[i] == 'R') r = i;
-        if (S[i] == 'M') m = i;
-    }
+    set<int> s;
+    rep(i, N) s.insert(i + 1);
 
-    if (r < m) {
-        cout << "Yes" << endl;
+    rep(i, M) s.erase(A[i]);
+
+    for (auto x : s) {
+        cout << x << " ";
     }
-    else{
-        cout << "No" << endl;
-    }
+    cout << endl;
 }
