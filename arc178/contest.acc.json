@@ -1,0 +1,75 @@
+{
+  "contest": {
+    "id": "arc178",
+    "title": "AtCoder Regular Contest 178",
+    "url": "https://atcoder.jp/contests/arc178"
+  },
+  "tasks": [
+    {
+      "id": "arc178_a",
+      "label": "A",
+      "title": "Good Permutation 2",
+      "url": "https://atcoder.jp/contests/arc178/tasks/arc178_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc178_b",
+      "label": "B",
+      "title": "1 + 6 = 7",
+      "url": "https://atcoder.jp/contests/arc178/tasks/arc178_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc178_c",
+      "label": "C",
+      "title": "Sum of Abs 2",
+      "url": "https://atcoder.jp/contests/arc178/tasks/arc178_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc178_d",
+      "label": "D",
+      "title": "Delete Range Mex",
+      "url": "https://atcoder.jp/contests/arc178/tasks/arc178_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc178_e",
+      "label": "E",
+      "title": "Serval Survival",
+      "url": "https://atcoder.jp/contests/arc178/tasks/arc178_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc178_f",
+      "label": "F",
+      "title": "Long Sequence Inversion",
+      "url": "https://atcoder.jp/contests/arc178/tasks/arc178_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}
