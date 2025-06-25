@@ -14,6 +14,7 @@
 		"*.ASSEMBLE*": "hlasm",
 		"*.HLASM*": "hlasm",
 		"*.HLA*": "hlasm",
-		"iostream": "cpp"
+		"iostream": "cpp",
+		"cmath": "cpp"
 	}
 }
