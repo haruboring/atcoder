@@ -8,19 +8,17 @@
 using namespace std;
 
 signed main() {
-    int A, B, C;
-    cin >> A >> B >> C;
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
 
-    if (C % 2 == 0) {
-        A = abs(A);
-        B = abs(B);
+    sort(all(A));
+    rep(i, N) {
+        if (A[i] != i + 1) {
+            cout << "No" << endl;
+            return 0;
+        }
     }
-
-    if (A < B) {
-        cout << "<" << endl;
-    } else if (A == B) {
-        cout << "=" << endl;
-    } else {
-        cout << ">" << endl;
-    }
+    cout << "Yes" << endl;
 }
