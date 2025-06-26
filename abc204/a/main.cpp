@@ -8,4 +8,16 @@
 using namespace std;
 
 signed main() {
+    int x, y;
+    cin >> x >> y;
+
+    if (x == y) {
+        cout << x << endl;
+    } else {
+        rep(i, 3) {
+            if (i == x) continue;
+            if (i == y) continue;
+            cout << i << endl;
+        }
+    }
 }

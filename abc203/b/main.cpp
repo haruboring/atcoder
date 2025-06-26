@@ -8,4 +8,15 @@
 using namespace std;
 
 signed main() {
+    int N, K;
+    cin >> N >> K;
+
+    int ans = 0;
+    repp(i, 1, N + 1) {
+        repp(j, 1, K + 1) {
+            ans += 100 * i + j;
+        }
+    }
+
+    cout << ans << endl;
 }
