@@ -8,4 +8,33 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<double> L(N), R(N);
+    rep(i, N) {
+        int t;
+        cin >> t >> L[i] >> R[i];
+
+        if (t == 2) {
+            R[i] -= 0.1;
+        } else if (t == 3) {
+            L[i] += 0.1;
+        } else if (t == 4) {
+            R[i] -= 0.1;
+            L[i] += 0.1;
+        }
+    }
+
+    int cnt = 0;
+    rep(i, N - 1) {
+        repp(j, i + 1, N) {
+            if ((L[i] <= R[j]) && (R[i] >= L[j])) {
+                cnt++;
+            } else if ((L[j] <= R[i]) && (R[j] >= L[i])) {
+                cnt++;
+            }
+        }
+    }
+
+    cout << cnt << endl;
 }

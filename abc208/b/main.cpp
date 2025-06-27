@@ -8,4 +8,27 @@
 using namespace std;
 
 signed main() {
+    int P;
+    cin >> P;
+
+    vector<int> A(0);
+    int a = 1, b = 2;
+    while (a <= P) {
+        A.push_back(a);
+        a *= b;
+        b++;
+    }
+
+    reverse(all(A));
+    int cnt = 0, idx = 0;
+    while (P > 0) {
+        if (P >= A[idx]) {
+            P -= A[idx];
+            cnt++;
+        } else {
+            idx++;
+        }
+    }
+
+    cout << cnt << endl;
 }

@@ -8,4 +8,20 @@
 using namespace std;
 
 signed main() {
+    int A, B, C, D;
+    cin >> A >> B >> C >> D;
+
+    int cnt = 0, Cc = 0;
+    while (A > Cc * D) {
+        A += B;
+        Cc += C;
+        cnt++;
+
+        if (cnt > 1e6) {
+            cout << -1 << endl;
+            return 0;
+        }
+    }
+
+    cout << cnt << endl;
 }
