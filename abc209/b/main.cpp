@@ -8,4 +8,18 @@
 using namespace std;
 
 signed main() {
+    int N, X;
+    cin >> N >> X;
+    vector<int> A(N);
+    rep(i, N) {
+        cin >> A[i];
+        A[i] -= (i % 2 == 1);
+    }
+
+    int sum = accumulate(all(A), 0);
+    if (sum <= X) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
 }
