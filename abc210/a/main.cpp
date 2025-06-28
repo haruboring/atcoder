@@ -8,4 +8,9 @@
 using namespace std;
 
 signed main() {
+    int N, A, X, Y;
+    cin >> N >> A >> X >> Y;
+
+    int ans = X * min(A, N) + Y * max(N - min(A, N), 0LL);
+    cout << ans << endl;
 }

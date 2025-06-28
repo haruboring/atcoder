@@ -8,4 +8,28 @@
 using namespace std;
 
 signed main() {
+    int N, K;
+    cin >> N >> K;
+    vector<int> C(N);
+    rep(i, N) cin >> C[i];
+
+    int cnt = 0;
+    map<int, int> m;
+    rep(i, K) {
+        if (m[C[i]] == 0) cnt++;
+        m[C[i]]++;
+    }
+
+    int ans = cnt;
+    repp(i, K, N) {
+        // cout << "in" << i << " out" << i - K << endl;
+        if (m[C[i - K]] == 1) cnt--;
+        m[C[i - K]]--;
+        if (m[C[i]] == 0) cnt++;
+        m[C[i]]++;
+
+        ans = max(ans, cnt);
+    }
+
+    cout << ans << endl;
 }

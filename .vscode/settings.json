@@ -16,6 +16,7 @@
 		"*.HLA*": "hlasm",
 		"iostream": "cpp",
 		"cmath": "cpp",
-		"ostream": "cpp"
+		"ostream": "cpp",
+		"tuple": "cpp"
 	}
 }
