@@ -12,13 +12,13 @@ signed main() {
     cin >> S >> T;
 
     set<char> s;
-    rep(i, S.size() - 1) {
+    for (int i = 0; i < S.size() - 1; i++) {
         if ('A' <= S[i + 1] && S[i + 1] <= 'Z') {
             s.insert(S[i]);
         }
     }
 
-    rep(i, T.size()) {
+    for (int i = 0; i < T.size(); i++) {
         if (s.count(T[i])) s.erase(T[i]);
     }
 
