@@ -8,19 +8,4 @@
 using namespace std;
 
 signed main() {
-    int N, Q;
-    cin >> N >> Q;
-    vector<int> A(N);
-    rep(i, N) cin >> A[i];
-    vector<int> L(Q), R(Q);
-    rep(i, Q) cin >> L[i] >> R[i];
-
-    vector<int> B(N + 1);
-    rep(i, N) {
-        B[i + 1] = B[i] + A[i];
-    }
-
-    rep(i, Q) {
-        cout << B[R[i]] - B[L[i] - 1] << endl;
-    }
 }

@@ -8,4 +8,27 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+    int Q;
+    cin >> Q;
+    vector<int> L(Q), R(Q);
+    rep(i, Q) cin >> L[i] >> R[i];
+
+    vector<int> wc(N + 1);
+    rep(i, N) wc[i + 1] = wc[i] + A[i];
+
+    rep(i, Q) {
+        int w = wc[R[i]] - wc[L[i] - 1];
+        int l = R[i] - L[i] + 1 - w;
+        if (w == l) {
+            cout << "draw" << endl;
+        } else if (w > l) {
+            cout << "win" << endl;
+        } else {
+            cout << "lose" << endl;
+        }
+    }
 }
