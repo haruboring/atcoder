@@ -8,4 +8,16 @@
 using namespace std;
 
 signed main() {
+    string N;
+    cin >> N;
+
+    reverse(all(N));
+
+    int n = 0, d = 1;
+    rep(i, N.size()) {
+        n += d * (N[i] - '0');
+        d *= 2;
+    }
+
+    cout << n << endl;
 }

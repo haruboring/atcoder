@@ -8,4 +8,20 @@
 using namespace std;
 
 signed main() {
+    int N, K;
+    cin >> N >> K;
+    vector<int> P(N), Q(N);
+    rep(i, N) cin >> P[i];
+    rep(i, N) cin >> Q[i];
+
+    for (int x : P) {
+        for (int y : Q) {
+            if (x + y == K) {
+                cout << "Yes" << endl;
+                return 0;
+            }
+        }
+    }
+
+    cout << "No" << endl;
 }

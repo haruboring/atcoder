@@ -8,4 +8,15 @@
 using namespace std;
 
 signed main() {
+    int A, B;
+    cin >> A >> B;
+
+    repp(i, A, B + 1) {
+        if (100 % i == 0) {
+            cout << "Yes" << endl;
+            return 0;
+        }
+    }
+
+    cout << "No" << endl;
 }

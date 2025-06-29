@@ -8,4 +8,20 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    rep(i, N) rep(j, N) rep(k, N) {
+        if (i == j) continue;
+        if (i == k) continue;
+        if (j == k) continue;
+        if (A[i] + A[j] + A[k] == 1000) {
+            cout << "Yes" << endl;
+            return 0;
+        }
+    }
+
+    cout << "No" << endl;
 }

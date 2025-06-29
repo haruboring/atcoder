@@ -8,4 +8,17 @@
 using namespace std;
 
 signed main() {
+    int N, X;
+    cin >> N >> X;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    rep(i, N) {
+        if (A[i] == X) {
+            cout << "Yes" << endl;
+            return 0;
+        }
+    }
+
+    cout << "No" << endl;
 }
