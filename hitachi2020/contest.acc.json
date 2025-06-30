@@ -1,0 +1,75 @@
+{
+  "contest": {
+    "id": "hitachi2020",
+    "title": "Social Infrastructure Information Systems Division, Hitachi Programming Contest 2020",
+    "url": "https://atcoder.jp/contests/hitachi2020"
+  },
+  "tasks": [
+    {
+      "id": "hitachi2020_a",
+      "label": "A",
+      "title": "Hitachi String",
+      "url": "https://atcoder.jp/contests/hitachi2020/tasks/hitachi2020_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "hitachi2020_b",
+      "label": "B",
+      "title": "Nice Shopping",
+      "url": "https://atcoder.jp/contests/hitachi2020/tasks/hitachi2020_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "hitachi2020_c",
+      "label": "C",
+      "title": "ThREE",
+      "url": "https://atcoder.jp/contests/hitachi2020/tasks/hitachi2020_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "hitachi2020_d",
+      "label": "D",
+      "title": "Manga Market",
+      "url": "https://atcoder.jp/contests/hitachi2020/tasks/hitachi2020_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "hitachi2020_e",
+      "label": "E",
+      "title": "Odd Sum Rectangles",
+      "url": "https://atcoder.jp/contests/hitachi2020/tasks/hitachi2020_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "hitachi2020_f",
+      "label": "F",
+      "title": "Preserve Diameter",
+      "url": "https://atcoder.jp/contests/hitachi2020/tasks/hitachi2020_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}

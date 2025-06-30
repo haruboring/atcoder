@@ -8,16 +8,20 @@
 using namespace std;
 
 signed main() {
-    int D, N;
-    cin >> D >> N;
-    vector<int> L(N), R(N);
-    rep(i, N) cin >> L[i] >> R[i];
+    string S;
+    cin >> S;
 
-    vector<int> A(D + 1);
-    rep(i, N) A[L[i] - 1]++, A[R[i]]--;
-    rep(i, D) A[i + 1] += A[i];
-
-    rep(i, D) {
-        cout << A[i] << endl;
+    if (S.size() % 2 != 0) {
+        cout << "No" << endl;
+        return 0;
     }
+
+    for (int i = 0; i < S.size(); i += 2) {
+        if ("hi" != S.substr(i, 2)) {
+            cout << "No" << endl;
+            return 0;
+        }
+    }
+
+    cout << "Yes" << endl;
 }
