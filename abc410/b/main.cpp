@@ -8,4 +8,30 @@
 using namespace std;
 
 signed main() {
+    int N, Q;
+    cin >> N >> Q;
+    vector<int> X(Q);
+    rep(i, Q) cin >> X[i];
+
+    set<pair<int, int>> s;
+    map<int, int> m;
+    rep(i, N) s.insert({0, i + 1});
+    rep(i, Q) {
+        if (X[i] == 0) {
+            auto [c, idx] = *s.begin();
+            s.erase({c, idx});
+            s.insert({c + 1, idx});
+            m[idx] = c + 1;
+
+            cout << idx << " ";
+        } else {
+            int idx = X[i], c = m[idx];
+            s.erase({c, idx});
+            s.insert({c + 1, idx});
+            m[idx]++;
+
+            cout << idx << " ";
+        }
+    }
+    cout << endl;
 }

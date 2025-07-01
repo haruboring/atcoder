@@ -1,0 +1,53 @@
+{
+  "contest": {
+    "id": "arc056",
+    "title": "AtCoder Regular Contest 056",
+    "url": "https://atcoder.jp/contests/arc056"
+  },
+  "tasks": [
+    {
+      "id": "arc056_a",
+      "label": "A",
+      "title": "みんなでワイワイみかん",
+      "url": "https://atcoder.jp/contests/arc056/tasks/arc056_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc056_b",
+      "label": "B",
+      "title": "駐車場",
+      "url": "https://atcoder.jp/contests/arc056/tasks/arc056_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc056_c",
+      "label": "C",
+      "title": "部門分け",
+      "url": "https://atcoder.jp/contests/arc056/tasks/arc056_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc056_d",
+      "label": "D",
+      "title": "サケノミ",
+      "url": "https://atcoder.jp/contests/arc056/tasks/arc056_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}

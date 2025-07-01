@@ -8,5 +8,13 @@
 using namespace std;
 
 signed main() {
+    int L, R, d;
+    cin >> L >> R >> d;
 
+    int cnt = 0;
+    for (int i = 0; i <= R; i += d) {
+        if (i >= L) cnt++;
+    }
+
+    cout << cnt << endl;
 }

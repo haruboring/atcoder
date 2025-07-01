@@ -8,4 +8,31 @@
 using namespace std;
 
 signed main() {
+    int N, Q;
+    cin >> N >> Q;
+
+    vector<int> A(N);
+    rep(i, N) A[i] = i + 1;
+    int rot = 0;
+
+    rep(i, Q) {
+        int f;
+        cin >> f;
+
+        if (f == 1) {
+            int p, x;
+            cin >> p >> x;
+            p--;
+            A[(p + rot) % N] = x;
+        } else if (f == 2) {
+            int p;
+            cin >> p;
+            p--;
+            cout << A[(p + rot) % N] << endl;
+        } else {
+            int k;
+            cin >> k;
+            rot += k;
+        }
+    }
 }

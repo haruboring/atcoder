@@ -8,5 +8,13 @@
 using namespace std;
 
 signed main() {
+    int A, B, K, L;
+    cin >> A >> B >> K >> L;
 
+    if (A * L <= B) {
+        cout << A * K << endl;
+        return 0;
+    }
+
+    cout << min(B * ((K + L - 1) / L), B * (K / L) + A * (K % L)) << endl;
 }
