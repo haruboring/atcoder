@@ -9,25 +9,45 @@
       "id": "abc021_a",
       "label": "A",
       "title": "足し算",
-      "url": "https://atcoder.jp/contests/abc021/tasks/abc021_a"
+      "url": "https://atcoder.jp/contests/abc021/tasks/abc021_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
     },
     {
       "id": "abc021_b",
       "label": "B",
       "title": "嘘つきの高橋くん",
-      "url": "https://atcoder.jp/contests/abc021/tasks/abc021_b"
+      "url": "https://atcoder.jp/contests/abc021/tasks/abc021_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
     },
     {
       "id": "abc021_c",
       "label": "C",
       "title": "正直者の高橋くん",
-      "url": "https://atcoder.jp/contests/abc021/tasks/abc021_c"
+      "url": "https://atcoder.jp/contests/abc021/tasks/abc021_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
     },
     {
       "id": "abc021_d",
       "label": "D",
       "title": "多重ループ",
-      "url": "https://atcoder.jp/contests/abc021/tasks/abc021_d"
+      "url": "https://atcoder.jp/contests/abc021/tasks/abc021_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
     }
   ]
 }
