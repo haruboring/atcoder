@@ -8,8 +8,19 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
     string S;
     cin >> S;
+    int K;
+    cin >> K;
 
-    cout << S.substr(0, 3) << endl;
+    rep(i, N) {
+        if (S[i] == S[K - 1]) {
+            cout << S[i];
+        } else {
+            cout << "*";
+        }
+    }
+    cout << endl;
 }

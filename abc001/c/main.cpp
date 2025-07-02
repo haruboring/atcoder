@@ -8,8 +8,4 @@
 using namespace std;
 
 signed main() {
-    string S;
-    cin >> S;
-
-    cout << S.substr(0, 3) << endl;
 }

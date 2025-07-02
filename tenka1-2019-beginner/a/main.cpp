@@ -8,8 +8,12 @@
 using namespace std;
 
 signed main() {
-    string S;
-    cin >> S;
+    int A, B, C;
+    cin >> A >> B >> C;
 
-    cout << S.substr(0, 3) << endl;
+    if ((A - C) * (C - B) > 0) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
 }

@@ -8,8 +8,17 @@
 using namespace std;
 
 signed main() {
-    string S;
-    cin >> S;
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
 
-    cout << S.substr(0, 3) << endl;
+    int add = 0;
+    rep(i, N - 1) {
+        int a = max(0LL, A[i] - A[i + 1]);
+        A[i + 1] += a;
+        add += a;
+    }
+
+    cout << add << endl;
 }

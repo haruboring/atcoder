@@ -8,8 +8,8 @@
 using namespace std;
 
 signed main() {
-    string S;
-    cin >> S;
+    int N, X, T;
+    cin >> N >> X >> T;
 
-    cout << S.substr(0, 3) << endl;
+    cout << T * ((N + X - 1) / X) << endl;
 }

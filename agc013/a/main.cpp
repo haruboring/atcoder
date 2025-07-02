@@ -29,7 +29,7 @@ signed main() {
     int d = 1;
     A[N] = 1e9;
     rep(i, N) {
-        if (A[i] <= A[i + 1]) {
+        if (A[i] >= A[i + 1]) {
             d++;
         } else {
             rep(j, d) don[i - j] = j + 1;
@@ -46,6 +46,11 @@ signed main() {
         }
         cnt++;
     }
+
+    // rep(i, N) cout << upp[i] << " ";
+    // cout << endl;
+    // rep(i, N) cout << don[i] << " ";
+    // cout << endl;
 
     cout << cnt << endl;
 }

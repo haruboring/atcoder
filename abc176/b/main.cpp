@@ -8,8 +8,15 @@
 using namespace std;
 
 signed main() {
-    string S;
-    cin >> S;
+    string N;
+    cin >> N;
 
-    cout << S.substr(0, 3) << endl;
+    int sum = 0;
+    rep(i, N.size()) sum += N[i] - '0';
+
+    if (sum % 9) {
+        cout << "No" << endl;
+    } else {
+        cout << "Yes" << endl;
+    }
 }
