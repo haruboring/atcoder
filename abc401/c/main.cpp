@@ -8,4 +8,23 @@
 using namespace std;
 
 signed main() {
+    int N, K;
+    cin >> N >> K;
+
+    if (N < K) {
+        cout << 1 << endl;
+        return 0;
+    }
+
+    int mod = 1000000000;
+    vector<int> A(N + 1, 1);
+    int sum = K;
+    repp(i, K, N + 1) {
+        A[i] = sum;
+        sum -= A[i - K];
+        sum += A[i] + mod;
+        sum %= mod;
+    }
+
+    cout << A[N] % mod << endl;
 }
