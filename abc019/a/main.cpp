@@ -8,4 +8,10 @@
 using namespace std;
 
 signed main() {
+    vector<int> abc(3);
+    rep(i, 3) cin >> abc[i];
+
+    sort(all(abc));
+
+    cout << abc[1] << endl;
 }

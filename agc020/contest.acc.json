@@ -1,0 +1,75 @@
+{
+  "contest": {
+    "id": "agc020",
+    "title": "AtCoder Grand Contest 020",
+    "url": "https://atcoder.jp/contests/agc020"
+  },
+  "tasks": [
+    {
+      "id": "agc020_a",
+      "label": "A",
+      "title": "Move and Win",
+      "url": "https://atcoder.jp/contests/agc020/tasks/agc020_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc020_b",
+      "label": "B",
+      "title": "Ice Rink Game",
+      "url": "https://atcoder.jp/contests/agc020/tasks/agc020_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc020_c",
+      "label": "C",
+      "title": "Median Sum",
+      "url": "https://atcoder.jp/contests/agc020/tasks/agc020_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc020_d",
+      "label": "D",
+      "title": "Min Max Repetition",
+      "url": "https://atcoder.jp/contests/agc020/tasks/agc020_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc020_e",
+      "label": "E",
+      "title": "Encoding Subsets",
+      "url": "https://atcoder.jp/contests/agc020/tasks/agc020_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc020_f",
+      "label": "F",
+      "title": "Arcs on a Circle",
+      "url": "https://atcoder.jp/contests/agc020/tasks/agc020_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}
