@@ -8,4 +8,13 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+
+    int x = 1;
+    while (x * 2 <= N) {
+        x *= 2;
+    }
+
+    cout << x << endl;
 }

@@ -8,4 +8,18 @@
 using namespace std;
 
 signed main() {
+    int K;
+    cin >> K;
+
+    int N = 50;
+    cout << N << endl;
+    rep(i, N) {
+        int d = K / N;
+        if (i < K % N) d++;
+        int u = K - d;
+        d *= N;
+
+        cout << d - u + N - 1 << " ";
+    }
+    cout << endl;
 }
