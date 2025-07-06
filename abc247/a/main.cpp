@@ -8,5 +8,10 @@
 using namespace std;
 
 signed main() {
-    int N
+    string S;
+    cin >> S;
+
+    cout << 0;
+    rep(i, 3) cout << (S[i] == '1');
+    cout << endl;
 }
