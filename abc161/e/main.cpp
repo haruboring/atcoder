@@ -8,15 +8,4 @@
 using namespace std;
 
 signed main() {
-    int N;
-    cin >> N;
-    vector<int> A(N);
-    rep(i, N) cin >> A[i];
-
-    int sum = 0;
-    rep(i, N) sum += A[i];
-
-    int ans = 0;
-    rep(i, N) ans += A[i] * (sum - A[i]);
-    cout << ans / 2 << endl;
 }
