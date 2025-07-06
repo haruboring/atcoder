@@ -8,4 +8,18 @@
 using namespace std;
 
 signed main() {
+    int N, Y;
+    cin >> N >> Y;
+
+    rep(i, N + 1) {
+        rep(j, N + 1) {
+            int k = N - i - j;
+            if (k < 0) continue;
+            if (10000 * i + 5000 * j + 1000 * k == Y) {
+                cout << i << " " << j << " " << k << endl;
+                return 0;
+            }
+        }
+    }
+    cout << "-1 -1 -1" << endl;
 }

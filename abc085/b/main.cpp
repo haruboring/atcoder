@@ -8,4 +8,14 @@
 using namespace std;
 
 signed main() {
+    set<int> s;
+    int N;
+    cin >> N;
+    rep(i, N) {
+        int d;
+        cin >> d;
+        s.insert(d);
+    }
+
+    cout << s.size() << endl;
 }
