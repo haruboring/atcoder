@@ -1,0 +1,75 @@
+{
+  "contest": {
+    "id": "agc049",
+    "title": "AtCoder Grand Contest 049",
+    "url": "https://atcoder.jp/contests/agc049"
+  },
+  "tasks": [
+    {
+      "id": "agc049_a",
+      "label": "A",
+      "title": "Erasing Vertices",
+      "url": "https://atcoder.jp/contests/agc049/tasks/agc049_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc049_b",
+      "label": "B",
+      "title": "Flip Digits",
+      "url": "https://atcoder.jp/contests/agc049/tasks/agc049_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc049_c",
+      "label": "C",
+      "title": "Robots",
+      "url": "https://atcoder.jp/contests/agc049/tasks/agc049_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc049_d",
+      "label": "D",
+      "title": "Convex Sequence",
+      "url": "https://atcoder.jp/contests/agc049/tasks/agc049_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc049_e",
+      "label": "E",
+      "title": "Increment Decrement",
+      "url": "https://atcoder.jp/contests/agc049/tasks/agc049_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc049_f",
+      "label": "F",
+      "title": "Happy Sequence",
+      "url": "https://atcoder.jp/contests/agc049/tasks/agc049_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}
