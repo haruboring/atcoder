@@ -14,19 +14,14 @@ signed main() {
     rep(i, N) cin >> X[i] >> Y[i];
 
     int cnt = 0;
-    rep(i, N) rep(j, N) rep(k, N) {
-        double a = sqrt(powl(X[i] - X[j], 2) + powl(Y[i] - Y[j], 2));
-        double b = sqrt(powl(X[j] - X[k], 2) + powl(Y[j] - Y[k], 2));
-        double c = sqrt(powl(X[k] - X[i], 2) + powl(Y[k] - Y[i], 2));
+    rep(i, N - 2) repp(j, i + 1, N - 1) repp(k, j + 1, N) {
+        int xi = X[i], yi = Y[i], xj = X[j], yj = Y[j], xk = X[k], yk = Y[k];
+        xj -= xi, yj -= yi, xk -= xi, yk -= yi, xi = 0, yi = 0;
 
-        debug(powl(X[i] - X[j], 2));
+        if (xj == 0 && xk == 0) continue;
+        if (yj == 0 && yk == 0) continue;
 
-        double s = (a + b + c) / 2;
-        if ((s * (s - a) * (s - b) * (s - c)) < 0) continue;
-        double S = sqrt(s * (s - a) * (s - b) * (s - c));
-
-        if (abs(S) != 0) cnt++;
+        if (xj * yk != yj * xk) cnt++;
     }
-    debug(cnt);
-    cout << cnt / 6 << endl;
+    cout << cnt << endl;
 }
