@@ -8,4 +8,29 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+
+    int han = -1, hasi = -1;
+    rep(i, N - 1) {
+        int dist = 0;
+        cout << "? " << 1 << " " << 2 + i << endl;
+        cin >> dist;
+
+        if (dist > han) {
+            han = dist;
+            hasi = 2 + i;
+        }
+    }
+
+    int zen = -1;
+    rep(i, N) {
+        if (hasi == i + 1) continue;
+        int dist = 0;
+        cout << "? " << hasi << " " << 1 + i << endl;
+        cin >> dist;
+
+        zen = max(zen, dist);
+    }
+    cout << "! " << zen << endl;
 }

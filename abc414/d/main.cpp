@@ -8,15 +8,20 @@
 using namespace std;
 
 signed main() {
-    int N, A, B;
-    cin >> N >> A >> B;
+    int N, M;
+    cin >> N >> M;
     vector<int> X(N);
     rep(i, N) cin >> X[i];
 
-    int ans = 0;
-    rep(i, N - 1) {
-        int d = X[i + 1] - X[i];
-        ans += min(d * A, B);
+    sort(all(X));
+    int ans = X[N - 1] - X[0];
+    debug(ans);
+    vector<int> D(N - 1);
+    rep(i, N - 1) D[i] = X[i + 1] - X[i];
+    sort(all(D));
+    reverse(all(D));
+    rep(i, M - 1) {
+        ans -= D[i];
     }
 
     cout << ans << endl;

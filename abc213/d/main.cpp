@@ -8,16 +8,4 @@
 using namespace std;
 
 signed main() {
-    int N, A, B;
-    cin >> N >> A >> B;
-    vector<int> X(N);
-    rep(i, N) cin >> X[i];
-
-    int ans = 0;
-    rep(i, N - 1) {
-        int d = X[i + 1] - X[i];
-        ans += min(d * A, B);
-    }
-
-    cout << ans << endl;
 }

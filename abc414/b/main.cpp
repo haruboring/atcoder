@@ -10,13 +10,25 @@ using namespace std;
 signed main() {
     int N;
     cin >> N;
-    vector<int> A(N);
-    rep(i, N) cin >> A[i];
+    vector<char> c(N);
+    vector<int> l(N);
+    rep(i, N) cin >> c[i] >> l[i];
 
-    int ch = 0, mo = 0;
+    int len = 0;
     rep(i, N) {
-        if (A[i] > 0) mo++;
-        ch += A[i];
+        len += l[i];
+        if (len > 100) break;
     }
-    cout << (ch + mo - 1) / mo << endl;
+    if (len > 100) {
+        cout << "Too Long" << endl;
+        return 0;
+    }
+
+    rep(i, N) {
+        rep(j, l[i]) {
+            cout << c[i];
+        }
+    }
+
+    cout << endl;
 }

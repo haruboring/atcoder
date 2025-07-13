@@ -8,4 +8,14 @@
 using namespace std;
 
 signed main() {
+    string S;
+    cin >> S;
+
+    int s = -1, e;
+    rep(i, S.size()) {
+        if (s == -1 && S[i] == 'A') s = i;
+        if (S[i] == 'Z') e = i;
+    }
+
+    cout << e - s + 1 << endl;
 }

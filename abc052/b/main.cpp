@@ -8,4 +8,20 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    string S;
+    cin >> S;
+
+    int ans = 0, t = 0;
+    rep(i, N) {
+        if (S[i] == 'I') {
+            t++;
+        } else {
+            t--;
+        }
+        ans = max(ans, t);
+    }
+
+    cout << ans << endl;
 }

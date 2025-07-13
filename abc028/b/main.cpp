@@ -8,4 +8,16 @@
 using namespace std;
 
 signed main() {
+    string S;
+    cin >> S;
+
+    map<char, int> m;
+    rep(i, S.size()) {
+        m[S[i]]++;
+    }
+
+    for (char c = 'A'; c < 'F'; c++) {
+        cout << m[c] << " ";
+    }
+    cout << m['F'] << endl;
 }

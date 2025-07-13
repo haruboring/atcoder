@@ -8,4 +8,35 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    vector<int> B(0);
+    int t = 2;
+    while (t < 1e9 + 1000) {
+        B.push_back(t);
+        t *= 2;
+    }
+
+    debug(B.size());
+
+    sort(all(A));
+    int cnt = 0;
+    set<int> s;
+    for (int a : A) {
+        bool sk = false;
+        for (int b : B) {
+            if ((a % b == 0) && (s.count(a / b))) {
+                sk = true;
+                break;
+            }
+        }
+        if (sk) continue;
+        cnt++;
+        s.insert(a);
+    }
+
+    cout << cnt << endl;
 }
