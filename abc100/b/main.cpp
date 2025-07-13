@@ -8,4 +8,11 @@
 using namespace std;
 
 signed main() {
+    int D, N;
+    cin >> D >> N;
+    if (N == 100) N++;
+
+    int x = pow(100, D);
+
+    cout << x * N << endl;
 }

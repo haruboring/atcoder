@@ -8,4 +8,18 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    int cnt = 0;
+    rep(i, N) {
+        while (A[i] % 2 == 0) {
+            cnt++;
+            A[i] /= 2;
+        }
+    }
+
+    cout << cnt << endl;
 }
