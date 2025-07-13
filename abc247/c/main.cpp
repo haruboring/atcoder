@@ -8,4 +8,13 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+
+    string S = "";
+    rep(i, N) {
+        S = S + " " + to_string(i + 1) + " " + S;
+    }
+
+    cout << S << endl;
 }
