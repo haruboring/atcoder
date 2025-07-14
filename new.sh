@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # 1から500までのループ
-for i in $(seq 1 500)
+for i in $(seq 163 500)
 do
   # 数字を3桁のゼロ埋め形式にフォーマット (例: 1 -> 001)
   number=$(printf "%03d" $i)
