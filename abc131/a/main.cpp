@@ -8,4 +8,14 @@
 using namespace std;
 
 signed main() {
+    string S;
+    cin >> S;
+
+    rep(i, 3) {
+        if (S[i] == S[i + 1]) {
+            cout << "Bad" << endl;
+            return 0;
+        }
+    }
+    cout << "Good" << endl;
 }

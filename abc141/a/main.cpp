@@ -8,4 +8,14 @@
 using namespace std;
 
 signed main() {
+    char c;
+    cin >> c;
+
+    if (c == 'R') {
+        cout << "Sunny" << endl;
+    } else if (c == 'S') {
+        cout << "Cloudy" << endl;
+    } else {
+        cout << "Rainy" << endl;
+    }
 }

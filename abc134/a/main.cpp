@@ -8,4 +8,8 @@
 using namespace std;
 
 signed main() {
+    int r;
+    cin >> r;
+
+    cout << 3 * r * r << endl;
 }

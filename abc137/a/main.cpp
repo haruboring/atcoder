@@ -8,4 +8,8 @@
 using namespace std;
 
 signed main() {
+    int A, B;
+    cin >> A >> B;
+
+    cout << max({A + B, A - B, A * B}) << endl;
 }

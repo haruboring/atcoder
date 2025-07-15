@@ -8,4 +8,8 @@
 using namespace std;
 
 signed main() {
+    int N, A, B;
+    cin >> N >> A >> B;
+
+    cout << min(A * N, B) << endl;
 }

@@ -8,4 +8,13 @@
 using namespace std;
 
 signed main() {
+    int A, B;
+    cin >> A >> B;
+
+    if (abs(A - B) % 2 == 1) {
+        cout << "IMPOSSIBLE" << endl;
+        return 0;
+    }
+
+    cout << (A + B) / 2 << endl;
 }
