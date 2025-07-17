@@ -11,19 +11,6 @@ signed main() {
     string S;
     cin >> S;
 
-    rep(i, S.size()) {
-        if (i % 2) {
-            if (S[i] == 'R') {
-                cout << "No" << endl;
-                return 0;
-            }
-        } else {
-            if (S[i] == 'L') {
-                cout << "No" << endl;
-                return 0;
-            }
-        }
-    }
-
-    cout << "Yes" << endl;
+    rep(i, S.size()) if (isupper(S[i])) cout << S[i];
+    cout << endl;
 }

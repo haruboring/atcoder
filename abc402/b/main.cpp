@@ -8,22 +8,20 @@
 using namespace std;
 
 signed main() {
-    string S;
-    cin >> S;
+    int Q;
+    cin >> Q;
 
-    rep(i, S.size()) {
-        if (i % 2) {
-            if (S[i] == 'R') {
-                cout << "No" << endl;
-                return 0;
-            }
+    queue<int> q;
+    rep(_, Q) {
+        int f;
+        cin >> f;
+        if (f == 1) {
+            int X;
+            cin >> X;
+            q.push(X);
         } else {
-            if (S[i] == 'L') {
-                cout << "No" << endl;
-                return 0;
-            }
+            cout << q.front() << endl;
+            q.pop();
         }
     }
-
-    cout << "Yes" << endl;
 }
