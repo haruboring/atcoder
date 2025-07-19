@@ -8,12 +8,15 @@
 using namespace std;
 
 signed main() {
-    int A;
-    cin >> A;
+    string S;
+    cin >> S;
 
-    if (400 % A == 0) {
-        cout << 400 / A << endl;
-    } else {
-        cout << -1 << endl;
+    vector<int> v;
+    rep(i, S.size()) {
+        if (S[i] == '#') v.push_back(i + 1);
+    }
+
+    rep(i, v.size() / 2) {
+        cout << v[2 * i] << "," << v[2 * i + 1] << endl;
     }
 }

@@ -8,4 +8,18 @@
 using namespace std;
 
 signed main() {
+    int N, M;
+    cin >> N >> M;
+
+    int X = 0, tmp = 1;
+    rep(i, M + 1) {
+        X += tmp;
+        if (tmp > 1000000000 || X > 1000000000) {
+            cout << "inf" << endl;
+            return 0;
+        }
+        tmp *= N;
+    }
+
+    cout << X << endl;
 }

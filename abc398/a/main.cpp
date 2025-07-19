@@ -8,12 +8,17 @@
 using namespace std;
 
 signed main() {
-    int A;
-    cin >> A;
+    int N;
+    cin >> N;
 
-    if (400 % A == 0) {
-        cout << 400 / A << endl;
+    if (N % 2 == 0) {
+        rep(i, N / 2 - 1) cout << '-';
+        cout << "==";
+        rep(i, N / 2 - 1) cout << '-';
     } else {
-        cout << -1 << endl;
+        rep(i, N / 2) cout << '-';
+        cout << "=";
+        rep(i, N / 2) cout << '-';
     }
+    cout << endl;
 }

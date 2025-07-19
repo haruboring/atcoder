@@ -8,12 +8,21 @@
 using namespace std;
 
 signed main() {
-    int A;
-    cin >> A;
+    int N;
+    cin >> N;
+    set<int> s;
+    rep(i, N) {
+        int a;
+        cin >> a;
+        s.insert(a);
+    }
 
-    if (400 % A == 0) {
-        cout << 400 / A << endl;
+    int x;
+    cin >> x;
+
+    if (s.count(x)) {
+        cout << "Yes" << endl;
     } else {
-        cout << -1 << endl;
+        cout << "No" << endl;
     }
 }
