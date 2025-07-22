@@ -8,4 +8,9 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+
+    if (N % 2) N *= 2;
+    cout << N << endl;
 }

@@ -8,17 +8,4 @@
 using namespace std;
 
 signed main() {
-    int N;
-    cin >> N;
-    vector<int> A(N);
-    rep(i, N) cin >> A[i];
-
-    rep(i, N) A[i] -= i;
-    sort(all(A));
-
-    int b = A[N / 2];
-    int s = 0;
-    rep(i, N) s += abs(A[i] - b);
-
-    cout << s << endl;
 }

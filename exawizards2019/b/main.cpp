@@ -10,15 +10,14 @@ using namespace std;
 signed main() {
     int N;
     cin >> N;
-    vector<int> A(N);
-    rep(i, N) cin >> A[i];
+    string s;
+    cin >> s;
 
-    rep(i, N) A[i] -= i;
-    sort(all(A));
-
-    int b = A[N / 2];
-    int s = 0;
-    rep(i, N) s += abs(A[i] - b);
-
-    cout << s << endl;
+    int cnt = 0;
+    rep(i, N) if (s[i] == 'R') cnt++;
+    if (cnt > N - cnt) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
 }

@@ -8,4 +8,12 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    int ans = -1;
+    rep(i, N) rep(j, N) ans = max(ans, abs(A[i] - A[j]));
+    cout << ans << endl;
 }

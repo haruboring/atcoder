@@ -8,17 +8,12 @@
 using namespace std;
 
 signed main() {
-    int N;
-    cin >> N;
-    vector<int> A(N);
-    rep(i, N) cin >> A[i];
+    int B, G;
+    cin >> B >> G;
 
-    rep(i, N) A[i] -= i;
-    sort(all(A));
-
-    int b = A[N / 2];
-    int s = 0;
-    rep(i, N) s += abs(A[i] - b);
-
-    cout << s << endl;
+    if (B > G) {
+        cout << "Bat" << endl;
+    } else {
+        cout << "Glove" << endl;
+    }
 }

@@ -10,15 +10,15 @@ using namespace std;
 signed main() {
     int N;
     cin >> N;
-    vector<int> A(N);
-    rep(i, N) cin >> A[i];
+    string S, T;
+    cin >> S >> T;
 
-    rep(i, N) A[i] -= i;
-    sort(all(A));
+    rep(i, N) {
+        if (S[i] == 'o' && T[i] == 'o') {
+            cout << "Yes" << endl;
+            return 0;
+        }
+    }
 
-    int b = A[N / 2];
-    int s = 0;
-    rep(i, N) s += abs(A[i] - b);
-
-    cout << s << endl;
+    cout << "No" << endl;
 }

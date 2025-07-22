@@ -1,0 +1,53 @@
+{
+  "contest": {
+    "id": "arc102",
+    "title": "AtCoder Regular Contest 102",
+    "url": "https://atcoder.jp/contests/arc102"
+  },
+  "tasks": [
+    {
+      "id": "arc102_a",
+      "label": "C",
+      "title": "Triangular Relationship",
+      "url": "https://atcoder.jp/contests/arc102/tasks/arc102_a",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc102_b",
+      "label": "D",
+      "title": "All Your Paths are Different Lengths",
+      "url": "https://atcoder.jp/contests/arc102/tasks/arc102_b",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc102_c",
+      "label": "E",
+      "title": "Stop. Otherwise...",
+      "url": "https://atcoder.jp/contests/arc102/tasks/arc102_c",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc102_d",
+      "label": "F",
+      "title": "Revenge of BBuBBBlesort!",
+      "url": "https://atcoder.jp/contests/arc102/tasks/arc102_d",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}

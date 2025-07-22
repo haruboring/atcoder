@@ -13,12 +13,9 @@ signed main() {
     vector<int> A(N);
     rep(i, N) cin >> A[i];
 
-    rep(i, N) A[i] -= i;
     sort(all(A));
+    int ans = -1;
+    rep(i, N) if (A[i] <= N - i) ans = A[i];
 
-    int b = A[N / 2];
-    int s = 0;
-    rep(i, N) s += abs(A[i] - b);
-
-    cout << s << endl;
+    cout << ans << endl;
 }
