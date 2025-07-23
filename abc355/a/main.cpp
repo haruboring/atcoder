@@ -8,8 +8,17 @@
 using namespace std;
 
 signed main() {
-    int l1, l2, l3;
-    cin >> l1 >> l2 >> l3;
+    int A, B;
+    cin >> A >> B;
 
-    cout << (l1 ^ l2 ^ l3) << endl;
+    if (A == B) {
+        cout << -1 << endl;
+        return 0;
+    }
+
+    rep(i, 3) {
+        if (A == i + 1) continue;
+        if (B == i + 1) continue;
+        cout << i + 1 << endl;
+    }
 }

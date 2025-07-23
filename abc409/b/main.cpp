@@ -13,9 +13,14 @@ signed main() {
     vector<int> A(N);
     rep(i, N) cin >> A[i];
 
-    sort(all(A));
-    int ans = -1;
-    rep(i, N) if (A[i] <= N - i) ans = A[i];
-
-    cout << ans << endl;
+    for (int x = 100 + 10; x >= 0; x--) {
+        int cnt = 0;
+        rep(i, N) {
+            if (A[i] >= x) cnt++;
+            if (cnt >= x) {
+                cout << x << endl;
+                return 0;
+            }
+        }
+    }
 }

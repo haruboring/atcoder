@@ -8,4 +8,25 @@
 using namespace std;
 
 signed main() {
+    string S;
+    cin >> S;
+
+    int a = 0, b = 0;
+    rep(i, S.size()) {
+        if (i % 2 == 0) {
+            if (S[i] == '0') {
+                a++;
+            } else {
+                b++;
+            }
+        } else {
+            if (S[i] == '1') {
+                a++;
+            } else {
+                b++;
+            }
+        }
+    }
+
+    cout << min(a, b) << endl;
 }

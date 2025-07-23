@@ -8,8 +8,8 @@
 using namespace std;
 
 signed main() {
-    int l1, l2, l3;
-    cin >> l1 >> l2 >> l3;
+    int h, m;
+    cin >> h >> m;
 
-    cout << (l1 ^ l2 ^ l3) << endl;
+    cout << 60 * (17 - h) + (60 - m) << endl;
 }

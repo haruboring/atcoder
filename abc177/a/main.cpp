@@ -8,8 +8,12 @@
 using namespace std;
 
 signed main() {
-    int l1, l2, l3;
-    cin >> l1 >> l2 >> l3;
+    int D, T, S;
+    cin >> D >> T >> S;
 
-    cout << (l1 ^ l2 ^ l3) << endl;
+    if (T >= (D + S - 1) / S) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
 }

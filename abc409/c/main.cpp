@@ -8,4 +8,31 @@
 using namespace std;
 
 signed main() {
+    int N, L;
+    cin >> N >> L;
+    vector<int> D(N - 1);
+    rep(i, N - 1) cin >> D[i];
+
+    if (L % 3) {
+        cout << 0 << endl;
+        return 0;
+    }
+
+    map<int, int> m;
+    int t = 0;
+    m[t]++;
+    rep(i, N - 1) {
+        t += D[i];
+        t %= L;
+        m[t]++;
+    }
+
+    int ans = 0;
+    for (auto [a, cnt] : m) {
+        cnt *= m[(a + L / 3) % L] * m[(a + 2 * L / 3) % L];
+        ans += cnt;
+    }
+
+    debug(ans);
+    cout << ans / 3 << endl;
 }

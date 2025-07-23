@@ -8,12 +8,19 @@
 using namespace std;
 
 signed main() {
-    int A, B;
-    cin >> A >> B;
+    int N;
+    cin >> N;
+    vector<int> D(N);
+    rep(i, N) cin >> D[i];
 
-    if (A == B) {
-        cout << A + B << endl;
-    } else {
-        cout << 2 * max(A, B) - 1 << endl;
+    int cnt = 0;
+    rep(i, N) {
+        rep(j, D[i]) {
+            string s = to_string(i + 1) + to_string(j + 1);
+            sort(all(s));
+            if (s[0] == s[s.size() - 1]) cnt++;
+        }
     }
+
+    cout << cnt << endl;
 }

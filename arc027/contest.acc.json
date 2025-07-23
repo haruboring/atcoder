@@ -1,0 +1,53 @@
+{
+  "contest": {
+    "id": "arc027",
+    "title": "AtCoder Regular Contest 027",
+    "url": "https://atcoder.jp/contests/arc027"
+  },
+  "tasks": [
+    {
+      "id": "arc027_1",
+      "label": "A",
+      "title": "門限",
+      "url": "https://atcoder.jp/contests/arc027/tasks/arc027_1",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc027_2",
+      "label": "B",
+      "title": "大事な数なのでZ回書きまLた。",
+      "url": "https://atcoder.jp/contests/arc027/tasks/arc027_2",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc027_3",
+      "label": "C",
+      "title": "最高のトッピングにしような",
+      "url": "https://atcoder.jp/contests/arc027/tasks/arc027_3",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc027_4",
+      "label": "D",
+      "title": "ぴょんぴょんトレーニング",
+      "url": "https://atcoder.jp/contests/arc027/tasks/arc027_4",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}

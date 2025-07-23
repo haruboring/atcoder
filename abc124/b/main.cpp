@@ -8,4 +8,16 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> H(N);
+    rep(i, N) cin >> H[i];
+
+    int cnt = 0, ma = -1;
+    rep(i, N) {
+        if (H[i] >= ma) cnt++;
+        ma = max(ma, H[i]);
+    }
+
+    cout << cnt << endl;
 }
