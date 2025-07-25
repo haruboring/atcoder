@@ -1,0 +1,64 @@
+{
+  "contest": {
+    "id": "aising2019",
+    "title": "AISing Programming Contest 2019",
+    "url": "https://atcoder.jp/contests/aising2019"
+  },
+  "tasks": [
+    {
+      "id": "aising2019_a",
+      "label": "A",
+      "title": "Bulletin Board",
+      "url": "https://atcoder.jp/contests/aising2019/tasks/aising2019_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "aising2019_b",
+      "label": "B",
+      "title": "Contests",
+      "url": "https://atcoder.jp/contests/aising2019/tasks/aising2019_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "aising2019_c",
+      "label": "C",
+      "title": "Alternating Path",
+      "url": "https://atcoder.jp/contests/aising2019/tasks/aising2019_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "aising2019_d",
+      "label": "D",
+      "title": "Nearest Card Game",
+      "url": "https://atcoder.jp/contests/aising2019/tasks/aising2019_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "aising2019_e",
+      "label": "E",
+      "title": "Attack to a Tree",
+      "url": "https://atcoder.jp/contests/aising2019/tasks/aising2019_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}
