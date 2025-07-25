@@ -6,16 +6,7 @@
 #define repp(i, m, n) for (int i = m; i < (int)(n); i++)
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
+using mint = atcoder::modint998244353;
 
 signed main() {
-    int N;
-    cin >> N;
-
-    for (int i = 2; i * i <= N; i++) {
-        if (N % i == 0) {
-            cout << "NO" << endl;
-            return 0;
-        }
-    }
-    cout << "YES" << endl;
 }
