@@ -7,7 +7,7 @@
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
 
-vector<vector<int>> d(500, vector<int>(500, 1e18));
+vector<vector<int>> d(501, vector<int>(501, 1e18));
 void warshall_floyd(int n) {
     for (int k = 0; k < n; k++) {          // 経由する頂点
         for (int i = 0; i < n; i++) {      // 始点
@@ -40,50 +40,36 @@ signed main() {
     int Q;
     cin >> Q;
 
+    rep(i, N + 1) d[i][i] = 0;
+
     rep(i, M) A[i]--, B[i]--;
     rep(i, M) {
         d[A[i]][B[i]] = min(d[A[i]][B[i]], C[i]);
         d[B[i]][A[i]] = min(d[B[i]][A[i]], C[i]);
     }
     rep(i, K) D[i]--;
-    rep(i, K - 1) repp(j, i + 1, K) {
-        d[D[i]][D[j]] = min(d[D[i]][D[j]], T);
-        d[D[j]][D[i]] = min(d[D[j]][D[i]], T);
-    }
+    rep(i, K) d[D[i]][N] = T, d[N][D[i]] = 0;
 
-    rep(i, N) d[i][i] = 0;
-
-    unordered_set<int> sD;
-    rep(i, K) sD.insert(D[i]);
-
-    warshall_floyd(N);
-    bool nes = false;
+    warshall_floyd(N + 1);
     rep(_, Q) {
         int f;
         cin >> f;
+
+        debug(f);
 
         if (f == 1) {
             int x, y, t;
             cin >> x >> y >> t;
             x--, y--;
-
-            if (t < d[x][y]) nes = true;
             d[x][y] = min(d[x][y], t);
             d[y][x] = min(d[y][x], t);
-            if (nes) _warshall_floyd(N, x, y);
-            nes = false;
+            _warshall_floyd(N + 1, x, y);
         } else if (f == 2) {
             int x;
             cin >> x;
             x--;
-            for (int d_ : sD) {  // 絶対ここ、キモすぎる
-                if (T < d[x][d_]) nes = true;
-                d[x][d_] = min(d[x][d_], T);
-                d[d_][x] = min(d[d_][x], T);
-                if (nes) _warshall_floyd(N, x, d_);
-                nes = false;
-            }
-            sD.insert(x);
+            d[x][N] = T, d[N][x] = 0;
+            _warshall_floyd(N + 1, x, N);
         } else {
             int sum = 0;
             rep(i, N) {
