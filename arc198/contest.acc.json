@@ -1,0 +1,64 @@
+{
+  "contest": {
+    "id": "arc198",
+    "title": "AtCoder Regular Contest 198 (Div. 2)",
+    "url": "https://atcoder.jp/contests/arc198"
+  },
+  "tasks": [
+    {
+      "id": "arc198_a",
+      "label": "A",
+      "title": "I hate 1",
+      "url": "https://atcoder.jp/contests/arc198/tasks/arc198_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc198_b",
+      "label": "B",
+      "title": "Rivalry",
+      "url": "https://atcoder.jp/contests/arc198/tasks/arc198_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc198_c",
+      "label": "C",
+      "title": "Error Swap",
+      "url": "https://atcoder.jp/contests/arc198/tasks/arc198_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc198_d",
+      "label": "D",
+      "title": "Many Palindromes on Tree",
+      "url": "https://atcoder.jp/contests/arc198/tasks/arc198_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc198_e",
+      "label": "E",
+      "title": "Monotone OR",
+      "url": "https://atcoder.jp/contests/arc198/tasks/arc198_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}

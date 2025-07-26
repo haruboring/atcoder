@@ -10,14 +10,6 @@ using namespace std;
 signed main() {
     int N, K;
     cin >> N >> K;
-    vector<int> H(N);
-    rep(i, N) cin >> H[i];
 
-    sort(all(H)), reverse(all(H));
-    rep(i, min(K, N)) H[i] = 0;
-
-    int cnt = 0;
-    rep(i, N) cnt += H[i];
-
-    cout << cnt << endl;
+    cout << N - K + 1 << endl;
 }
