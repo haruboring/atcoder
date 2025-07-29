@@ -18,6 +18,7 @@
 		"cmath": "cpp",
 		"ostream": "cpp",
 		"tuple": "cpp",
-		"ratio": "cpp"
+		"ratio": "cpp",
+		"random": "cpp"
 	}
 }
