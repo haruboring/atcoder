@@ -8,4 +8,17 @@
 using namespace std;
 
 signed main() {
+    string N;
+    cin >> N;
+
+    if (N[0] == N[1] && N[1] == N[2]) {
+        cout << "Yes" << endl;
+        return 0;
+    }
+    if (N[2] == N[3] && N[1] == N[2]) {
+        cout << "Yes" << endl;
+        return 0;
+    }
+
+    cout << "No" << endl;
 }

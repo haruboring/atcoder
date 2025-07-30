@@ -8,4 +8,17 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+
+    int n = 1;
+    int ln = 1, ln_1 = 2;
+    while (n < N) {
+        int l = ln;
+        ln = ln + ln_1;
+        ln_1 = l;
+        n++;
+    }
+
+    cout << ln << endl;
 }
