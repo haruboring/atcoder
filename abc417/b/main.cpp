@@ -8,10 +8,17 @@
 using namespace std;
 
 signed main() {
-    int N, K;
-    cin >> N >> K;
+    int N, M;
+    cin >> N >> M;
+    vector<int> A(N), B(M);
+    rep(i, N) cin >> A[i];
+    rep(i, M) cin >> B[i];
 
-    int cnt = K;
-    rep(i, N - 1) cnt *= K - 1;
-    cout << cnt << endl;
+    multiset<int> s;
+    rep(i, N) s.insert(A[i]);
+
+    rep(i, M) if (s.count(B[i])) s.erase(s.find(B[i]));
+
+    for (int a : s) cout << a << " ";
+    cout << endl;
 }

@@ -10,21 +10,20 @@ using namespace std;
 signed main() {
     int N;
     cin >> N;
-    vector<string> S(N);
-    rep(i, N) cin >> S[i];
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
 
-    map<string, int> m;
-    rep(i, N) m[S[i]]++;
-
-    int ma = -1;
-    for (auto [k, v] : m) {
-        ma = max(ma, v);
+    map<int, int> ii, jj;
+    rep(i, N) {
+        ii[A[i] + i]++;
+        jj[i - A[i]]++;
     }
 
-    for (auto [k, v] : m) {
-        if (ma == v) {
-            cout << k << endl;
-            return 0;
-        }
+    int cnt = 0;
+    rep(i, N) {
+        jj[i - A[i]]--;
+        cnt += jj[A[i] + i];
     }
+
+    cout << cnt << endl;
 }

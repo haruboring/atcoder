@@ -8,10 +8,4 @@
 using namespace std;
 
 signed main() {
-    int N, K;
-    cin >> N >> K;
-
-    int cnt = K;
-    rep(i, N - 1) cnt *= K - 1;
-    cout << cnt << endl;
 }

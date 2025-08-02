@@ -19,6 +19,7 @@
 		"ostream": "cpp",
 		"tuple": "cpp",
 		"ratio": "cpp",
-		"random": "cpp"
+		"random": "cpp",
+		"iomanip": "cpp"
 	}
 }

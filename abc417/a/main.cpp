@@ -8,10 +8,10 @@
 using namespace std;
 
 signed main() {
-    int N, K;
-    cin >> N >> K;
+    int N, A, B;
+    cin >> N >> A >> B;
+    string S;
+    cin >> S;
 
-    int cnt = K;
-    rep(i, N - 1) cnt *= K - 1;
-    cout << cnt << endl;
+    cout << S.substr(A, N - A - B) << endl;
 }
