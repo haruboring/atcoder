@@ -8,4 +8,14 @@
 using namespace std;
 
 signed main() {
+    int N, K;
+    cin >> N >> K;
+    vector<int> R(N);
+    rep(i, N) cin >> R[i];
+
+    sort(all(R));
+    double c = 0;
+    rep(i, K) c = (c + R[N - K + i]) / 2;
+
+    cout << fixed << setprecision(10) << c << endl;
 }

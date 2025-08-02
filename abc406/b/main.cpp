@@ -8,19 +8,4 @@
 using namespace std;
 
 signed main() {
-    int N, K;
-    cin >> N >> K;
-    vector<int> A(N), B(N);
-    rep(i, N) cin >> A[i] >> B[i];
-
-    map<int, int> m;
-    rep(i, N) m[A[i]] += B[i];
-
-    for (auto [k, v] : m) {
-        if (K - v <= 0) {
-            cout << k << endl;
-            return 0;
-        }
-        K -= v;
-    }
 }
