@@ -8,4 +8,15 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    set<int> s;
+    rep(i, N) s.insert(A[i]);
+
+    cout << s.size() << endl;
+    for (int a : s) cout << a << " ";
+    cout << endl;
 }

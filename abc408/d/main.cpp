@@ -8,4 +8,14 @@
 using namespace std;
 
 signed main() {
+    int T;
+    cin >> T;
+    rep(_, T) {
+        int N;
+        cin >> N;
+        string S;
+        cin >> S;
+
+        
+    }
 }

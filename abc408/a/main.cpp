@@ -8,4 +8,16 @@
 using namespace std;
 
 signed main() {
+    int N, S;
+    cin >> N >> S;
+    vector<int> T(N + 1);
+    rep(i, N) cin >> T[i + 1];
+
+    rep(i, N) {
+        if (T[i + 1] - T[i] > S) {
+            cout << "No" << endl;
+            return 0;
+        }
+    }
+    cout << "Yes" << endl;
 }
