@@ -1,0 +1,75 @@
+{
+  "contest": {
+    "id": "agc055",
+    "title": "AtCoder Grand Contest 055",
+    "url": "https://atcoder.jp/contests/agc055"
+  },
+  "tasks": [
+    {
+      "id": "agc055_a",
+      "label": "A",
+      "title": "ABC Identity",
+      "url": "https://atcoder.jp/contests/agc055/tasks/agc055_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc055_b",
+      "label": "B",
+      "title": "ABC Supremacy",
+      "url": "https://atcoder.jp/contests/agc055/tasks/agc055_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc055_c",
+      "label": "C",
+      "title": "Weird LIS",
+      "url": "https://atcoder.jp/contests/agc055/tasks/agc055_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc055_d",
+      "label": "D",
+      "title": "ABC Ultimatum",
+      "url": "https://atcoder.jp/contests/agc055/tasks/agc055_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc055_e",
+      "label": "E",
+      "title": "Set Merging",
+      "url": "https://atcoder.jp/contests/agc055/tasks/agc055_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "agc055_f",
+      "label": "F",
+      "title": "Creative Splitting",
+      "url": "https://atcoder.jp/contests/agc055/tasks/agc055_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}
