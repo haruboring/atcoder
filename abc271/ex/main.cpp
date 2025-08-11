@@ -8,14 +8,4 @@
 using namespace std;
 
 signed main() {
-    int X, Y;
-    cin >> X >> Y;
-
-    double a = 0;
-    repp(i, 1, 7) {
-        repp(j, 1, 7) {
-            if (i + j >= X || abs(i - j) >= Y) a++;
-        }
-    }
-    cout << fixed << setprecision(10) << a / 36 << endl;
 }
