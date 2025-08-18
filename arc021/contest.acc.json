@@ -1,0 +1,53 @@
+{
+  "contest": {
+    "id": "arc021",
+    "title": "AtCoder Regular Contest 021",
+    "url": "https://atcoder.jp/contests/arc021"
+  },
+  "tasks": [
+    {
+      "id": "arc021_1",
+      "label": "A",
+      "title": "DEAD END",
+      "url": "https://atcoder.jp/contests/arc021/tasks/arc021_1",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc021_2",
+      "label": "B",
+      "title": "Your Numbers are XORed...",
+      "url": "https://atcoder.jp/contests/arc021/tasks/arc021_2",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc021_3",
+      "label": "C",
+      "title": "増築王高橋君",
+      "url": "https://atcoder.jp/contests/arc021/tasks/arc021_3",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc021_4",
+      "label": "D",
+      "title": "だいたい最小全域木",
+      "url": "https://atcoder.jp/contests/arc021/tasks/arc021_4",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}
