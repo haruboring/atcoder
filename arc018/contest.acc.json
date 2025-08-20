@@ -1,0 +1,53 @@
+{
+  "contest": {
+    "id": "arc018",
+    "title": "AtCoder Regular Contest 018",
+    "url": "https://atcoder.jp/contests/arc018"
+  },
+  "tasks": [
+    {
+      "id": "arc018_1",
+      "label": "A",
+      "title": "BMI",
+      "url": "https://atcoder.jp/contests/arc018/tasks/arc018_1",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc018_2",
+      "label": "B",
+      "title": "格子点と整数",
+      "url": "https://atcoder.jp/contests/arc018/tasks/arc018_2",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc018_3",
+      "label": "C",
+      "title": "席替え",
+      "url": "https://atcoder.jp/contests/arc018/tasks/arc018_3",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "arc018_4",
+      "label": "D",
+      "title": "僕は友達が少ない",
+      "url": "https://atcoder.jp/contests/arc018/tasks/arc018_4",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}

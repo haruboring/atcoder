@@ -20,6 +20,12 @@
 		"tuple": "cpp",
 		"ratio": "cpp",
 		"random": "cpp",
-		"iomanip": "cpp"
+		"iomanip": "cpp",
+		"barrier": "cpp",
+		"latch": "cpp",
+		"limits": "cpp",
+		"semaphore": "cpp",
+		"valarray": "cpp",
+		"chrono": "cpp"
 	}
 }
