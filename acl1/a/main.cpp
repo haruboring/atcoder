@@ -24,24 +24,19 @@ signed main() {
 
     repp(i, 1, N) {
         auto [x, y, _] = t[i];
-        bool merged = false;
         set<pair<int, int>> erased;
         pair<int, int> tt = {1e18, -1};
         for (auto [cy, ci] : s) {
             if (cy < y) {
                 uf.merge(i, ci);
                 erased.insert({cy, ci});
-                merged = true;
-                tt.second = ci;
-                tt.first = min(tt.first, cy);
+                if (tt.first == 1e18) tt = {cy, ci};
             } else {
                 break;
             }
         }
-        // debug("ok");
         for (auto [cy, ci] : erased) s.erase({cy, ci});
-        // debug("Okkk");
-        if (merged) {
+        if (tt.first != 1e18) {
             s.insert(tt);
         } else {
             s.insert({y, i});
