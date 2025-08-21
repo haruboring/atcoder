@@ -6,23 +6,6 @@
 #define repp(i, m, n) for (int i = m; i < (int)(n); i++)
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
-using mint = atcoder::modint1000000007;
 
 signed main() {
-    int N;
-    cin >> N;
-    vector<int> A(N);
-    rep(i, N) cin >> A[i];
-
-    map<int, int> m;
-    m[0] = 3;
-
-    mint cnt = 1;
-    rep(i, N) {
-        cnt *= m[A[i]];
-        m[A[i]]--;
-        m[A[i] + 1]++;
-    }
-
-    cout << cnt.val() << endl;
 }
