@@ -8,13 +8,4 @@
 using namespace std;
 
 signed main() {
-    set<int> s;
-    s.insert(10), s.insert(20), s.insert(30);
-
-    auto itr = s.lower_bound(40);
-    if (itr != s.end()) {
-        cout << "存在する" << endl;
-    }else{
-        cout << "存在しない" << endl;
-    }
 }

@@ -1,0 +1,97 @@
+{
+  "contest": {
+    "id": "abc276",
+    "title": "AtCoder Beginner Contest 276",
+    "url": "https://atcoder.jp/contests/abc276"
+  },
+  "tasks": [
+    {
+      "id": "abc276_a",
+      "label": "A",
+      "title": "Rightmost",
+      "url": "https://atcoder.jp/contests/abc276/tasks/abc276_a",
+      "directory": {
+        "path": "a",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc276_b",
+      "label": "B",
+      "title": "Adjacency List",
+      "url": "https://atcoder.jp/contests/abc276/tasks/abc276_b",
+      "directory": {
+        "path": "b",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc276_c",
+      "label": "C",
+      "title": "Previous Permutation",
+      "url": "https://atcoder.jp/contests/abc276/tasks/abc276_c",
+      "directory": {
+        "path": "c",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc276_d",
+      "label": "D",
+      "title": "Divide by 2 or 3",
+      "url": "https://atcoder.jp/contests/abc276/tasks/abc276_d",
+      "directory": {
+        "path": "d",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc276_e",
+      "label": "E",
+      "title": "Round Trip",
+      "url": "https://atcoder.jp/contests/abc276/tasks/abc276_e",
+      "directory": {
+        "path": "e",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc276_f",
+      "label": "F",
+      "title": "Double Chance",
+      "url": "https://atcoder.jp/contests/abc276/tasks/abc276_f",
+      "directory": {
+        "path": "f",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc276_g",
+      "label": "G",
+      "title": "Count Sequences",
+      "url": "https://atcoder.jp/contests/abc276/tasks/abc276_g",
+      "directory": {
+        "path": "g",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    },
+    {
+      "id": "abc276_h",
+      "label": "Ex",
+      "title": "Construct a Matrix",
+      "url": "https://atcoder.jp/contests/abc276/tasks/abc276_h",
+      "directory": {
+        "path": "ex",
+        "testdir": "tests",
+        "submit": "main.cpp"
+      }
+    }
+  ]
+}
