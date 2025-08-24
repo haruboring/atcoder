@@ -8,15 +8,4 @@
 using namespace std;
 
 signed main() {
-    int T, N;
-    cin >> T >> N;
-    vector<int> L(N), R(N);
-    rep(i, N) cin >> L[i] >> R[i];
-
-    vector<int> c(T + 1);
-    rep(i, N) c[L[i]]++, c[R[i]]--;
-    rep(i, T) c[i + 1] += c[i];
-
-    rep(i, T) cout << c[i] << " ";
-    cout << endl;
 }
