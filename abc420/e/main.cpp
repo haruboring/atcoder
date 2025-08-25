@@ -8,7 +8,7 @@
 using namespace std;
 
 vector<int> par(200'000 + 100);
-vector<int> cnt(200'000 + 100, 0);
+vector<int> cnt(200'000 + 100, 0);  // ここ追加
 
 void init(int n) {
     rep(i, n) par[i] = i;
@@ -26,8 +26,8 @@ int unite(int x, int y) {
     if (rx == ry) {
         return 0;
     } else {
-        cnt[ry] += cnt[rx];
-        cnt[rx] = 0;
+        cnt[ry] += cnt[rx];  // ここ追加
+        cnt[rx] = 0;         // ここ追加
         return par[rx] = ry;
     }
 }
@@ -46,7 +46,6 @@ signed main() {
             int u, v;
             cin >> u >> v;
             u--, v--;
-
             unite(u, v);
         } else if (f == 2) {
             int v;
@@ -57,13 +56,11 @@ signed main() {
             } else {
                 cnt[root(v)]--;
             }
-
             c[v] = !c[v];
         } else {
             int v;
             cin >> v;
             v--;
-
             if (cnt[root(v)] > 0) {
                 cout << "Yes" << endl;
             } else {
