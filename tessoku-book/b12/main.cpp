@@ -8,4 +8,19 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+
+    double l = 0, r = 1e4;
+    rep(_, 64) {
+        double x = (l + r) / 2;
+        double a = x * x * x + x;
+        if (a > N) {
+            r = x;
+        } else {
+            l = x;
+        }
+    }
+
+    cout << fixed << setprecision(10) << r << endl;
 }

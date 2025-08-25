@@ -8,4 +8,19 @@
 using namespace std;
 
 signed main() {
+    int N, K;
+    cin >> N >> K;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    A.push_back(1e18);
+    int l = 0, r = -1, sum = 0;
+    int cnt = 0;
+    while (l < N) {
+        while (sum + A[r + 1] <= K) r++, sum += A[r];
+        if (sum >= 0 && sum <= K) cnt += r - l + 1;
+        sum -= A[l];
+        l++;
+    }
+    cout << cnt << endl;
 }
