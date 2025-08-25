@@ -8,4 +8,20 @@
 using namespace std;
 
 signed main() {
+    int N, X;
+    cin >> N >> X;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    int l = 0, r = N - 1;
+    while (r - l > 1) {
+        int m = (l + r) / 2;
+        if (A[m] >= X) {
+            r = m;
+        } else {
+            l = m;
+        }
+        // cout << r << " " << l << endl;
+    }
+    cout << r + 1 << endl;
 }
