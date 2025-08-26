@@ -8,4 +8,19 @@
 using namespace std;
 
 signed main() {
+    string S, T;
+    cin >> S >> T;
+
+    int N = S.size(), M = T.size();
+    vector<vector<int>> dp(N + 1, vector<int>(M + 1, 1e18));
+    dp[0][0] = 0;
+    rep(i, N + 1) {
+        rep(j, M + 1) {
+            if (i < N && j < M && S[i] == T[j]) dp[i + 1][j + 1] = min(dp[i + 1][j + 1], dp[i][j]);
+            if (i < N && j < M) dp[i + 1][j + 1] = min(dp[i + 1][j + 1], dp[i][j] + 1);
+            if (i < N) dp[i + 1][j] = min(dp[i + 1][j], dp[i][j] + 1);
+            if (j < M) dp[i][j + 1] = min(dp[i][j + 1], dp[i][j] + 1);
+        }
+    }
+    cout << dp[N][M] << endl;
 }
