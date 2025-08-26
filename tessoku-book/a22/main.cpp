@@ -8,4 +8,18 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N), B(N);
+    rep(i, N - 1) cin >> A[i + 1];
+    rep(i, N - 1) cin >> B[i + 1];
+
+    vector<int> s(N + 1, -1);
+    s[1] = 0;
+    for (int i = 1; i < N; i++) {
+        if (s[i] == -1) continue;
+        s[A[i]] = max(s[A[i]], s[i] + 100);
+        s[B[i]] = max(s[B[i]], s[i] + 150);
+    }
+    cout << s[N] << endl;
 }
