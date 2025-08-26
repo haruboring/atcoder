@@ -8,4 +8,18 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    set<int> s;
+    rep(i, N) s.insert(A[i]);
+    vector<int> v(all(s));
+    sort(all(v));
+    map<int, int> m;
+    rep(i, v.size()) m[v[i]] = i + 1;
+
+    rep(i, N) cout << m[A[i]] << " ";
+    cout << endl;
 }
