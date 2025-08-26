@@ -8,4 +8,16 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> H(N);
+    rep(i, N) cin >> H[i];
+
+    vector<int> c(N, 1e18);
+    c[0] = 0;
+    rep(i, N - 1) {
+        c[i + 1] = min(c[i + 1], c[i] + abs(H[i + 1] - H[i]));
+        if (i < N - 2) c[i + 2] = min(c[i + 2], c[i] + abs(H[i + 2] - H[i]));
+    }
+    cout << c[N - 1] << endl;
 }
