@@ -8,4 +8,19 @@
 using namespace std;
 
 signed main() {
+    int H, W;
+    cin >> H >> W;
+    vector<string> S(H);
+    rep(i, H) cin >> S[i];
+
+    vector<vector<int>> dp(H, vector<int>(W, 0));
+    dp[0][0] = 1;
+    rep(i, H) {
+        rep(j, W) {
+            if (i + 1 < H && S[i + 1][j] != '#') dp[i + 1][j] += dp[i][j];
+            if (j + 1 < W && S[i][j + 1] != '#') dp[i][j + 1] += dp[i][j];
+        }
+    }
+
+    cout << dp[H - 1][W - 1] << endl;
 }
