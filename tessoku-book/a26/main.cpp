@@ -8,4 +8,21 @@
 using namespace std;
 
 signed main() {
+    int Q;
+    cin >> Q;
+    vector<int> X(Q);
+    rep(i, Q) cin >> X[i];
+
+    rep(i, Q) {
+        int x = X[i];
+        bool p = true;
+        for (int j = 2; j * j <= X[i]; j++) {
+            if (x % j == 0) p = false;
+        }
+        if (p) {
+            cout << "Yes" << endl;
+        } else {
+            cout << "No" << endl;
+        }
+    }
 }

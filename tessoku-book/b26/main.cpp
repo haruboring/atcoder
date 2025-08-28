@@ -8,4 +8,17 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+
+    vector<bool> A(N + 1, true);
+    for (int i = 2; i <= N; i++) {
+        int t = 2 * i;
+        while (t <= N) {
+            A[t] = false;
+            t += i;
+        }
+    }
+    repp(i, 2, N + 1) if (A[i]) cout << i << " ";
+    cout << endl;
 }
