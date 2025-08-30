@@ -12,17 +12,12 @@ signed main() {
     cin >> Rt >> Ct >> Ra >> Ca;
     int N, M, L;
     cin >> N >> M >> L;
-    debug(L);
     vector<char> S(M);
     vector<int> A(M);
     rep(i, M) cin >> S[i] >> A[i];
     vector<char> T(L);
-    debug(L);
     vector<int> B(L);
-    debug("kokomade");
     rep(i, L) cin >> T[i] >> B[i];
-
-    debug("ok");
 
     vector<char> S_, T_;
     vector<int> A_ = A, B_ = B;
@@ -33,13 +28,11 @@ signed main() {
     rep(i, L) b += B[i], s.insert(b);
     rep(i, M - 1) A_[i + 1] += A[i];
     rep(i, L - 1) B_[i + 1] += B[i];
-    debug("k");
 
     int NN = s.size();
     vector<int> time(NN);
     vector<char> SS(NN), TT(NN);
     int i = 0;
-    debug(NN);
     for (auto ss : s) {
         time[i] = ss;
         int si = lower_bound(all(A_), ss) - A_.begin();
@@ -54,13 +47,11 @@ signed main() {
         time[NN - 1 - i] -= time[NN - 2 - i];
     }
 
-    // rep(i, NN) cout << time[i] << " " << SS[i] << " " << TT[i] << " "<< endl;
+    // rep(i, NN) cout << time[i] << " " << SS[i] << " " << TT[i] << " " << endl;
 
     map<int, pair<int, int>> m;
     m['U'] = {-1, 0}, m['D'] = {1, 0}, m['L'] = {0, -1}, m['R'] = {0, 1};
 
-    // debug(SS.size());
-    // debug(TT.size());
     int cnt = 0;
     rep(i, NN) {
         auto [rt, ct] = m[SS[i]];
@@ -69,17 +60,17 @@ signed main() {
         // debug(t_);
         if (SS[i] == TT[i]) {
             // onazihoukouint Rt, Ct, Ra, Ca;
-            if (Rt == Ct && Ra == Ca) cnt += t_;
+            if (Rt == Ra && Ct == Ca) cnt += t_;
         } else if (rt * ra == -1) {
             // 向かい合うor離れ合う 縦
-            if ((Ct == Ca) && ((Rt - Ra) * (rt - ra) < 0) && abs(Rt - Ra) % 2 == 0 && abs(Rt - Ra) != 0) cnt++;
+            if ((Ct == Ca) && ((Rt - Ra) * (rt - ra) < 0) && (abs(Rt - Ra) % 2 == 0) && (Rt != Ra) && (abs(Rt - Ra) / 2 <= t_)) cnt++;
         } else if (ct * ca == -1) {
             // 向かい合うor離れ合う 横
-            if ((Rt == Ra) && (Ct - Ca) * (ct - ca) < 0 && abs(Ct - Ca) % 2 == 0 && abs(Ct - Ca) != 0) cnt++;
+            if ((Rt == Ra) && ((Ct - Ca) * (ct - ca) < 0) && (abs(Ct - Ca) % 2 == 0) && (Ct != Ca) && (abs(Ct - Ca) / 2 <= t_)) cnt++;
         } else if (abs(rt + ra) == 1 && abs(ct + ca) == 1) {
             // クロス
-            int t = abs(Ct - Rt);
-            if ((t != 0) && (t <= t_) && (Rt + t * rt == Ra + t * ra) && (Ct + t * ct == Ca + t * ca)) cnt++;
+            int t = abs(Ra - Rt);
+            if ((t > 0) && (t <= t_) && (Rt + t * rt == Ra + t * ra) && (Ct + t * ct == Ca + t * ca)) cnt++;
         }
 
         Rt += rt * t_, Ct += ct * t_, Ra += ra * t_, Ca += ca * t_;
