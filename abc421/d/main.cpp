@@ -26,8 +26,8 @@ signed main() {
     int a = 0, b = 0;
     rep(i, M) a += A[i], s.insert(a);
     rep(i, L) b += B[i], s.insert(b);
-    rep(i, M - 1) A_[i + 1] += A[i];
-    rep(i, L - 1) B_[i + 1] += B[i];
+    rep(i, M - 1) A_[i + 1] += A_[i];
+    rep(i, L - 1) B_[i + 1] += B_[i];
 
     int NN = s.size();
     vector<int> time(NN);
