@@ -8,4 +8,22 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<char> T(N);
+    vector<int> A(N);
+    rep(i, N) cin >> T[i] >> A[i];
+
+    int ans = 0;
+    rep(i, N) {
+        if (T[i] == '+') {
+            ans += A[i];
+        } else if (T[i] == '-') {
+            ans -= A[i];
+        } else {
+            ans *= A[i];
+        }
+        ans = (10000 + ans % 10000) % 10000;
+        cout << ans << endl;
+    }
 }

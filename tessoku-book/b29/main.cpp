@@ -7,5 +7,20 @@
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
 
+int mod = 1000000007;
+int fast_pow(int a, int b) {
+    int ret = 1;
+    while (b) {
+        if (b & 1) ret *= a;
+        a = a * a % mod;
+        ret %= mod;
+        b >>= 1;
+    }
+    return ret;
+}
 signed main() {
+    int a, b;
+    cin >> a >> b;
+
+    cout << fast_pow(a, b) << endl;
 }
