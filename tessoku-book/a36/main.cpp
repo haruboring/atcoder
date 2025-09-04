@@ -8,4 +8,12 @@
 using namespace std;
 
 signed main() {
+    int N, K;
+    cin >> N >> K;
+
+    if (K >= 2 * (N - 1) && (K - 2 * N - 2) % 2 == 0) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
 }

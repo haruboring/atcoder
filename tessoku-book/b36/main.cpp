@@ -8,4 +8,17 @@
 using namespace std;
 
 signed main() {
+    int N, K;
+    cin >> N >> K;
+    string S;
+    cin >> S;
+
+    int cnt = 0;
+    rep(i, N) if (S[i] == '1') cnt++;
+
+    if (cnt % 2 == K % 2) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
 }
