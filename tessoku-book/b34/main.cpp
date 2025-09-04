@@ -8,4 +8,18 @@
 using namespace std;
 
 signed main() {
+    int N, X, Y;
+    cin >> N >> X >> Y;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    vector<int> T = {0, 0, 1, 1, 2};
+
+    int t = 0;
+    rep(i, N) t ^= T[A[i] % 5];
+    if (t == 0) {
+        cout << "Second" << endl;
+    } else {
+        cout << "First" << endl;
+    }
 }

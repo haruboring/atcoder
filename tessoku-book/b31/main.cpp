@@ -8,4 +8,9 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+
+    int cnt = N / 3 + N / 5 + N / 7 - N / 15 - N / 35 - N / 21 + N / 105;
+    cout << cnt << endl;
 }

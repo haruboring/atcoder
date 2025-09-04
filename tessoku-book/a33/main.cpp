@@ -8,4 +8,17 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    int t = 0;
+    rep(i, N) t ^= A[i];
+
+    if (t == 0) {
+        cout << "Second" << endl;
+    } else {
+        cout << "First" << endl;
+    }
 }
