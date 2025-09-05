@@ -8,4 +8,20 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    map<int, int> m;
+    rep(i, N) m[A[i]]++;
+
+    int ans = 0;
+    for (auto [k, c] : m) {
+        int t = 1;
+        rep(i, 3) t *= c - i;
+        ans += t / 6;
+    }
+
+    cout << ans << endl;
 }

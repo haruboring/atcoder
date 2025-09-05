@@ -8,4 +8,20 @@
 using namespace std;
 
 signed main() {
+    int X, Y;
+    cin >> X >> Y;
+
+    vector<int> cX, cY;
+    cX.push_back(X), cY.push_back(Y);
+    while (X > 1 || Y > 1) {
+        if (X > Y) {
+            X -= Y;
+        } else {
+            Y -= X;
+        }
+        cX.push_back(X), cY.push_back(Y);
+    }
+
+    cout << cX.size() - 1 << endl;
+    rep(i, cX.size() - 1) cout << cX[cX.size() - 2 - i] << " " << cY[cY.size() - 2 - i] << endl;
 }

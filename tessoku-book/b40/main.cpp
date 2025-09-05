@@ -8,4 +8,18 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N);
+    rep(i, N) cin >> A[i];
+
+    map<int, int> m;
+    rep(i, N) m[A[i] % 100]++;
+
+    int cnt = 0;
+    rep(i, N) {
+        m[A[i] % 100]--;
+        cnt += m[(100 - A[i] % 100) % 100];
+    }
+    cout << cnt << endl;
 }

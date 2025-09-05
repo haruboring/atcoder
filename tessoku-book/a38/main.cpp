@@ -8,4 +8,12 @@
 using namespace std;
 
 signed main() {
+    int D, N;
+    cin >> D >> N;
+    vector<int> L(N), R(N), H(N);
+    rep(i, N) cin >> L[i] >> R[i] >> H[i];
+
+    vector<int> A(D, 24);
+    rep(i, N) repp(j, L[i] - 1, R[i]) A[j] = min(A[j], H[i]);
+    cout << accumulate(all(A), 0LL) << endl;
 }
