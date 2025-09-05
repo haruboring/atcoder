@@ -8,4 +8,25 @@
 using namespace std;
 
 signed main() {
+    int N, K;
+    cin >> N >> K;
+    vector<int> A(N), B(N);
+    rep(i, N) cin >> A[i] >> B[i];
+
+    map<int, vector<int>> m;
+    rep(i, N) m[A[i]].push_back(B[i]);
+    int cnt = 0;
+    for (int i = 0; i < 101; i++) {
+        vector<int> T;
+        rep(j, K + 1) for (auto a : m[i + j]) T.push_back(a);
+
+        if (T.size() == 0) continue;
+        sort(all(T));
+        rep(j, T.size()) {
+            int idx = upper_bound(all(T), T[j] + K) - T.begin() - j;
+            cnt = max(cnt, idx);
+        }
+    }
+
+    cout << cnt << endl;
 }

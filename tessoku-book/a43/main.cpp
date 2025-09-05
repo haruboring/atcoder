@@ -8,4 +8,19 @@
 using namespace std;
 
 signed main() {
+    int N, L;
+    cin >> N >> L;
+    vector<int> A(N);
+    vector<char> B(N);
+    rep(i, N) cin >> A[i] >> B[i];
+
+    int ans = -1;
+    rep(i, N) {
+        if (B[i] == 'E') {
+            ans = max(ans, L - A[i]);
+        } else {
+            ans = max(ans, A[i]);
+        }
+    }
+    cout << ans << endl;
 }

@@ -8,4 +8,24 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<int> A(N), B(N);
+    rep(i, N) cin >> A[i] >> B[i];
+
+    int ans = -1;
+    for (int a : {-1, 1}) {
+        for (int b : {-1, 1}) {
+            vector<int> T(N);
+            rep(i, N) T[i] = a * A[i] + b * B[i];
+
+            sort(all(T));
+            reverse(all(T));
+
+            int sum = 0;
+            rep(i, N) sum += max(0LL, T[i]);
+            ans = max(ans, sum);
+        }
+    }
+    cout << ans << endl;
 }
