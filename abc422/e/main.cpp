@@ -13,29 +13,27 @@ signed main() {
     vector<int> X(N), Y(N);
     rep(i, N) cin >> X[i] >> Y[i];
 
-    mt19937 engine{std::random_device{}()};
-    uniform_int_distribution<int> dist(0, N);
+    mt19937_64 rng(58);
 
     rep(_, 100) {
-        int i = dist(engine);
-        unordered_map<pair<int, int>, int> m;
-        int sX = X[i], sY = Y[i];
-        rep(j, N) {
-            if (i == j) continue;
-            int mo = (sY - Y[j]) / gcd((sY - Y[j]), (sX - X[j]));
-            int ch = (sX - X[j]) / gcd((sY - Y[j]), (sX - X[j]));
-            if (mo < 0) {
-                mo *= -1, ch *= -1;
-            }
-            m[{mo, ch}]++;
+        int i = rand() % N;
+        int j = rand() % N;
+        while (i == j) {
+            j = rand() % N;
         }
-        for (auto [k, v] : m) {
-            auto [m, c] = k;
-            if (v + 1 > N / 2) {
-                cout << "Yes" << endl;
-                cout << c << " " << m << " " << sY - c * sX << endl;
-                return 0;
-            }
+        int x = X[i], y = Y[i];
+        int gcd_ = gcd((Y[j] - Y[i]), (X[j] - X[i]));
+        int ch = (Y[j] - Y[i]) / gcd_;
+        int mo = (X[j] - X[i]) / gcd_;
+
+        int a = ch, b = -mo, c = mo * Y[i] - ch * X[i];
+        int cnt = 0;
+        rep(k, N) if (X[k] * a + Y[k] * b + c == 0) cnt++;
+
+        if (cnt > N / 2) {
+            cout << "Yes" << endl;
+            cout << ch << " " << -mo << " " << mo * y - ch * x << endl;
+            return 0;
         }
     }
 
