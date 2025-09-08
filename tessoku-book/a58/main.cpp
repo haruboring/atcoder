@@ -8,4 +8,9 @@
 using namespace std;
 
 signed main() {
+    map<int, vector<int>> m;
+    m[1].push_back(2);
+    m[1].push_back(19);
+
+    cout << m[0].size() << endl;
 }
