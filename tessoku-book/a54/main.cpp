@@ -8,4 +8,25 @@
 using namespace std;
 
 signed main() {
+    int Q;
+    cin >> Q;
+
+    map<string, int> m;
+    rep(i, Q) {
+        int f;
+        cin >> f;
+
+        if (f == 1) {
+            string x;
+            int y;
+            cin >> x >> y;
+
+            m[x] = y;
+        } else {
+            string x;
+            cin >> x;
+
+            cout << m[x] << endl;
+        }
+    }
 }

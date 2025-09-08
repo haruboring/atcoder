@@ -8,4 +8,22 @@
 using namespace std;
 
 signed main() {
+    int N;
+    cin >> N;
+    vector<vector<int>> A(N, vector<int>(N));
+    rep(i, N) rep(j, N) cin >> A[i][j];
+    int Q;
+    cin >> Q;
+
+    map<int, int> m;
+    rep(i, N) m[i] = i;
+    rep(_, Q) {
+        int f, x, y;
+        cin >> f >> x >> y, x--, y--;
+        if (f == 1) {
+            swap(m[x], m[y]);
+        } else {
+            cout << A[m[x]][y] << endl;
+        }
+    }
 }

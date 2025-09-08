@@ -8,4 +8,22 @@
 using namespace std;
 
 signed main() {
+    int Q;
+    cin >> Q;
+
+    stack<string> st;
+    rep(i, Q) {
+        int f;
+        cin >> f;
+
+        if (f == 1) {
+            string x;
+            cin >> x;
+            st.push(x);
+        } else if (f == 2) {
+            cout << st.top() << endl;
+        } else {
+            st.pop();
+        }
+    }
 }

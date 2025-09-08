@@ -8,4 +8,23 @@
 using namespace std;
 
 signed main() {
+    int Q;
+    cin >> Q;
+
+    queue<string> q;
+    rep(i, Q) {
+        int f;
+        cin >> f;
+
+        if (f == 1) {
+            string s;
+            cin >> s;
+
+            q.push(s);
+        } else if (f == 2) {
+            cout << q.front() << endl;
+        } else {
+            q.pop();
+        }
+    }
 }

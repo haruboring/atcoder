@@ -8,4 +8,23 @@
 using namespace std;
 
 signed main() {
+    int Q;
+    cin >> Q;
+
+    priority_queue<int, vector<int>, greater<int>> pq;
+    rep(i, Q) {
+        int f;
+        cin >> f;
+
+        if (f == 1) {
+            int x;
+            cin >> x;
+            pq.push(x);
+        } else if (f == 2) {
+            int a = pq.top();
+            cout << a << endl;
+        } else {
+            pq.pop();
+        }
+    }
 }

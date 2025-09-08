@@ -8,4 +8,16 @@
 using namespace std;
 
 signed main() {
+    string S;
+    cin >> S;
+
+    stack<int> l;
+    rep(i, S.size()) {
+        if (S[i] == '(') {
+            l.push(i);
+        } else {
+            cout << l.top() + 1 << " " << i + 1 << endl;
+            l.pop();
+        }
+    }
 }
