@@ -8,4 +8,27 @@
 using namespace std;
 
 signed main() {
+    int Q;
+    cin >> Q;
+
+    set<int> s;
+    s.insert(1e18);
+    s.insert(-1e18);
+
+    rep(i, Q) {
+        int f, x;
+        cin >> f >> x;
+
+        if (f == 1) {
+            s.insert(x);
+        } else {
+            auto itr = s.lower_bound(x);
+            auto iitr = itr;
+            iitr--;  // わからず。*(--itr)だとローカルは通るけどテストに通らん
+            int ans = min(abs(x - *itr), abs(x - *(iitr)));
+
+            if (ans > 1e10) ans = -1;
+            cout << ans << endl;
+        }
+    }
 }
