@@ -7,10 +7,23 @@
 #define debug(x) cerr << #x << ": " << x << endl
 using namespace std;
 
-signed main() {
-    map<int, vector<int>> m;
-    m[1].push_back(2);
-    m[1].push_back(19);
+int op(int a, int b) { return max(a, b); }
+int e() { return 0; }
 
-    cout << m[0].size() << endl;
+signed main() {
+    int N, Q;
+    cin >> N >> Q;
+
+    vector<int> A(N);
+    atcoder::segtree<int, op, e> seg(A);
+    rep(i, Q) {
+        int f, x, y;
+        cin >> f >> x >> y;
+
+        if (f == 1) {
+            seg.set(x - 1, y);
+        } else {
+            cout << seg.prod(x - 1, y - 1) << endl;
+        }
+    }
 }
